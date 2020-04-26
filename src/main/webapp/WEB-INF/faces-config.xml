@@ -29,4 +29,48 @@
             <var>bundle</var>
         </resource-bundle>
     </application>
+     <validator>
+        <validator-id>emailValidator</validator-id>
+        <validator-class>Validaciones.mercado.EmailValidator</validator-class>
+    </validator>
+    
+    <validator>
+        <validator-id>rfcValidator</validator-id>
+        <validator-class>Validaciones.mercado.RFCValidator</validator-class>
+    </validator>
+    
+    <validator>
+        <validator-id>letrasValidator</validator-id>
+        <validator-class>Validaciones.mercado.LetrasValidator</validator-class>
+    </validator>
+    
+    <validator>
+        <validator-id>numerosValidator</validator-id>
+        <validator-class>Validaciones.mercado.NumerosValidator</validator-class>
+    </validator>
+    
+    <validator>
+        <validator-id>fechaValidator</validator-id>
+        <validator-class>Validaciones.mercado.FechaValidator</validator-class>
+    </validator>
+    
+    <validator>
+        <validator-id>urlValidator</validator-id>
+        <validator-class>Validaciones.mercado.URLValidator</validator-class>
+    </validator>
+    
+    <validator>
+        <validator-id>telefonoValidator</validator-id>
+        <validator-class>Validaciones.mercado.TelefonoValidator</validator-class>
+    </validator>
+    
+    <validator>
+        <validator-id>curpValidator</validator-id>
+        <validator-class>Validaciones.mercado.CURPValidator</validator-class>
+    </validator>
+    
+    <validator>
+        <validator-id>sexoValidator</validator-id>
+        <validator-class>Validaciones.mercado.SexoValidator</validator-class>
+    </validator>
 </faces-config>
