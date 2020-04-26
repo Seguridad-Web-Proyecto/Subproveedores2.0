@@ -10,90 +10,159 @@
             <h:outputText value="#{bundle.ListOrdenventaTitle}"></h:outputText>
         </ui:define>
         <ui:define name="body">
-            <h:form styleClass="jsfcrud_list_form">
-                <h:panelGroup id="messagePanel" layout="block">
-                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
-                </h:panelGroup>
-                <h:outputText escape="false" value="#{bundle.ListOrdenventaEmpty}" rendered="#{ordenventaController.items.rowCount == 0}"/>
-                <h:panelGroup rendered="#{ordenventaController.items.rowCount > 0}">
-                    <h:outputText value="#{ordenventaController.pagination.pageFirstItem + 1}..#{ordenventaController.pagination.pageLastItem + 1}/#{ordenventaController.pagination.itemsCount}"/>&nbsp;
-                    <h:commandLink action="#{ordenventaController.previous}" value="#{bundle.Previous} #{ordenventaController.pagination.pageSize}" rendered="#{ordenventaController.pagination.hasPreviousPage}"/>&nbsp;
-                    <h:commandLink action="#{ordenventaController.next}" value="#{bundle.Next} #{ordenventaController.pagination.pageSize}" rendered="#{ordenventaController.pagination.hasNextPage}"/>&nbsp;
-                    <h:dataTable value="#{ordenventaController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListOrdenventaTitle_ordenventaid}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.ordenventaid}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListOrdenventaTitle_fechaVenta}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.fechaVenta}">
-                                <f:convertDateTime pattern="MM/dd/yyyy" />
-                            </h:outputText>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListOrdenventaTitle_status}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.status}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListOrdenventaTitle_iva}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.iva}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListOrdenventaTitle_subtotal}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.subtotal}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListOrdenventaTitle_total}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.total}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListOrdenventaTitle_descripcion}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.descripcion}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListOrdenventaTitle_clienteid}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.clienteid}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListOrdenventaTitle_facturaid}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.facturaid}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="&nbsp;"/>
-                            </f:facet>
-                            <h:commandLink action="#{ordenventaController.prepareView}" value="#{bundle.ListOrdenventaViewLink}"/>
-                            <h:outputText value=" "/>
-                            <h:commandLink action="#{ordenventaController.prepareEdit}" value="#{bundle.ListOrdenventaEditLink}"/>
-                            <h:outputText value=" "/>
-                            <h:commandLink action="#{ordenventaController.destroy}" value="#{bundle.ListOrdenventaDestroyLink}"/>
-                        </h:column>
-                    </h:dataTable>
-                </h:panelGroup>
-                <br />
-                <h:commandLink action="#{ordenventaController.prepareCreate}" value="#{bundle.ListOrdenventaCreateLink}"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.ListOrdenventaIndexLink}"/>
-            </h:form>
+            <div class="main">
+                <div class="alert alert-dismissible" style="background-color: white">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <strong>!Mensajes!</strong><br></br> <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </div>
+
+                <div style="background-color: white">
+                    <br></br>
+                    <h1 align="center">Ordenes de Venta</h1>
+                    <br></br>
+                </div>
+
+                <div class="card">
+                    <div class="card-body">
+
+                        <p align="right">
+                            <button action="#{ordenventaController.prepareCreate()}" type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#modalCreate">
+                                Crear Orden de Venta
+                            </button>
+                            <button action="#{ordenventaController.prepareList()}" type="button" class="btn btn-sm btn-dark"><i class="fas fa-redo"></i>
+
+                            </button>
+                        </p>
+                    </div>
+                </div>
+                <br></br>
+                <h:form styleClass="jsfcrud_list_form">
+                    <h:outputText escape="false" value="#{bundle.ListOrdenventaEmpty}" rendered="#{ordenventaController.items.rowCount == 0}"/>
+                    <h:panelGroup rendered="#{ordenventaController.items.rowCount > 0}">
+                        <h:outputText value="#{ordenventaController.pagination.pageFirstItem + 1}..#{ordenventaController.pagination.pageLastItem + 1}/#{ordenventaController.pagination.itemsCount}"/>&nbsp;
+                        <h:commandLink action="#{ordenventaController.previous}" value="#{bundle.Previous} #{ordenventaController.pagination.pageSize}" rendered="#{ordenventaController.pagination.hasPreviousPage}"/>&nbsp;
+                        <h:commandLink action="#{ordenventaController.next}" value="#{bundle.Next} #{ordenventaController.pagination.pageSize}" rendered="#{ordenventaController.pagination.hasNextPage}"/>&nbsp;
+                        <h:dataTable class="table table-sm table-light" value="#{ordenventaController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#"/>
+                                </f:facet>
+                                <h:outputText value="#{item.ordenventaid}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Fecha de venta"/>
+                                </f:facet>
+                                <h:outputText value="#{item.fechaVenta}">
+                                    <f:convertDateTime pattern="MM/dd/yyyy" />
+                                </h:outputText>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{bundle.ListOrdenventaTitle_status}"/>
+                                </f:facet>
+                                <h:outputText value="#{item.status}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{bundle.ListOrdenventaTitle_iva}"/>
+                                </f:facet>
+                                <h:outputText value="#{item.iva}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{bundle.ListOrdenventaTitle_subtotal}"/>
+                                </f:facet>
+                                <h:outputText value="#{item.subtotal}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{bundle.ListOrdenventaTitle_total}"/>
+                                </f:facet>
+                                <h:outputText value="#{item.total}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{bundle.ListOrdenventaTitle_descripcion}"/>
+                                </f:facet>
+                                <h:outputText value="#{item.descripcion}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Id Cliente"/>
+                                </f:facet>
+                                <h:outputText value="#{item.clienteid}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Id Factura"/>
+                                </f:facet>
+                                <h:outputText value="#{item.facturaid}"/>
+                            </h:column>
+                            <h:column>
+                                <h:commandLink class="btn btn-sm btn-outline-info fas fa-eye" action="#{ordenventaController.prepareView}"  />
+                                <h:commandLink class="btn btn-sm btn-outline-success far fa-edit" action="#{ordenventaController.prepareEdit}" />
+                                <h:commandLink class="btn btn-sm btn-outline-danger fas fa-trash-alt" onclick="return ConfirmDelete()" action="#{ordenventaController.destroy}" />
+                            </h:column>
+                        </h:dataTable>
+                    </h:panelGroup>
+                </h:form>
+            </div>
+
+            <!-- The Modal -->
+            <div class="modal fade" id="modalCreate">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+
+                        <!-- Modal Header -->
+                        <div class="modal-header" align="center">
+                            <h4 class="modal-title">Registro de Ordenes </h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+
+                        <!-- Modal body -->
+                        <div class="modal-body">
+                            <h:form>
+                                <div align="center" >
+                                    <h:panelGrid columns="2">
+                                        <h:outputLabel value="Fecha de venta: " for="fechaVenta" />
+                                        <h:inputText class="form-control" id="fechaVenta" value="#{ordenventaController.selected.fechaVenta}" title="#{bundle.CreateOrdenventaTitle_fechaVenta}" required="true" requiredMessage="#{bundle.CreateOrdenventaRequiredMessage_fechaVenta}">
+                                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                                        </h:inputText>
+                                        <h:outputLabel value="#{bundle.CreateOrdenventaLabel_status}" for="status" />
+                                        <h:inputText class="form-control" id="status" value="#{ordenventaController.selected.status}" title="#{bundle.CreateOrdenventaTitle_status}" required="true" requiredMessage="#{bundle.CreateOrdenventaRequiredMessage_status}"/>
+                                        <h:outputLabel value="#{bundle.CreateOrdenventaLabel_iva}" for="iva" />
+                                        <h:inputText class="form-control" id="iva" value="#{ordenventaController.selected.iva}" title="#{bundle.CreateOrdenventaTitle_iva}" required="true" requiredMessage="#{bundle.CreateOrdenventaRequiredMessage_iva}"/>
+                                        <h:outputLabel value="#{bundle.CreateOrdenventaLabel_subtotal}" for="subtotal" />
+                                        <h:inputText class="form-control" id="subtotal" value="#{ordenventaController.selected.subtotal}" title="#{bundle.CreateOrdenventaTitle_subtotal}" required="true" requiredMessage="#{bundle.CreateOrdenventaRequiredMessage_subtotal}"/>
+                                        <h:outputLabel value="#{bundle.CreateOrdenventaLabel_total}" for="total" />
+                                        <h:inputText class="form-control" id="total" value="#{ordenventaController.selected.total}" title="#{bundle.CreateOrdenventaTitle_total}" required="true" requiredMessage="#{bundle.CreateOrdenventaRequiredMessage_total}"/>
+                                        <h:outputLabel value="#{bundle.CreateOrdenventaLabel_descripcion}" for="descripcion" />
+                                        <h:inputText class="form-control" id="descripcion" value="#{ordenventaController.selected.descripcion}" title="#{bundle.CreateOrdenventaTitle_descripcion}" required="true" requiredMessage="#{bundle.CreateOrdenventaRequiredMessage_descripcion}"/>
+                                        <h:outputLabel value="Id de Cliente:" for="clienteid" />
+                                        <h:selectOneMenu class="form-control" id="clienteid" value="#{ordenventaController.selected.clienteid}" title="#{bundle.CreateOrdenventaTitle_clienteid}" required="true" requiredMessage="#{bundle.CreateOrdenventaRequiredMessage_clienteid}">
+                                            <f:selectItems value="#{clienteController.itemsAvailableSelectOne}"/>
+                                        </h:selectOneMenu>
+                                        <h:outputLabel value="Id de Factura:" for="facturaid" />
+                                        <h:selectOneMenu class="form-control" id="facturaid" value="#{ordenventaController.selected.facturaid}" title="#{bundle.CreateOrdenventaTitle_facturaid}" required="true" requiredMessage="#{bundle.CreateOrdenventaRequiredMessage_facturaid}">
+                                            <f:selectItems value="#{facturaventaController.itemsAvailableSelectOne}"/>
+                                        </h:selectOneMenu>
+                                    </h:panelGrid>
+                                    <br></br>
+                                    <h:commandLink class="btn btn-sm btn-success" value="Guardar" action="#{ordenventaController.create()}" />
+                                    <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal">Cancelar</button>
+                                    <br></br>
+                                    <br></br>
+                                    <!-- Modal footer -->
+                                    <div class="modal-footer">
+                                        <h:commandLink action="#{ordenventaController.prepareList}" value="Ver Lista de Ordenes de Venta" immediate="true"/>
+                                    </div>
+                                </div>
+                            </h:form>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </ui:define>
     </ui:composition>
 

@@ -10,47 +10,53 @@
             <h:outputText value="#{bundle.EditOrdenventaTitle}"></h:outputText>
         </ui:define>
         <ui:define name="body">
-            <h:panelGroup id="messagePanel" layout="block">
-                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
-            </h:panelGroup>
-            <h:form>
-                <h:panelGrid columns="2">
-                    <h:outputLabel value="#{bundle.EditOrdenventaLabel_ordenventaid}" for="ordenventaid" />
-                    <h:inputText id="ordenventaid" value="#{ordenventaController.selected.ordenventaid}" title="#{bundle.EditOrdenventaTitle_ordenventaid}" required="true" requiredMessage="#{bundle.EditOrdenventaRequiredMessage_ordenventaid}"/>
-                    <h:outputLabel value="#{bundle.EditOrdenventaLabel_fechaVenta}" for="fechaVenta" />
-                    <h:inputText id="fechaVenta" value="#{ordenventaController.selected.fechaVenta}" title="#{bundle.EditOrdenventaTitle_fechaVenta}" required="true" requiredMessage="#{bundle.EditOrdenventaRequiredMessage_fechaVenta}">
-                        <f:convertDateTime pattern="MM/dd/yyyy" />
-                    </h:inputText>
-                    <h:outputLabel value="#{bundle.EditOrdenventaLabel_status}" for="status" />
-                    <h:inputText id="status" value="#{ordenventaController.selected.status}" title="#{bundle.EditOrdenventaTitle_status}" required="true" requiredMessage="#{bundle.EditOrdenventaRequiredMessage_status}"/>
-                    <h:outputLabel value="#{bundle.EditOrdenventaLabel_iva}" for="iva" />
-                    <h:inputText id="iva" value="#{ordenventaController.selected.iva}" title="#{bundle.EditOrdenventaTitle_iva}" required="true" requiredMessage="#{bundle.EditOrdenventaRequiredMessage_iva}"/>
-                    <h:outputLabel value="#{bundle.EditOrdenventaLabel_subtotal}" for="subtotal" />
-                    <h:inputText id="subtotal" value="#{ordenventaController.selected.subtotal}" title="#{bundle.EditOrdenventaTitle_subtotal}" required="true" requiredMessage="#{bundle.EditOrdenventaRequiredMessage_subtotal}"/>
-                    <h:outputLabel value="#{bundle.EditOrdenventaLabel_total}" for="total" />
-                    <h:inputText id="total" value="#{ordenventaController.selected.total}" title="#{bundle.EditOrdenventaTitle_total}" required="true" requiredMessage="#{bundle.EditOrdenventaRequiredMessage_total}"/>
-                    <h:outputLabel value="#{bundle.EditOrdenventaLabel_descripcion}" for="descripcion" />
-                    <h:inputText id="descripcion" value="#{ordenventaController.selected.descripcion}" title="#{bundle.EditOrdenventaTitle_descripcion}" required="true" requiredMessage="#{bundle.EditOrdenventaRequiredMessage_descripcion}"/>
-                    <h:outputLabel value="#{bundle.EditOrdenventaLabel_clienteid}" for="clienteid" />
-                    <h:selectOneMenu id="clienteid" value="#{ordenventaController.selected.clienteid}" title="#{bundle.EditOrdenventaTitle_clienteid}" required="true" requiredMessage="#{bundle.EditOrdenventaRequiredMessage_clienteid}">
-                        <f:selectItems value="#{clienteController.itemsAvailableSelectOne}"/>
-                    </h:selectOneMenu>
-                    <h:outputLabel value="#{bundle.EditOrdenventaLabel_facturaid}" for="facturaid" />
-                    <h:selectOneMenu id="facturaid" value="#{ordenventaController.selected.facturaid}" title="#{bundle.EditOrdenventaTitle_facturaid}" required="true" requiredMessage="#{bundle.EditOrdenventaRequiredMessage_facturaid}">
-                        <f:selectItems value="#{facturaventaController.itemsAvailableSelectOne}"/>
-                    </h:selectOneMenu>
-                </h:panelGrid>
-                <h:commandLink action="#{ordenventaController.update}" value="#{bundle.EditOrdenventaSaveLink}"/>
-                <br />
-                <br />
-                <h:link outcome="View" value="#{bundle.EditOrdenventaViewLink}"/>
-                <br />
-                <h:commandLink action="#{ordenventaController.prepareList}" value="#{bundle.EditOrdenventaShowAllLink}" immediate="true"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.EditOrdenventaIndexLink}" />
-            </h:form>
+            <div class="main">
+                <div class="alert alert-dismissible" style="background-color: white">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <strong>!Mensajes!</strong><br></br> <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </div>
+                <div style="background-color: white">
+                    <br></br>
+                    <h4 align="center">Editar Información</h4>
+                    <br></br>
+                </div>
+                <br></br>
+                <div style="background-color: white" align="center">
+                    <br></br>
+                    <h:form>
+                        <h:panelGrid columns="2">
+                            <h:outputLabel value="Fecha de Venta:" for="fechaVenta" />
+                            <h:inputText class="form-control" id="fechaVenta" value="#{ordenventaController.selected.fechaVenta}" title="#{bundle.EditOrdenventaTitle_fechaVenta}" required="true" requiredMessage="#{bundle.EditOrdenventaRequiredMessage_fechaVenta}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:inputText>
+                            <h:outputLabel value="#{bundle.EditOrdenventaLabel_status}" for="status" />
+                            <h:inputText class="form-control" id="status" value="#{ordenventaController.selected.status}" title="#{bundle.EditOrdenventaTitle_status}" required="true" requiredMessage="#{bundle.EditOrdenventaRequiredMessage_status}"/>
+                            <h:outputLabel value="#{bundle.EditOrdenventaLabel_iva}" for="iva" />
+                            <h:inputText class="form-control" id="iva" value="#{ordenventaController.selected.iva}" title="#{bundle.EditOrdenventaTitle_iva}" required="true" requiredMessage="#{bundle.EditOrdenventaRequiredMessage_iva}"/>
+                            <h:outputLabel value="#{bundle.EditOrdenventaLabel_subtotal}" for="subtotal" />
+                            <h:inputText class="form-control" id="subtotal" value="#{ordenventaController.selected.subtotal}" title="#{bundle.EditOrdenventaTitle_subtotal}" required="true" requiredMessage="#{bundle.EditOrdenventaRequiredMessage_subtotal}"/>
+                            <h:outputLabel value="#{bundle.EditOrdenventaLabel_total}" for="total" />
+                            <h:inputText class="form-control" id="total" value="#{ordenventaController.selected.total}" title="#{bundle.EditOrdenventaTitle_total}" required="true" requiredMessage="#{bundle.EditOrdenventaRequiredMessage_total}"/>
+                            <h:outputLabel value="#{bundle.EditOrdenventaLabel_descripcion}" for="descripcion" />
+                            <h:inputText class="form-control" id="descripcion" value="#{ordenventaController.selected.descripcion}" title="#{bundle.EditOrdenventaTitle_descripcion}" required="true" requiredMessage="#{bundle.EditOrdenventaRequiredMessage_descripcion}"/>
+                            <h:outputLabel value="Id de Cliente: " for="clienteid" />
+                            <h:selectOneMenu class="form-control" id="clienteid" value="#{ordenventaController.selected.clienteid}" title="#{bundle.EditOrdenventaTitle_clienteid}" required="true" requiredMessage="#{bundle.EditOrdenventaRequiredMessage_clienteid}">
+                                <f:selectItems value="#{clienteController.itemsAvailableSelectOne}"/>
+                            </h:selectOneMenu>
+                            <h:outputLabel value="Id de Factura: " for="facturaid" />
+                            <h:selectOneMenu class="form-control" id="facturaid" value="#{ordenventaController.selected.facturaid}" title="#{bundle.EditOrdenventaTitle_facturaid}" required="true" requiredMessage="#{bundle.EditOrdenventaRequiredMessage_facturaid}">
+                                <f:selectItems value="#{facturaventaController.itemsAvailableSelectOne}"/>
+                            </h:selectOneMenu>
+                        </h:panelGrid>
+                        <br />
+                        <h:commandLink class="btn btn-sm btn-info" action="#{ordenventaController.update}" value="Aceptar"/>
+                        &nbsp; 
+                        <h:commandLink class="btn btn-sm btn-danger" action="#{ordenventaController.prepareList()}" value="Cancelar"/>
+                        <br />
+                        <br />
+                    </h:form>
+                </div>
+            </div>
         </ui:define>
     </ui:composition>
-
 </html>
