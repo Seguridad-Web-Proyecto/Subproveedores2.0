@@ -76,17 +76,17 @@ public class TarjetacreditocompraController implements Serializable {
     public String prepareCreate() {
         current = new Tarjetacreditocompra();
         selectedItemIndex = -1;
-        return "Create";
+        return "List";
     }
 
     public String create() {
         try {
             getFacade().create(current);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("TarjetacreditocompraCreated"));
+            JsfUtil.addSuccessMessage("¡Tarjeta credito compra creada con exito!");
             return prepareCreate();
         } catch (Exception e) {
-            JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
-            return null;
+             JsfUtil.addSuccessMessage("¡Lo sentimos la operación no pudo completarse intente mas tarde!");
+            return "List";
         }
     }
 
@@ -99,11 +99,11 @@ public class TarjetacreditocompraController implements Serializable {
     public String update() {
         try {
             getFacade().edit(current);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("TarjetacreditocompraUpdated"));
-            return "View";
+            JsfUtil.addSuccessMessage("¡Tarjeta de credito compra editada con exito!");
+            return "List";
         } catch (Exception e) {
-            JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
-            return null;
+            JsfUtil.addSuccessMessage("¡Lo sentimos la operación no pudo completarse intente mas tarde!");
+            return "List";
         }
     }
 
@@ -132,9 +132,9 @@ public class TarjetacreditocompraController implements Serializable {
     private void performDestroy() {
         try {
             getFacade().remove(current);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("TarjetacreditocompraDeleted"));
+            JsfUtil.addSuccessMessage("¡Tarjeta de credito compra eliminada con exito!");
         } catch (Exception e) {
-            JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
+            JsfUtil.addSuccessMessage("¡Lo sentimos la operación no pudo completarse intente mas tarde!");
         }
     }
 

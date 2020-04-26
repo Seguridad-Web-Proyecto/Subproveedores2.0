@@ -10,70 +10,130 @@
             <h:outputText value="#{bundle.ListTarjetacreditocompraTitle}"></h:outputText>
         </ui:define>
         <ui:define name="body">
-            <h:form styleClass="jsfcrud_list_form">
-                <h:panelGroup id="messagePanel" layout="block">
-                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
-                </h:panelGroup>
-                <h:outputText escape="false" value="#{bundle.ListTarjetacreditocompraEmpty}" rendered="#{tarjetacreditocompraController.items.rowCount == 0}"/>
-                <h:panelGroup rendered="#{tarjetacreditocompraController.items.rowCount > 0}">
-                    <h:outputText value="#{tarjetacreditocompraController.pagination.pageFirstItem + 1}..#{tarjetacreditocompraController.pagination.pageLastItem + 1}/#{tarjetacreditocompraController.pagination.itemsCount}"/>&nbsp;
-                    <h:commandLink action="#{tarjetacreditocompraController.previous}" value="#{bundle.Previous} #{tarjetacreditocompraController.pagination.pageSize}" rendered="#{tarjetacreditocompraController.pagination.hasPreviousPage}"/>&nbsp;
-                    <h:commandLink action="#{tarjetacreditocompraController.next}" value="#{bundle.Next} #{tarjetacreditocompraController.pagination.pageSize}" rendered="#{tarjetacreditocompraController.pagination.hasNextPage}"/>&nbsp;
-                    <h:dataTable value="#{tarjetacreditocompraController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListTarjetacreditocompraTitle_tarjetacreditocompraid}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.tarjetacreditocompraid}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListTarjetacreditocompraTitle_numero}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.numero}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListTarjetacreditocompraTitle_cvc}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.cvc}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListTarjetacreditocompraTitle_nombreTitular}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.nombreTitular}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListTarjetacreditocompraTitle_fechaExpiracion}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.fechaExpiracion}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListTarjetacreditocompraTitle_lugarFacturacion}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.lugarFacturacion}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="&nbsp;"/>
-                            </f:facet>
-                            <h:commandLink action="#{tarjetacreditocompraController.prepareView}" value="#{bundle.ListTarjetacreditocompraViewLink}"/>
-                            <h:outputText value=" "/>
-                            <h:commandLink action="#{tarjetacreditocompraController.prepareEdit}" value="#{bundle.ListTarjetacreditocompraEditLink}"/>
-                            <h:outputText value=" "/>
-                            <h:commandLink action="#{tarjetacreditocompraController.destroy}" value="#{bundle.ListTarjetacreditocompraDestroyLink}"/>
-                        </h:column>
-                    </h:dataTable>
-                </h:panelGroup>
-                <br />
-                <h:commandLink action="#{tarjetacreditocompraController.prepareCreate}" value="#{bundle.ListTarjetacreditocompraCreateLink}"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.ListTarjetacreditocompraIndexLink}"/>
-            </h:form>
+            <div class="main">
+                <div class="alert alert-dismissible" style="background-color: white">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <strong>!Mensajes!</strong><br></br> <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </div>
+
+                <div style="background-color: white">
+                    <br></br>
+                    <h1 align="center">Tarjetas de Credito Compras</h1>
+                    <br></br>
+                </div>
+
+                <div class="card">
+                    <div class="card-body">
+
+                        <p align="right">
+                            <button action="#{tarjetacreditocompraController.prepareCreate()}" type="button" class="btn btn-sm btn-info" data-toggle="modal" data-target="#modalCreate">
+                                Crear
+                            </button>
+                            <button action="#{tarjetacreditocompraController.prepareList()}" type="button" class="btn btn-sm btn-dark"><i class="fas fa-redo"></i>
+
+                            </button>
+                        </p>
+                    </div>
+                </div>
+                <br></br>
+                <h:form styleClass="jsfcrud_list_form">
+                    <h:outputText escape="false" value="#{bundle.ListTarjetacreditocompraEmpty}" rendered="#{tarjetacreditocompraController.items.rowCount == 0}"/>
+                    <h:panelGroup rendered="#{tarjetacreditocompraController.items.rowCount > 0}">
+                        <h:outputText value="#{tarjetacreditocompraController.pagination.pageFirstItem + 1}..#{tarjetacreditocompraController.pagination.pageLastItem + 1}/#{tarjetacreditocompraController.pagination.itemsCount}"/>&nbsp;
+                        <h:commandLink action="#{tarjetacreditocompraController.previous}" value="#{bundle.Previous} #{tarjetacreditocompraController.pagination.pageSize}" rendered="#{tarjetacreditocompraController.pagination.hasPreviousPage}"/>&nbsp;
+                        <h:commandLink action="#{tarjetacreditocompraController.next}" value="#{bundle.Next} #{tarjetacreditocompraController.pagination.pageSize}" rendered="#{tarjetacreditocompraController.pagination.hasNextPage}"/>&nbsp;
+                        <h:dataTable class="table table-sm table-light" value="#{tarjetacreditocompraController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#"/>
+                                </f:facet>
+                                <h:outputText value="#{item.tarjetacreditocompraid}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Numero"/>
+                                </f:facet>
+                                <h:outputText value="#{item.numero}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="CVC"/>
+                                </f:facet>
+                                <h:outputText value="#{item.cvc}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Titular"/>
+                                </f:facet>
+                                <h:outputText value="#{item.nombreTitular}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Fecha de Expiración"/>
+                                </f:facet>
+                                <h:outputText value="#{item.fechaExpiracion}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Lugar de Facturación"/>
+                                </f:facet>
+                                <h:outputText value="#{item.lugarFacturacion}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Acciones"/>
+                                </f:facet>
+                                <h:commandLink class="btn btn-sm btn-outline-info fas fa-eye" action="#{tarjetacreditocompraController.prepareView}"  />
+                                <h:commandLink class="btn btn-sm btn-outline-success far fa-edit" action="#{tarjetacreditocompraController.prepareEdit}" />
+                                <h:commandLink class="btn btn-sm btn-outline-danger fas fa-trash-alt" onclick="return ConfirmDelete()" action="#{tarjetacreditocompraController.destroy}" />
+                            </h:column>
+                        </h:dataTable>
+                    </h:panelGroup>
+                </h:form>
+            </div>
+
+            <!-- The Modal -->
+            <div class="modal fade" id="modalCreate">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+
+                        <!-- Modal Header -->
+                        <div class="modal-header" align="center">
+                            <h4 class="modal-title">Registro de Tarjeta </h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+
+                        <!-- Modal body -->
+                        <div class="modal-body">
+                            <h:form>
+                                <div align="center" >
+                                    <h:panelGrid columns="2">
+                                        <h:outputLabel value="#{bundle.CreateTarjetacreditocompraLabel_numero}" for="numero" />
+                                        <h:inputText id="numero" value="#{tarjetacreditocompraController.selected.numero}" title="#{bundle.CreateTarjetacreditocompraTitle_numero}" required="true" requiredMessage="#{bundle.CreateTarjetacreditocompraRequiredMessage_numero}"/>
+                                        <h:outputLabel value="#{bundle.CreateTarjetacreditocompraLabel_cvc}" for="cvc" />
+                                        <h:inputText id="cvc" value="#{tarjetacreditocompraController.selected.cvc}" title="#{bundle.CreateTarjetacreditocompraTitle_cvc}" required="true" requiredMessage="#{bundle.CreateTarjetacreditocompraRequiredMessage_cvc}"/>
+                                        <h:outputLabel value="Nombre del Titular: " for="nombreTitular" />
+                                        <h:inputText id="nombreTitular" value="#{tarjetacreditocompraController.selected.nombreTitular}" title="#{bundle.CreateTarjetacreditocompraTitle_nombreTitular}" required="true" requiredMessage="#{bundle.CreateTarjetacreditocompraRequiredMessage_nombreTitular}"/>
+                                        <h:outputLabel value="Fecha de Expiración: " for="fechaExpiracion" />
+                                        <h:inputText id="fechaExpiracion" value="#{tarjetacreditocompraController.selected.fechaExpiracion}" title="#{bundle.CreateTarjetacreditocompraTitle_fechaExpiracion}" required="true" requiredMessage="#{bundle.CreateTarjetacreditocompraRequiredMessage_fechaExpiracion}"/>
+                                        <h:outputLabel value="Lugar de Facturación:" for="lugarFacturacion" />
+                                        <h:inputText id="lugarFacturacion" value="#{tarjetacreditocompraController.selected.lugarFacturacion}" title="#{bundle.CreateTarjetacreditocompraTitle_lugarFacturacion}" required="true" requiredMessage="#{bundle.CreateTarjetacreditocompraRequiredMessage_lugarFacturacion}"/>
+                                    </h:panelGrid>
+                                    <br></br>
+                                    <h:commandLink class="btn btn-sm btn-success" value="Guardar" action="#{tarjetacreditocompraController.create()}" />
+                                    <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal">Cancelar</button>
+                                    <br></br>
+                                    <br></br>
+                                    <!-- Modal footer -->
+                                    <div class="modal-footer">
+                                        <h:commandLink action="#{tarjetacreditocompraController.prepareList}" value="Ver Lista" immediate="true"/>
+                                    </div>
+                                </div>
+                            </h:form>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </ui:define>
     </ui:composition>
 
