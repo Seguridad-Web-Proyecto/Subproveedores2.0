@@ -5,18 +5,83 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html">
 
     <h:head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <title><ui:insert name="title">Default Title</ui:insert></title>
-        <h:outputStylesheet library="css" name="jsfcrud.css"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+        <title><ui:insert name="title">ERP Subproveedores</ui:insert></title>
+        <h:outputScript name="bootstrap/js/bootstrap.js" />
+        <h:outputScript name="bootstrap/js/bootstrap.min.js"/>
+        <h:outputStylesheet name="bootstrap/css/bootstrap.css"/>
+        <h:outputScript name="bootstrap/js/jquery.js"/>
+        <h:outputStylesheet name="css/menu.css"/>
+        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous" />
+        <link href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" rel="stylesheet" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous" />
+        <script src="https://kit.fontawesome.com/f7a229cef3.js" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
+        <script type="text/javascript">
+            function ConfirmDelete() {
+                var respuesta = confirm("Eliminar registro");
+                if (respuesta == true) {
+                    return true;
+                } else {
+
+                    return false;
+                }
+            }
+        </script>
     </h:head>
 
-    <h:body>
+    <h:body style="background-color:#A3E4D7">
         <h1>
-            <ui:insert name="title">Default Title</ui:insert>
+            <ui:insert name="menu">
+                <div class="sidebar " style="color: white; background-color: #062E17" >
+                    <a><h:link class="fas fa-fw fa-home" outcome="/index.xhtml" value="Inicio"/></a> 
+                    <a><h:link class="fas fa-user-plus" outcome="/paginas/cargo/List" value=" Cargo"/></a> 
+                    <a><h:link class="fas fa-adjust" outcome="/paginas/categoria/List" value=" Categorias"/></a> 
+                    <a><h:link class="fas fa-user-friends" outcome="/paginas/cliente/List" value=" Clientes"/></a>
+                    <a><h:link class="fas fa-cart-arrow-down" outcome="/paginas/compradetalle/List" value=" Detalle de Compras"/></a> 
+                    <a><h:link class="fas fa-cart-arrow-down" outcome="/paginas/ventadetalle/List" value=" Detalle de Ventas"/></a> 
+                    <a><h:link class="fas fa-briefcase" outcome="/paginas/empleado/List" value=" Empleados"/></a>       
+                    <a><h:link class="fas fa-money-bill" outcome="/paginas/facturacompra/List" value=" Factura Compras"/></a>    
+                    <a><h:link class="fas fa-money-bill" outcome="/paginas/facturaventa/List" value=" Factura Ventas"/></a>
+                    <a><h:link class="fas fa-dollar-sign" outcome="/paginas/ganancia/List" value=" Ganancias"/></a>        
+                    <a><h:link class="fas fa-file" outcome="/paginas/historialtrabajo/List" value=" Historial de Trabajo"/></a> 
+                    <a><h:link class="fas fa-border-all" outcome="/paginas/ordencompra/List" value=" Orden de Compra"/></a> 
+                    <a><h:link class="fas fa-border-all" outcome="/paginas/ordenventa/List" value=" Orden de Venta"/></a>  
+                    <a><h:link class="fas fa-file-invoice" outcome="/paginas/pagocompra/List" value=" Pago de Compras"/></a> 
+                    <a><h:link class="fas fa-file-invoice" outcome="/paginas/pagoventa/List" value=" Pago de Ventas"/></a>   
+                    <a><h:link class="fas fa-user-shield" outcome="/paginas/persona/List" value=" Personas"/></a> 
+                    <a><h:link class="fab fa-product-hunt" outcome="/paginas/producto/List" value=" Productos"/></a> 
+                    <a><h:link class="fas fa-briefcase" outcome="/paginas/inventario/List" value=" Inventario"/></a>
+                    <a><h:link class="fas fa-truck" outcome="/paginas/proveedor/List" value=" Proveedores" /></a>  
+                    <a><h:link class="far fa-address-book" outcome="/paginas/rol/List" value=" Roles"/></a> 
+                    <a><h:link class="far fa-id-card" outcome="/paginas/tarjetacreditocompra/List" value=" Tarjeta de Compras"/></a> 
+                    <a><h:link class="far fa-id-card" outcome="/paginas/tarjetacreditoventa/List" value=" Tarjeta de Ventas" /></a> 
+                    <a><h:link class="fas fa-user" outcome="/paginas/usuario/List" value=" Usuarios" /></a> 
+                    <a><h:link class="fab fa-aws" outcome="/paginas/usuariosw/List" value=" Usuario WS"/></a> 
+                </div>
+            </ui:insert>
         </h1>
-        <p>
-            <ui:insert name="body">Default Body</ui:insert>
-        </p>
+
+        <ui:insert name="body">
+            <div class="main">
+                <br />
+                <br />
+                <br />
+                <center>
+                    <h:graphicImage value = "/resources/images/sub.png" width="500" /> 
+                    <br />
+                    <br />
+                    <center><h1><span class="badge badge-dark"> Providers S.A.</span></h1></center>
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                </center>
+            </div>
+        </ui:insert>
     </h:body>
 
 </html>
+
