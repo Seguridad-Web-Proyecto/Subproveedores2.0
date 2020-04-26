@@ -10,40 +10,42 @@
             <h:outputText value="#{bundle.ViewHistorialtrabajoTitle}"></h:outputText>
         </ui:define>
         <ui:define name="body">
-            <h:panelGroup id="messagePanel" layout="block">
-                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
-            </h:panelGroup>
-            <h:form>
-                <h:panelGrid columns="2">
-                    <h:outputText value="#{bundle.ViewHistorialtrabajoLabel_historialid}"/>
-                    <h:outputText value="#{historialtrabajoController.selected.historialid}" title="#{bundle.ViewHistorialtrabajoTitle_historialid}"/>
-                    <h:outputText value="#{bundle.ViewHistorialtrabajoLabel_fechaInicio}"/>
-                    <h:outputText value="#{historialtrabajoController.selected.fechaInicio}" title="#{bundle.ViewHistorialtrabajoTitle_fechaInicio}">
-                        <f:convertDateTime pattern="MM/dd/yyyy" />
-                    </h:outputText>
-                    <h:outputText value="#{bundle.ViewHistorialtrabajoLabel_fechaFin}"/>
-                    <h:outputText value="#{historialtrabajoController.selected.fechaFin}" title="#{bundle.ViewHistorialtrabajoTitle_fechaFin}">
-                        <f:convertDateTime pattern="MM/dd/yyyy" />
-                    </h:outputText>
-                    <h:outputText value="#{bundle.ViewHistorialtrabajoLabel_cargoid}"/>
-                    <h:outputText value="#{historialtrabajoController.selected.cargoid}" title="#{bundle.ViewHistorialtrabajoTitle_cargoid}"/>
-                    <h:outputText value="#{bundle.ViewHistorialtrabajoLabel_empleadoid}"/>
-                    <h:outputText value="#{historialtrabajoController.selected.empleadoid}" title="#{bundle.ViewHistorialtrabajoTitle_empleadoid}"/>
-                </h:panelGrid>
-                <br />
-                <h:commandLink action="#{historialtrabajoController.destroyAndView}" value="#{bundle.ViewHistorialtrabajoDestroyLink}"/>
-                <br />
-                <br />
-                <h:link outcome="Edit" value="#{bundle.ViewHistorialtrabajoEditLink}"/>
-                <br />
-                <h:commandLink action="#{historialtrabajoController.prepareCreate}" value="#{bundle.ViewHistorialtrabajoCreateLink}" />
-                <br />
-                <h:commandLink action="#{historialtrabajoController.prepareList}" value="#{bundle.ViewHistorialtrabajoShowAllLink}"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.ViewHistorialtrabajoIndexLink}"/>
-
-            </h:form>
+            <div class="main">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <div style="background-color: white">
+                    <br></br>
+                    <h4 align="center">Información</h4>
+                    <br></br>
+                </div>
+                <br></br>
+                <div style="background-color: white" align="center">
+                    <br></br>
+                    <h:form>
+                        <h:panelGrid columns="2">
+                            <h:outputText value="Id Historial: "/>
+                            <h:outputText class="form-control" value="#{historialtrabajoController.selected.historialid}" title="#{bundle.ViewHistorialtrabajoTitle_historialid}"/>
+                            <h:outputText value="Fecha de inicio: "/>
+                            <h:outputText class="form-control" value="#{historialtrabajoController.selected.fechaInicio}" title="#{bundle.ViewHistorialtrabajoTitle_fechaInicio}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                            <h:outputText value="Fecha de fin: "/>
+                            <h:outputText class="form-control" value="#{historialtrabajoController.selected.fechaFin}" title="#{bundle.ViewHistorialtrabajoTitle_fechaFin}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                            <h:outputText value="Id de cargo: "/>
+                            <h:outputText class="form-control" value="#{historialtrabajoController.selected.cargoid}" title="#{bundle.ViewHistorialtrabajoTitle_cargoid}"/>
+                            <h:outputText value="Id de empleado:"/>
+                            <h:outputText class="form-control" value="#{historialtrabajoController.selected.empleadoid}" title="#{bundle.ViewHistorialtrabajoTitle_empleadoid}"/>
+                        </h:panelGrid>
+                        <br></br>
+                        <h:commandLink class="btn btn-sm btn-info" action="#{historialtrabajoController.prepareList}" value="Aceptar"/>
+                        <br></br>
+                        <br></br>
+                    </h:form>
+                </div>
+            </div>
         </ui:define>
     </ui:composition>
 
