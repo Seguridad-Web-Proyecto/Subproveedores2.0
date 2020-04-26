@@ -10,46 +10,48 @@
             <h:outputText value="#{bundle.ViewOrdenventaTitle}"></h:outputText>
         </ui:define>
         <ui:define name="body">
-            <h:panelGroup id="messagePanel" layout="block">
-                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
-            </h:panelGroup>
-            <h:form>
-                <h:panelGrid columns="2">
-                    <h:outputText value="#{bundle.ViewOrdenventaLabel_ordenventaid}"/>
-                    <h:outputText value="#{ordenventaController.selected.ordenventaid}" title="#{bundle.ViewOrdenventaTitle_ordenventaid}"/>
-                    <h:outputText value="#{bundle.ViewOrdenventaLabel_fechaVenta}"/>
-                    <h:outputText value="#{ordenventaController.selected.fechaVenta}" title="#{bundle.ViewOrdenventaTitle_fechaVenta}">
-                        <f:convertDateTime pattern="MM/dd/yyyy" />
-                    </h:outputText>
-                    <h:outputText value="#{bundle.ViewOrdenventaLabel_status}"/>
-                    <h:outputText value="#{ordenventaController.selected.status}" title="#{bundle.ViewOrdenventaTitle_status}"/>
-                    <h:outputText value="#{bundle.ViewOrdenventaLabel_iva}"/>
-                    <h:outputText value="#{ordenventaController.selected.iva}" title="#{bundle.ViewOrdenventaTitle_iva}"/>
-                    <h:outputText value="#{bundle.ViewOrdenventaLabel_subtotal}"/>
-                    <h:outputText value="#{ordenventaController.selected.subtotal}" title="#{bundle.ViewOrdenventaTitle_subtotal}"/>
-                    <h:outputText value="#{bundle.ViewOrdenventaLabel_total}"/>
-                    <h:outputText value="#{ordenventaController.selected.total}" title="#{bundle.ViewOrdenventaTitle_total}"/>
-                    <h:outputText value="#{bundle.ViewOrdenventaLabel_descripcion}"/>
-                    <h:outputText value="#{ordenventaController.selected.descripcion}" title="#{bundle.ViewOrdenventaTitle_descripcion}"/>
-                    <h:outputText value="#{bundle.ViewOrdenventaLabel_clienteid}"/>
-                    <h:outputText value="#{ordenventaController.selected.clienteid}" title="#{bundle.ViewOrdenventaTitle_clienteid}"/>
-                    <h:outputText value="#{bundle.ViewOrdenventaLabel_facturaid}"/>
-                    <h:outputText value="#{ordenventaController.selected.facturaid}" title="#{bundle.ViewOrdenventaTitle_facturaid}"/>
-                </h:panelGrid>
-                <br />
-                <h:commandLink action="#{ordenventaController.destroyAndView}" value="#{bundle.ViewOrdenventaDestroyLink}"/>
-                <br />
-                <br />
-                <h:link outcome="Edit" value="#{bundle.ViewOrdenventaEditLink}"/>
-                <br />
-                <h:commandLink action="#{ordenventaController.prepareCreate}" value="#{bundle.ViewOrdenventaCreateLink}" />
-                <br />
-                <h:commandLink action="#{ordenventaController.prepareList}" value="#{bundle.ViewOrdenventaShowAllLink}"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.ViewOrdenventaIndexLink}"/>
-
-            </h:form>
+            <div class="main">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <div style="background-color: white">
+                    <br></br>
+                    <h4 align="center">Información</h4>
+                    <br></br>
+                </div>
+                <br></br>
+                <div style="background-color: white" align="center">
+                    <br></br>
+                    <h:form>
+                        <h:panelGrid columns="2">
+                            <h:outputText value="Id de orden: "/>
+                            <h:outputText class="form-control" value="#{ordenventaController.selected.ordenventaid}" title="#{bundle.ViewOrdenventaTitle_ordenventaid}"/>
+                            <h:outputText value="Fecha de Venta: "/>
+                            <h:outputText class="form-control" value="#{ordenventaController.selected.fechaVenta}" title="#{bundle.ViewOrdenventaTitle_fechaVenta}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                            <h:outputText value="#{bundle.ViewOrdenventaLabel_status}"/>
+                            <h:outputText class="form-control" value="#{ordenventaController.selected.status}" title="#{bundle.ViewOrdenventaTitle_status}"/>
+                            <h:outputText value="#{bundle.ViewOrdenventaLabel_iva}"/>
+                            <h:outputText class="form-control" value="#{ordenventaController.selected.iva}" title="#{bundle.ViewOrdenventaTitle_iva}"/>
+                            <h:outputText value="#{bundle.ViewOrdenventaLabel_subtotal}"/>
+                            <h:outputText class="form-control" value="#{ordenventaController.selected.subtotal}" title="#{bundle.ViewOrdenventaTitle_subtotal}"/>
+                            <h:outputText value="#{bundle.ViewOrdenventaLabel_total}"/>
+                            <h:outputText class="form-control" value="#{ordenventaController.selected.total}" title="#{bundle.ViewOrdenventaTitle_total}"/>
+                            <h:outputText value="#{bundle.ViewOrdenventaLabel_descripcion}"/>
+                            <h:outputText class="form-control" value="#{ordenventaController.selected.descripcion}" title="#{bundle.ViewOrdenventaTitle_descripcion}"/>
+                            <h:outputText value="Id de Cliente: "/>
+                            <h:outputText class="form-control" value="#{ordenventaController.selected.clienteid}" title="#{bundle.ViewOrdenventaTitle_clienteid}"/>
+                            <h:outputText value="Id de Factura: "/>
+                            <h:outputText class="form-control" value="#{ordenventaController.selected.facturaid}" title="#{bundle.ViewOrdenventaTitle_facturaid}"/>
+                        </h:panelGrid>
+                        <br></br>
+                        <h:commandLink class="btn btn-sm btn-info" action="#{ordenventaController.prepareList}" value="Aceptar"/>
+                        <br></br>
+                        <br></br>
+                    </h:form>
+                </div>
+            </div>
         </ui:define>
     </ui:composition>
 
