@@ -10,36 +10,38 @@
             <h:outputText value="#{bundle.ViewVentadetalleTitle}"></h:outputText>
         </ui:define>
         <ui:define name="body">
-            <h:panelGroup id="messagePanel" layout="block">
-                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
-            </h:panelGroup>
-            <h:form>
-                <h:panelGrid columns="2">
-                    <h:outputText value="#{bundle.ViewVentadetalleLabel_cantidad}"/>
-                    <h:outputText value="#{ventadetalleController.selected.cantidad}" title="#{bundle.ViewVentadetalleTitle_cantidad}"/>
-                    <h:outputText value="#{bundle.ViewVentadetalleLabel_precioUnitario}"/>
-                    <h:outputText value="#{ventadetalleController.selected.precioUnitario}" title="#{bundle.ViewVentadetalleTitle_precioUnitario}"/>
-                    <h:outputText value="#{bundle.ViewVentadetalleLabel_importe}"/>
-                    <h:outputText value="#{ventadetalleController.selected.importe}" title="#{bundle.ViewVentadetalleTitle_importe}"/>
-                    <h:outputText value="#{bundle.ViewVentadetalleLabel_ordenventa}"/>
-                    <h:outputText value="#{ventadetalleController.selected.ordenventa}" title="#{bundle.ViewVentadetalleTitle_ordenventa}"/>
-                    <h:outputText value="#{bundle.ViewVentadetalleLabel_producto}"/>
-                    <h:outputText value="#{ventadetalleController.selected.producto}" title="#{bundle.ViewVentadetalleTitle_producto}"/>
-                </h:panelGrid>
-                <br />
-                <h:commandLink action="#{ventadetalleController.destroyAndView}" value="#{bundle.ViewVentadetalleDestroyLink}"/>
-                <br />
-                <br />
-                <h:link outcome="Edit" value="#{bundle.ViewVentadetalleEditLink}"/>
-                <br />
-                <h:commandLink action="#{ventadetalleController.prepareCreate}" value="#{bundle.ViewVentadetalleCreateLink}" />
-                <br />
-                <h:commandLink action="#{ventadetalleController.prepareList}" value="#{bundle.ViewVentadetalleShowAllLink}"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.ViewVentadetalleIndexLink}"/>
-
-            </h:form>
+            <div class="main">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <div style="background-color: white">
+                    <br></br>
+                    <h4 align="center">Información</h4>
+                    <br></br>
+                </div>
+                <br></br>
+                <div style="background-color: white" align="center">
+                    <br></br>
+                    <h:form>
+                        <h:panelGrid columns="2">
+                            <h:outputText value="#{bundle.ViewVentadetalleLabel_cantidad}"/>
+                            <h:outputText class="form-control" value="#{ventadetalleController.selected.cantidad}" title="#{bundle.ViewVentadetalleTitle_cantidad}"/>
+                            <h:outputText value="Precio Unitario: "/>
+                            <h:outputText class="form-control" value="#{ventadetalleController.selected.precioUnitario}" title="#{bundle.ViewVentadetalleTitle_precioUnitario}"/>
+                            <h:outputText value="#{bundle.ViewVentadetalleLabel_importe}"/>
+                            <h:outputText class="form-control" value="#{ventadetalleController.selected.importe}" title="#{bundle.ViewVentadetalleTitle_importe}"/>
+                            <h:outputText value="Orden de Venta: "/>
+                            <h:outputText class="form-control" value="#{ventadetalleController.selected.ordenventa}" title="#{bundle.ViewVentadetalleTitle_ordenventa}"/>
+                            <h:outputText value="#{bundle.ViewVentadetalleLabel_producto}"/>
+                            <h:outputText class="form-control" value="#{ventadetalleController.selected.producto}" title="#{bundle.ViewVentadetalleTitle_producto}"/>
+                        </h:panelGrid>
+                        <br></br>
+                        <h:commandLink class="btn btn-sm btn-info" action="#{ventadetalleController.prepareList}" value="Aceptar"/>
+                        <br></br>
+                        <br></br>
+                    </h:form>
+                </div>
+            </div>
         </ui:define>
     </ui:composition>
 
