@@ -10,64 +10,128 @@
             <h:outputText value="#{bundle.ListVentadetalleTitle}"></h:outputText>
         </ui:define>
         <ui:define name="body">
-            <h:form styleClass="jsfcrud_list_form">
-                <h:panelGroup id="messagePanel" layout="block">
-                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
-                </h:panelGroup>
-                <h:outputText escape="false" value="#{bundle.ListVentadetalleEmpty}" rendered="#{ventadetalleController.items.rowCount == 0}"/>
-                <h:panelGroup rendered="#{ventadetalleController.items.rowCount > 0}">
-                    <h:outputText value="#{ventadetalleController.pagination.pageFirstItem + 1}..#{ventadetalleController.pagination.pageLastItem + 1}/#{ventadetalleController.pagination.itemsCount}"/>&nbsp;
-                    <h:commandLink action="#{ventadetalleController.previous}" value="#{bundle.Previous} #{ventadetalleController.pagination.pageSize}" rendered="#{ventadetalleController.pagination.hasPreviousPage}"/>&nbsp;
-                    <h:commandLink action="#{ventadetalleController.next}" value="#{bundle.Next} #{ventadetalleController.pagination.pageSize}" rendered="#{ventadetalleController.pagination.hasNextPage}"/>&nbsp;
-                    <h:dataTable value="#{ventadetalleController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListVentadetalleTitle_cantidad}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.cantidad}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListVentadetalleTitle_precioUnitario}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.precioUnitario}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListVentadetalleTitle_importe}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.importe}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListVentadetalleTitle_ordenventa}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.ordenventa}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListVentadetalleTitle_producto}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.producto}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="&nbsp;"/>
-                            </f:facet>
-                            <h:commandLink action="#{ventadetalleController.prepareView}" value="#{bundle.ListVentadetalleViewLink}"/>
-                            <h:outputText value=" "/>
-                            <h:commandLink action="#{ventadetalleController.prepareEdit}" value="#{bundle.ListVentadetalleEditLink}"/>
-                            <h:outputText value=" "/>
-                            <h:commandLink action="#{ventadetalleController.destroy}" value="#{bundle.ListVentadetalleDestroyLink}"/>
-                        </h:column>
-                    </h:dataTable>
-                </h:panelGroup>
-                <br />
-                <h:commandLink action="#{ventadetalleController.prepareCreate}" value="#{bundle.ListVentadetalleCreateLink}"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.ListVentadetalleIndexLink}"/>
-            </h:form>
+            <div class="main">
+                <div class="alert alert-dismissible" style="background-color: white">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <strong>!Mensajes!</strong><br></br> <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </div>
+
+                <div style="background-color: white">
+                    <br></br>
+                    <h1 align="center">Detalle de Ventas</h1>
+                    <br></br>
+                </div>
+
+                <div class="card">
+                    <div class="card-body">
+
+                        <p align="right">
+                            <button action="#{ventadetalleController.prepareCreate()}" type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#modalCreate">
+                                Crear detalle de ventas
+                            </button>
+                            <button action="#{ventadetalleController.prepareList()}" type="button" class="btn btn-sm btn-dark"><i class="fas fa-redo"></i>
+
+                            </button>
+                        </p>
+                    </div>
+                </div>
+                <br></br>
+                <h:form styleClass="jsfcrud_list_form">
+                    <h:outputText escape="false" value="#{bundle.ListVentadetalleEmpty}" rendered="#{ventadetalleController.items.rowCount == 0}"/>
+                    <h:panelGroup rendered="#{ventadetalleController.items.rowCount > 0}">
+                        <h:outputText value="#{ventadetalleController.pagination.pageFirstItem + 1}..#{ventadetalleController.pagination.pageLastItem + 1}/#{ventadetalleController.pagination.itemsCount}"/>&nbsp;
+                        <h:commandLink action="#{ventadetalleController.previous}" value="#{bundle.Previous} #{ventadetalleController.pagination.pageSize}" rendered="#{ventadetalleController.pagination.hasPreviousPage}"/>&nbsp;
+                        <h:commandLink action="#{ventadetalleController.next}" value="#{bundle.Next} #{ventadetalleController.pagination.pageSize}" rendered="#{ventadetalleController.pagination.hasNextPage}"/>&nbsp;
+                        <h:dataTable value="#{ventadetalleController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{bundle.ListVentadetalleTitle_cantidad}"/>
+                                </f:facet>
+                                <h:outputText value="#{item.cantidad}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Precio Unitario"/>
+                                </f:facet>
+                                <h:outputText value="#{item.precioUnitario}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{bundle.ListVentadetalleTitle_importe}"/>
+                                </f:facet>
+                                <h:outputText value="#{item.importe}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Orden de Venta"/>
+                                </f:facet>
+                                <h:outputText value="#{item.ordenventa}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{bundle.ListVentadetalleTitle_producto}"/>
+                                </f:facet>
+                                <h:outputText value="#{item.producto}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Acciones"/>
+                                </f:facet>
+                                <h:commandLink class="btn btn-sm btn-outline-info fas fa-eye" action="#{ventadetalleController.prepareView}"  />
+                                <h:commandLink class="btn btn-sm btn-outline-success far fa-edit" action="#{ventadetalleController.prepareEdit}" />
+                                <h:commandLink class="btn btn-sm btn-outline-danger fas fa-trash-alt" onclick="return ConfirmDelete()" action="#{ventadetalleController.destroy}" />
+                            </h:column>
+                        </h:dataTable>
+                    </h:panelGroup>
+                </h:form>
+            </div>
+
+            <!-- The Modal -->
+            <div class="modal fade" id="modalCreate">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+
+                        <!-- Modal Header -->
+                        <div class="modal-header" align="center">
+                            <h4 class="modal-title">Registro de detalle de venta </h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+
+                        <!-- Modal body -->
+                        <div class="modal-body">
+                            <h:form>
+                                <div align="center" >
+                                    <h:panelGrid columns="2">
+                                        <h:outputLabel value="#{bundle.CreateVentadetalleLabel_cantidad}" for="cantidad" />
+                                        <h:inputText class="form-control" id="cantidad" value="#{ventadetalleController.selected.cantidad}" title="#{bundle.CreateVentadetalleTitle_cantidad}" required="true" requiredMessage="#{bundle.CreateVentadetalleRequiredMessage_cantidad}"/>
+                                        <h:outputLabel value="Precio Unitario: " for="precioUnitario" />
+                                        <h:inputText class="form-control" id="precioUnitario" value="#{ventadetalleController.selected.precioUnitario}" title="#{bundle.CreateVentadetalleTitle_precioUnitario}" required="true" requiredMessage="#{bundle.CreateVentadetalleRequiredMessage_precioUnitario}"/>
+                                        <h:outputLabel value="#{bundle.CreateVentadetalleLabel_importe}" for="importe" />
+                                        <h:inputText class="form-control" id="importe" value="#{ventadetalleController.selected.importe}" title="#{bundle.CreateVentadetalleTitle_importe}" required="true" requiredMessage="#{bundle.CreateVentadetalleRequiredMessage_importe}"/>
+                                        <h:outputLabel value="Orden de Venta:" for="ordenventa" />
+                                        <h:selectOneMenu class="form-control" id="ordenventa" value="#{ventadetalleController.selected.ordenventa}" title="#{bundle.CreateVentadetalleTitle_ordenventa}" required="true" requiredMessage="#{bundle.CreateVentadetalleRequiredMessage_ordenventa}">
+                                            <f:selectItems value="#{ordenventaController.itemsAvailableSelectOne}"/>
+                                        </h:selectOneMenu>
+                                        <h:outputLabel value="#{bundle.CreateVentadetalleLabel_producto}" for="producto" />
+                                        <h:selectOneMenu class="form-control" id="producto" value="#{ventadetalleController.selected.producto}" title="#{bundle.CreateVentadetalleTitle_producto}" required="true" requiredMessage="#{bundle.CreateVentadetalleRequiredMessage_producto}">
+                                            <f:selectItems value="#{productoController.itemsAvailableSelectOne}"/>
+                                        </h:selectOneMenu>
+                                    </h:panelGrid>
+                                    <br></br>
+                                    <h:commandLink class="btn btn-sm btn-success" value="Guardar" action="#{ventadetalleController.create()}" />
+                                    <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal">Cancelar</button>
+                                    <br></br>
+                                    <br></br>
+                                    <!-- Modal footer -->
+                                    <div class="modal-footer">
+                                        <h:commandLink action="#{ventadetalleController.prepareList}" value="Ver Lista de detalle de ventas" immediate="true"/>
+                                    </div>
+                                </div>
+                            </h:form>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </ui:define>
     </ui:composition>
 
