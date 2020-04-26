@@ -103,11 +103,17 @@
                                 <div align="center" >
                                     <h:panelGrid columns="2">
                                         <h:outputLabel value="Cantidad" for="cantidad" />
-                                        <h:inputText class="form-control" id="cantidad" value="#{compradetalleController.selected.cantidad}" title="#{bundle.CreateCompradetalleTitle_cantidad}" required="true" requiredMessage="#{bundle.CreateCompradetalleRequiredMessage_cantidad}"/>
-                                        <h:outputLabel value="Precio Unitario" for="precioUnitario" />
-                                        <h:inputText class="form-control" id="precioUnitario" value="#{compradetalleController.selected.precioUnitario}" title="#{bundle.CreateCompradetalleTitle_precioUnitario}" required="true" requiredMessage="#{bundle.CreateCompradetalleRequiredMessage_precioUnitario}"/>
+                                        <h:inputText class="form-control" id="cantidad" value="#{compradetalleController.selected.cantidad}" title="#{bundle.CreateCompradetalleTitle_cantidad}" required="true" requiredMessage="#{bundle.CreateCompradetalleRequiredMessage_cantidad}">
+                                             <f:validator validatorId="numerosValidator" />
+                                        </h:inputText> 
+                                        <h:outputLabel value="Precio Unitario $" for="precioUnitario" />
+                                        <h:inputText class="form-control" id="precioUnitario" value="#{compradetalleController.selected.precioUnitario}" title="#{bundle.CreateCompradetalleTitle_precioUnitario}" required="true" requiredMessage="#{bundle.CreateCompradetalleRequiredMessage_precioUnitario}">
+                                             <f:validator validatorId="numerosValidator" />
+                                        </h:inputText> 
                                         <h:outputLabel value="Importe" for="importe" />
-                                        <h:inputText class="form-control" id="importe" value="#{compradetalleController.selected.importe}" title="#{bundle.CreateCompradetalleTitle_importe}" required="true" requiredMessage="#{bundle.CreateCompradetalleRequiredMessage_importe}"/>
+                                        <h:inputText class="form-control" id="importe" value="#{compradetalleController.selected.importe}" title="#{bundle.CreateCompradetalleTitle_importe}" required="true" requiredMessage="#{bundle.CreateCompradetalleRequiredMessage_importe}">
+                                             <f:validator validatorId="numerosValidator" />
+                                        </h:inputText> 
                                         <h:outputLabel value="Orden de compra: " for="ordencompra" />
                                         <h:selectOneMenu class="form-control" id="ordencompra" value="#{compradetalleController.selected.ordencompra}" title="#{bundle.CreateCompradetalleTitle_ordencompra}" required="true" requiredMessage="#{bundle.CreateCompradetalleRequiredMessage_ordencompra}">
                                             <f:selectItems value="#{ordencompraController.itemsAvailableSelectOne}"/>
