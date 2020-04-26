@@ -10,40 +10,42 @@
             <h:outputText value="#{bundle.ViewEmpleadoTitle}"></h:outputText>
         </ui:define>
         <ui:define name="body">
-            <h:panelGroup id="messagePanel" layout="block">
-                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
-            </h:panelGroup>
+            <div class="main">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <div style="background-color: white">
+                    <br></br>
+                    <h4 align="center">Información</h4>
+                    <br></br>
+                </div>
+                <br></br>
+                <div style="background-color: white" align="center">
+                    <br></br>
             <h:form>
                 <h:panelGrid columns="2">
-                    <h:outputText value="#{bundle.ViewEmpleadoLabel_empleadoid}"/>
-                    <h:outputText value="#{empleadoController.selected.empleadoid}" title="#{bundle.ViewEmpleadoTitle_empleadoid}"/>
-                    <h:outputText value="#{bundle.ViewEmpleadoLabel_fechaVinculo}"/>
-                    <h:outputText value="#{empleadoController.selected.fechaVinculo}" title="#{bundle.ViewEmpleadoTitle_fechaVinculo}">
+                    <h:outputText value="Id Empleado: "/>
+                    <h:outputText class="form-control" value="#{empleadoController.selected.empleadoid}" title="#{bundle.ViewEmpleadoTitle_empleadoid}"/>
+                    <h:outputText value="Fecha de Vinculo:"/>
+                    <h:outputText class="form-control" value="#{empleadoController.selected.fechaVinculo}" title="#{bundle.ViewEmpleadoTitle_fechaVinculo}">
                         <f:convertDateTime pattern="MM/dd/yyyy" />
                     </h:outputText>
-                    <h:outputText value="#{bundle.ViewEmpleadoLabel_fechaRetiro}"/>
-                    <h:outputText value="#{empleadoController.selected.fechaRetiro}" title="#{bundle.ViewEmpleadoTitle_fechaRetiro}">
+                    <h:outputText value="Fecha de retiro: "/>
+                    <h:outputText class="form-control" value="#{empleadoController.selected.fechaRetiro}" title="#{bundle.ViewEmpleadoTitle_fechaRetiro}">
                         <f:convertDateTime pattern="MM/dd/yyyy" />
                     </h:outputText>
-                    <h:outputText value="#{bundle.ViewEmpleadoLabel_persona}"/>
-                    <h:outputText value="#{empleadoController.selected.persona}" title="#{bundle.ViewEmpleadoTitle_persona}"/>
-                    <h:outputText value="#{bundle.ViewEmpleadoLabel_usuarioid}"/>
-                    <h:outputText value="#{empleadoController.selected.usuarioid}" title="#{bundle.ViewEmpleadoTitle_usuarioid}"/>
-                </h:panelGrid>
-                <br />
-                <h:commandLink action="#{empleadoController.destroyAndView}" value="#{bundle.ViewEmpleadoDestroyLink}"/>
-                <br />
-                <br />
-                <h:link outcome="Edit" value="#{bundle.ViewEmpleadoEditLink}"/>
-                <br />
-                <h:commandLink action="#{empleadoController.prepareCreate}" value="#{bundle.ViewEmpleadoCreateLink}" />
-                <br />
-                <h:commandLink action="#{empleadoController.prepareList}" value="#{bundle.ViewEmpleadoShowAllLink}"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.ViewEmpleadoIndexLink}"/>
-
+                    <h:outputText value="Id Persona: "/>
+                    <h:outputText class="form-control"  value="#{empleadoController.selected.persona}" title="#{bundle.ViewEmpleadoTitle_persona}"/>
+                    <h:outputText value="Id Empleado: "/>
+                    <h:outputText class="form-control" value="#{empleadoController.selected.usuarioid}" title="#{bundle.ViewEmpleadoTitle_usuarioid}"/>
+                </h:panelGrid> 
+                <br></br>
+                        <h:commandLink class="btn btn-sm btn-info" action="#{empleadoController.prepareList}" value="Aceptar"/>
+                        <br></br>
+                        <br></br>
             </h:form>
+                </div>
+            </div>
         </ui:define>
     </ui:composition>
 
