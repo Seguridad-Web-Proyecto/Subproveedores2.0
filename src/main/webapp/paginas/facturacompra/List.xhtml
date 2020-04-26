@@ -36,7 +36,7 @@
                     </div>
                 </div>
                 <br></br>
-            <h:form styleClass="jsfcrud_list_form">
+                <h:form styleClass="jsfcrud_list_form">
                     <h:outputText escape="false" value="#{bundle.ListFacturacompraEmpty}" rendered="#{facturacompraController.items.rowCount == 0}"/>
                     <h:panelGroup rendered="#{facturacompraController.items.rowCount > 0}">
                         <h:outputText value="#{facturacompraController.pagination.pageFirstItem + 1}..#{facturacompraController.pagination.pageLastItem + 1}/#{facturacompraController.pagination.itemsCount}"/>&nbsp;
@@ -86,7 +86,7 @@
                     </h:panelGroup>
                 </h:form>
             </div>
-            
+
             <!-- The Modal -->
             <div class="modal fade" id="modalCreate">
                 <div class="modal-dialog">
@@ -106,10 +106,14 @@
                                         <h:outputLabel value="Fecha de Emisión:" for="fechaEmision" />
                                         <h:inputText class="form-control" id="fechaEmision" value="#{facturacompraController.selected.fechaEmision}" title="#{bundle.CreateFacturacompraTitle_fechaEmision}" required="true" requiredMessage="#{bundle.CreateFacturacompraRequiredMessage_fechaEmision}">
                                             <f:convertDateTime pattern="MM/dd/yyyy" />
+                                            <f:validator validatorId="fechaValidator" />
+
                                         </h:inputText>
                                         <h:outputLabel value="Fecha de vencimiento de pago:" for="fechaVencimientoPago" />
                                         <h:inputText class="form-control" id="fechaVencimientoPago" value="#{facturacompraController.selected.fechaVencimientoPago}" title="#{bundle.CreateFacturacompraTitle_fechaVencimientoPago}" required="true" requiredMessage="#{bundle.CreateFacturacompraRequiredMessage_fechaVencimientoPago}">
                                             <f:convertDateTime pattern="MM/dd/yyyy" />
+                                            <f:validator validatorId="fechaValidator" />
+
                                         </h:inputText>
                                         <h:outputLabel value="Descripción: " for="descripcion" />
                                         <h:inputText class="form-control" id="descripcion" value="#{facturacompraController.selected.descripcion}" title="#{bundle.CreateFacturacompraTitle_descripcion}" required="true" requiredMessage="#{bundle.CreateFacturacompraRequiredMessage_descripcion}"/>

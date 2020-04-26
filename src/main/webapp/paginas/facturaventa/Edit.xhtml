@@ -5,7 +5,7 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
-     <ui:composition template="/template.xhtml">
+    <ui:composition template="/template.xhtml">
         <ui:define name="title">
             <h:outputText value="#{bundle.EditFacturaventaTitle}"></h:outputText>
         </ui:define>
@@ -28,9 +28,13 @@
                             <h:outputLabel value="Fecha de Emisión: " for="fechaEmision" />
                             <h:inputText class="form-control" id="fechaEmision" value="#{facturaventaController.selected.fechaEmision}" title="#{bundle.EditFacturaventaTitle_fechaEmision}" required="true" requiredMessage="#{bundle.EditFacturaventaRequiredMessage_fechaEmision}">
                                 <f:convertDateTime pattern="MM/dd/yyyy" />
+                                <f:validator validatorId="fechaValidator" />
+
                             </h:inputText>
                             <h:outputLabel value="Fecha de vencimiento de pago: " for="fechaVencimientoPago" />
                             <h:inputText class="form-control" id="fechaVencimientoPago" value="#{facturaventaController.selected.fechaVencimientoPago}" title="#{bundle.EditFacturaventaTitle_fechaVencimientoPago}" required="true" requiredMessage="#{bundle.EditFacturaventaRequiredMessage_fechaVencimientoPago}">
+                                <f:validator validatorId="fechaValidator" />
+
                                 <f:convertDateTime pattern="MM/dd/yyyy" />
                             </h:inputText>
                             <h:outputLabel value="#{bundle.EditFacturaventaLabel_descripcion}" for="descripcion" />
