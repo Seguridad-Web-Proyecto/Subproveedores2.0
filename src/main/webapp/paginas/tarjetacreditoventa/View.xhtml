@@ -10,38 +10,40 @@
             <h:outputText value="#{bundle.ViewTarjetacreditoventaTitle}"></h:outputText>
         </ui:define>
         <ui:define name="body">
-            <h:panelGroup id="messagePanel" layout="block">
-                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
-            </h:panelGroup>
-            <h:form>
-                <h:panelGrid columns="2">
-                    <h:outputText value="#{bundle.ViewTarjetacreditoventaLabel_tarjetacreditoventaid}"/>
-                    <h:outputText value="#{tarjetacreditoventaController.selected.tarjetacreditoventaid}" title="#{bundle.ViewTarjetacreditoventaTitle_tarjetacreditoventaid}"/>
-                    <h:outputText value="#{bundle.ViewTarjetacreditoventaLabel_numero}"/>
-                    <h:outputText value="#{tarjetacreditoventaController.selected.numero}" title="#{bundle.ViewTarjetacreditoventaTitle_numero}"/>
-                    <h:outputText value="#{bundle.ViewTarjetacreditoventaLabel_cvc}"/>
-                    <h:outputText value="#{tarjetacreditoventaController.selected.cvc}" title="#{bundle.ViewTarjetacreditoventaTitle_cvc}"/>
-                    <h:outputText value="#{bundle.ViewTarjetacreditoventaLabel_nombreTitular}"/>
-                    <h:outputText value="#{tarjetacreditoventaController.selected.nombreTitular}" title="#{bundle.ViewTarjetacreditoventaTitle_nombreTitular}"/>
-                    <h:outputText value="#{bundle.ViewTarjetacreditoventaLabel_fechaExpiracion}"/>
-                    <h:outputText value="#{tarjetacreditoventaController.selected.fechaExpiracion}" title="#{bundle.ViewTarjetacreditoventaTitle_fechaExpiracion}"/>
-                    <h:outputText value="#{bundle.ViewTarjetacreditoventaLabel_lugarFacturacion}"/>
-                    <h:outputText value="#{tarjetacreditoventaController.selected.lugarFacturacion}" title="#{bundle.ViewTarjetacreditoventaTitle_lugarFacturacion}"/>
-                </h:panelGrid>
-                <br />
-                <h:commandLink action="#{tarjetacreditoventaController.destroyAndView}" value="#{bundle.ViewTarjetacreditoventaDestroyLink}"/>
-                <br />
-                <br />
-                <h:link outcome="Edit" value="#{bundle.ViewTarjetacreditoventaEditLink}"/>
-                <br />
-                <h:commandLink action="#{tarjetacreditoventaController.prepareCreate}" value="#{bundle.ViewTarjetacreditoventaCreateLink}" />
-                <br />
-                <h:commandLink action="#{tarjetacreditoventaController.prepareList}" value="#{bundle.ViewTarjetacreditoventaShowAllLink}"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.ViewTarjetacreditoventaIndexLink}"/>
-
-            </h:form>
+            <div class="main">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <div style="background-color: white">
+                    <br></br>
+                    <h4 align="center">Información</h4>
+                    <br></br>
+                </div>
+                <br></br>
+                <div style="background-color: white" align="center">
+                    <br></br>
+                    <h:form>
+                        <h:panelGrid columns="2">
+                            <h:outputText value="Id de Tarjeta: "/>
+                            <h:outputText class="form-control" value="#{tarjetacreditoventaController.selected.tarjetacreditoventaid}" title="#{bundle.ViewTarjetacreditoventaTitle_tarjetacreditoventaid}"/>
+                            <h:outputText value="#{bundle.ViewTarjetacreditoventaLabel_numero}"/>
+                            <h:outputText class="form-control" value="#{tarjetacreditoventaController.selected.numero}" title="#{bundle.ViewTarjetacreditoventaTitle_numero}"/>
+                            <h:outputText value="#{bundle.ViewTarjetacreditoventaLabel_cvc}"/>
+                            <h:outputText class="form-control" value="#{tarjetacreditoventaController.selected.cvc}" title="#{bundle.ViewTarjetacreditoventaTitle_cvc}"/>
+                            <h:outputText value="Nombre del Titular: "/>
+                            <h:outputText class="form-control" value="#{tarjetacreditoventaController.selected.nombreTitular}" title="#{bundle.ViewTarjetacreditoventaTitle_nombreTitular}"/>
+                            <h:outputText value="Fecha de Expiración"/>
+                            <h:outputText class="form-control" value="#{tarjetacreditoventaController.selected.fechaExpiracion}" title="#{bundle.ViewTarjetacreditoventaTitle_fechaExpiracion}"/>
+                            <h:outputText value="Lugar de Facturación: "/>
+                            <h:outputText class="form-control" value="#{tarjetacreditoventaController.selected.lugarFacturacion}" title="#{bundle.ViewTarjetacreditoventaTitle_lugarFacturacion}"/>
+                        </h:panelGrid>
+                        <br></br>
+                        <h:commandLink class="btn btn-sm btn-info" action="#{tarjetacreditoventaController.prepareList}" value="Aceptar"/>
+                        <br></br>
+                        <br></br>
+                    </h:form>
+                </div>
+            </div>
         </ui:define>
     </ui:composition>
 

@@ -10,34 +10,41 @@
             <h:outputText value="#{bundle.EditTarjetacreditoventaTitle}"></h:outputText>
         </ui:define>
         <ui:define name="body">
-            <h:panelGroup id="messagePanel" layout="block">
-                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
-            </h:panelGroup>
-            <h:form>
-                <h:panelGrid columns="2">
-                    <h:outputLabel value="#{bundle.EditTarjetacreditoventaLabel_tarjetacreditoventaid}" for="tarjetacreditoventaid" />
-                    <h:inputText id="tarjetacreditoventaid" value="#{tarjetacreditoventaController.selected.tarjetacreditoventaid}" title="#{bundle.EditTarjetacreditoventaTitle_tarjetacreditoventaid}" required="true" requiredMessage="#{bundle.EditTarjetacreditoventaRequiredMessage_tarjetacreditoventaid}"/>
-                    <h:outputLabel value="#{bundle.EditTarjetacreditoventaLabel_numero}" for="numero" />
-                    <h:inputText id="numero" value="#{tarjetacreditoventaController.selected.numero}" title="#{bundle.EditTarjetacreditoventaTitle_numero}" required="true" requiredMessage="#{bundle.EditTarjetacreditoventaRequiredMessage_numero}"/>
-                    <h:outputLabel value="#{bundle.EditTarjetacreditoventaLabel_cvc}" for="cvc" />
-                    <h:inputText id="cvc" value="#{tarjetacreditoventaController.selected.cvc}" title="#{bundle.EditTarjetacreditoventaTitle_cvc}" required="true" requiredMessage="#{bundle.EditTarjetacreditoventaRequiredMessage_cvc}"/>
-                    <h:outputLabel value="#{bundle.EditTarjetacreditoventaLabel_nombreTitular}" for="nombreTitular" />
-                    <h:inputText id="nombreTitular" value="#{tarjetacreditoventaController.selected.nombreTitular}" title="#{bundle.EditTarjetacreditoventaTitle_nombreTitular}" required="true" requiredMessage="#{bundle.EditTarjetacreditoventaRequiredMessage_nombreTitular}"/>
-                    <h:outputLabel value="#{bundle.EditTarjetacreditoventaLabel_fechaExpiracion}" for="fechaExpiracion" />
-                    <h:inputText id="fechaExpiracion" value="#{tarjetacreditoventaController.selected.fechaExpiracion}" title="#{bundle.EditTarjetacreditoventaTitle_fechaExpiracion}" required="true" requiredMessage="#{bundle.EditTarjetacreditoventaRequiredMessage_fechaExpiracion}"/>
-                    <h:outputLabel value="#{bundle.EditTarjetacreditoventaLabel_lugarFacturacion}" for="lugarFacturacion" />
-                    <h:inputText id="lugarFacturacion" value="#{tarjetacreditoventaController.selected.lugarFacturacion}" title="#{bundle.EditTarjetacreditoventaTitle_lugarFacturacion}" required="true" requiredMessage="#{bundle.EditTarjetacreditoventaRequiredMessage_lugarFacturacion}"/>
-                </h:panelGrid>
-                <h:commandLink action="#{tarjetacreditoventaController.update}" value="#{bundle.EditTarjetacreditoventaSaveLink}"/>
-                <br />
-                <br />
-                <h:link outcome="View" value="#{bundle.EditTarjetacreditoventaViewLink}"/>
-                <br />
-                <h:commandLink action="#{tarjetacreditoventaController.prepareList}" value="#{bundle.EditTarjetacreditoventaShowAllLink}" immediate="true"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.EditTarjetacreditoventaIndexLink}" />
-            </h:form>
+            <div class="main">
+                <div class="alert alert-dismissible" style="background-color: white">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <strong>!Mensajes!</strong><br></br> <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </div>
+                <div style="background-color: white">
+                    <br></br>
+                    <h4 align="center">Editar Información</h4>
+                    <br></br>
+                </div>
+                <br></br>
+                <div style="background-color: white" align="center">
+                    <br></br>
+                    <h:form>
+                        <h:panelGrid columns="2">
+                            <h:outputLabel value="#{bundle.EditTarjetacreditoventaLabel_numero}" for="numero" />
+                            <h:inputText class="form-control" id="numero" value="#{tarjetacreditoventaController.selected.numero}" title="#{bundle.EditTarjetacreditoventaTitle_numero}" required="true" requiredMessage="#{bundle.EditTarjetacreditoventaRequiredMessage_numero}"/>
+                            <h:outputLabel value="#{bundle.EditTarjetacreditoventaLabel_cvc}" for="cvc" />
+                            <h:inputText class="form-control" id="cvc" value="#{tarjetacreditoventaController.selected.cvc}" title="#{bundle.EditTarjetacreditoventaTitle_cvc}" required="true" requiredMessage="#{bundle.EditTarjetacreditoventaRequiredMessage_cvc}"/>
+                            <h:outputLabel value="Nombre del Titular " for="nombreTitular" />
+                            <h:inputText class="form-control" id="nombreTitular" value="#{tarjetacreditoventaController.selected.nombreTitular}" title="#{bundle.EditTarjetacreditoventaTitle_nombreTitular}" required="true" requiredMessage="#{bundle.EditTarjetacreditoventaRequiredMessage_nombreTitular}"/>
+                            <h:outputLabel value="Fecha de Expiración" for="fechaExpiracion" />
+                            <h:inputText class="form-control" id="fechaExpiracion" value="#{tarjetacreditoventaController.selected.fechaExpiracion}" title="#{bundle.EditTarjetacreditoventaTitle_fechaExpiracion}" required="true" requiredMessage="#{bundle.EditTarjetacreditoventaRequiredMessage_fechaExpiracion}"/>
+                            <h:outputLabel value="Lugar de Facturación" for="lugarFacturacion" />
+                            <h:inputText class="form-control" id="lugarFacturacion" value="#{tarjetacreditoventaController.selected.lugarFacturacion}" title="#{bundle.EditTarjetacreditoventaTitle_lugarFacturacion}" required="true" requiredMessage="#{bundle.EditTarjetacreditoventaRequiredMessage_lugarFacturacion}"/>
+                        </h:panelGrid>
+                        <br />
+                        <h:commandLink class="btn btn-sm btn-info" action="#{tarjetacreditoventaController.update}" value="Aceptar"/>
+                        &nbsp; 
+                        <h:commandLink class="btn btn-sm btn-danger" action="#{tarjetacreditoventaController.prepareList()}" value="Cancelar"/>
+                        <br />
+                        <br />
+                    </h:form>
+                </div>
+            </div>
         </ui:define>
     </ui:composition>
 
