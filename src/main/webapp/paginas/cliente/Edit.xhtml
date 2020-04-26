@@ -28,19 +28,29 @@
                         <h:outputLabel value="Nombre de empresa: " for="empresa" />
                         <h:inputText class="form-control" id="empresa" value="#{clienteController.selected.empresa}" title="#{bundle.EditClienteTitle_empresa}" required="true" requiredMessage="#{bundle.EditClienteRequiredMessage_empresa}"/>
                         <h:outputLabel value="Nombre de contacto:" for="nombreContacto" />
-                        <h:inputText class="form-control" id="nombreContacto" value="#{clienteController.selected.nombreContacto}" title="#{bundle.EditClienteTitle_nombreContacto}" required="true" requiredMessage="#{bundle.EditClienteRequiredMessage_nombreContacto}"/>
+                        <h:inputText class="form-control" id="nombreContacto" value="#{clienteController.selected.nombreContacto}" title="#{bundle.EditClienteTitle_nombreContacto}" required="true" requiredMessage="#{bundle.EditClienteRequiredMessage_nombreContacto}">
+                            <f:validator validatorId="letrasValidator" />
+                                        </h:inputText> 
                         <h:outputLabel value="#{bundle.EditClienteLabel_area}" for="area" />
                         <h:inputText class="form-control" id="area" value="#{clienteController.selected.area}" title="#{bundle.EditClienteTitle_area}" required="true" requiredMessage="#{bundle.EditClienteRequiredMessage_area}"/>
                         <h:outputLabel value="#{bundle.EditClienteLabel_telefono}" for="telefono" />
-                        <h:inputText class="form-control" id="telefono" value="#{clienteController.selected.telefono}" title="#{bundle.EditClienteTitle_telefono}" required="true" requiredMessage="#{bundle.EditClienteRequiredMessage_telefono}"/>
+                        <h:inputText class="form-control" id="telefono" value="#{clienteController.selected.telefono}" title="#{bundle.EditClienteTitle_telefono}" required="true" requiredMessage="#{bundle.EditClienteRequiredMessage_telefono}">
+                             <f:validator validatorId="telefonoValidator" />
+                                        </h:inputText>
                         <h:outputLabel value="#{bundle.EditClienteLabel_rfc}" for="rfc" />
-                        <h:inputText class="form-control" id="rfc" value="#{clienteController.selected.rfc}" title="#{bundle.EditClienteTitle_rfc}" required="true" requiredMessage="#{bundle.EditClienteRequiredMessage_rfc}"/>
+                        <h:inputText class="form-control" id="rfc" value="#{clienteController.selected.rfc}" title="#{bundle.EditClienteTitle_rfc}" required="true" requiredMessage="#{bundle.EditClienteRequiredMessage_rfc}">
+                               <f:validator validatorId="rfcValidator" />
+                                        </h:inputText>
                         <h:outputLabel value="#{bundle.EditClienteLabel_email}" for="email" />
-                        <h:inputText class="form-control" id="email" value="#{clienteController.selected.email}" title="#{bundle.EditClienteTitle_email}" required="true" requiredMessage="#{bundle.EditClienteRequiredMessage_email}"/>
+                        <h:inputText class="form-control" id="email" value="#{clienteController.selected.email}" title="#{bundle.EditClienteTitle_email}" required="true" requiredMessage="#{bundle.EditClienteRequiredMessage_email}">
+                                  <f:validator validatorId="emailValidator" />
+                                        </h:inputText>
                         <h:outputLabel value="Status: " for="activo" />
                         <h:inputText class="form-control" id="activo" value="#{clienteController.selected.activo}" title="#{bundle.EditClienteTitle_activo}" required="true" requiredMessage="#{bundle.EditClienteRequiredMessage_activo}"/>
                         <h:outputLabel value="Pagina web: " for="paginaWeb" />
-                        <h:inputText class="form-control" id="paginaWeb" value="#{clienteController.selected.paginaWeb}" title="#{bundle.EditClienteTitle_paginaWeb}" required="true" requiredMessage="#{bundle.EditClienteRequiredMessage_paginaWeb}"/>
+                        <h:inputText class="form-control" id="paginaWeb" value="#{clienteController.selected.paginaWeb}" title="#{bundle.EditClienteTitle_paginaWeb}" required="true" requiredMessage="#{bundle.EditClienteRequiredMessage_paginaWeb}">
+                               <f:validator validatorId="urlValidator" />
+                                        </h:inputText>
                         <h:outputLabel value="Domicilio fiscal: " for="domicilioFiscal" />
                         <h:inputText class="form-control" id="domicilioFiscal" value="#{clienteController.selected.domicilioFiscal}" title="#{bundle.EditClienteTitle_domicilioFiscal}" required="true" requiredMessage="#{bundle.EditClienteRequiredMessage_domicilioFiscal}"/>
                     </h:panelGrid>
