@@ -10,40 +10,42 @@
             <h:outputText value="#{bundle.ViewFacturacompraTitle}"></h:outputText>
         </ui:define>
         <ui:define name="body">
-            <h:panelGroup id="messagePanel" layout="block">
-                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
-            </h:panelGroup>
-            <h:form>
-                <h:panelGrid columns="2">
-                    <h:outputText value="#{bundle.ViewFacturacompraLabel_facturacompraid}"/>
-                    <h:outputText value="#{facturacompraController.selected.facturacompraid}" title="#{bundle.ViewFacturacompraTitle_facturacompraid}"/>
-                    <h:outputText value="#{bundle.ViewFacturacompraLabel_fechaEmision}"/>
-                    <h:outputText value="#{facturacompraController.selected.fechaEmision}" title="#{bundle.ViewFacturacompraTitle_fechaEmision}">
-                        <f:convertDateTime pattern="MM/dd/yyyy" />
-                    </h:outputText>
-                    <h:outputText value="#{bundle.ViewFacturacompraLabel_fechaVencimientoPago}"/>
-                    <h:outputText value="#{facturacompraController.selected.fechaVencimientoPago}" title="#{bundle.ViewFacturacompraTitle_fechaVencimientoPago}">
-                        <f:convertDateTime pattern="MM/dd/yyyy" />
-                    </h:outputText>
-                    <h:outputText value="#{bundle.ViewFacturacompraLabel_descripcion}"/>
-                    <h:outputText value="#{facturacompraController.selected.descripcion}" title="#{bundle.ViewFacturacompraTitle_descripcion}"/>
-                    <h:outputText value="#{bundle.ViewFacturacompraLabel_pagoid}"/>
-                    <h:outputText value="#{facturacompraController.selected.pagoid}" title="#{bundle.ViewFacturacompraTitle_pagoid}"/>
-                </h:panelGrid>
-                <br />
-                <h:commandLink action="#{facturacompraController.destroyAndView}" value="#{bundle.ViewFacturacompraDestroyLink}"/>
-                <br />
-                <br />
-                <h:link outcome="Edit" value="#{bundle.ViewFacturacompraEditLink}"/>
-                <br />
-                <h:commandLink action="#{facturacompraController.prepareCreate}" value="#{bundle.ViewFacturacompraCreateLink}" />
-                <br />
-                <h:commandLink action="#{facturacompraController.prepareList}" value="#{bundle.ViewFacturacompraShowAllLink}"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.ViewFacturacompraIndexLink}"/>
-
-            </h:form>
+            <div class="main">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <div style="background-color: white">
+                    <br></br>
+                    <h4 align="center">Información</h4>
+                    <br></br>
+                </div>
+                <br></br>
+                <div style="background-color: white" align="center">
+                    <br></br>
+                    <h:form>
+                        <h:panelGrid columns="2">
+                            <h:outputText value="Id de factura: "/>
+                            <h:outputText class="form-control" value="#{facturacompraController.selected.facturacompraid}" title="#{bundle.ViewFacturacompraTitle_facturacompraid}"/>
+                            <h:outputText value="Fecha de Emisión: "/>
+                            <h:outputText class="form-control" value="#{facturacompraController.selected.fechaEmision}" title="#{bundle.ViewFacturacompraTitle_fechaEmision}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                            <h:outputText value="Fecha de vencimiento de pago: "/>
+                            <h:outputText class="form-control" value="#{facturacompraController.selected.fechaVencimientoPago}" title="#{bundle.ViewFacturacompraTitle_fechaVencimientoPago}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                            <h:outputText value="Descripcion: "/>
+                            <h:outputText class="form-control" value="#{facturacompraController.selected.descripcion}" title="#{bundle.ViewFacturacompraTitle_descripcion}"/>
+                            <h:outputText value="Id de pago:"/>
+                            <h:outputText class="form-control" value="#{facturacompraController.selected.pagoid}" title="#{bundle.ViewFacturacompraTitle_pagoid}"/>
+                        </h:panelGrid>
+                        <br></br>
+                        <h:commandLink class="btn btn-sm btn-info" action="#{facturacompraController.prepareList}" value="Aceptar"/>
+                        <br></br>
+                        <br></br>
+                    </h:form>
+                </div>
+            </div>
         </ui:define>
     </ui:composition>
 
