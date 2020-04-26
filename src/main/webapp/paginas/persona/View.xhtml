@@ -10,50 +10,50 @@
             <h:outputText value="#{bundle.ViewPersonaTitle}"></h:outputText>
         </ui:define>
         <ui:define name="body">
-            <h:panelGroup id="messagePanel" layout="block">
-                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
-            </h:panelGroup>
-            <h:form>
-                <h:panelGrid columns="2">
-                    <h:outputText value="#{bundle.ViewPersonaLabel_personaid}"/>
-                    <h:outputText value="#{personaController.selected.personaid}" title="#{bundle.ViewPersonaTitle_personaid}"/>
-                    <h:outputText value="#{bundle.ViewPersonaLabel_nombres}"/>
-                    <h:outputText value="#{personaController.selected.nombres}" title="#{bundle.ViewPersonaTitle_nombres}"/>
-                    <h:outputText value="#{bundle.ViewPersonaLabel_apellidos}"/>
-                    <h:outputText value="#{personaController.selected.apellidos}" title="#{bundle.ViewPersonaTitle_apellidos}"/>
-                    <h:outputText value="#{bundle.ViewPersonaLabel_fechaNacimiento}"/>
-                    <h:outputText value="#{personaController.selected.fechaNacimiento}" title="#{bundle.ViewPersonaTitle_fechaNacimiento}">
-                        <f:convertDateTime pattern="MM/dd/yyyy" />
-                    </h:outputText>
-                    <h:outputText value="#{bundle.ViewPersonaLabel_telefono}"/>
-                    <h:outputText value="#{personaController.selected.telefono}" title="#{bundle.ViewPersonaTitle_telefono}"/>
-                    <h:outputText value="#{bundle.ViewPersonaLabel_correo}"/>
-                    <h:outputText value="#{personaController.selected.correo}" title="#{bundle.ViewPersonaTitle_correo}"/>
-                    <h:outputText value="#{bundle.ViewPersonaLabel_curp}"/>
-                    <h:outputText value="#{personaController.selected.curp}" title="#{bundle.ViewPersonaTitle_curp}"/>
-                    <h:outputText value="#{bundle.ViewPersonaLabel_rfc}"/>
-                    <h:outputText value="#{personaController.selected.rfc}" title="#{bundle.ViewPersonaTitle_rfc}"/>
-                    <h:outputText value="#{bundle.ViewPersonaLabel_sexo}"/>
-                    <h:outputText value="#{personaController.selected.sexo}" title="#{bundle.ViewPersonaTitle_sexo}"/>
-                    <h:outputText value="#{bundle.ViewPersonaLabel_residencia}"/>
-                    <h:outputText value="#{personaController.selected.residencia}" title="#{bundle.ViewPersonaTitle_residencia}"/>
-                    <h:outputText value="#{bundle.ViewPersonaLabel_empleado}"/>
-                    <h:outputText value="#{personaController.selected.empleado}" title="#{bundle.ViewPersonaTitle_empleado}"/>
-                </h:panelGrid>
-                <br />
-                <h:commandLink action="#{personaController.destroyAndView}" value="#{bundle.ViewPersonaDestroyLink}"/>
-                <br />
-                <br />
-                <h:link outcome="Edit" value="#{bundle.ViewPersonaEditLink}"/>
-                <br />
-                <h:commandLink action="#{personaController.prepareCreate}" value="#{bundle.ViewPersonaCreateLink}" />
-                <br />
-                <h:commandLink action="#{personaController.prepareList}" value="#{bundle.ViewPersonaShowAllLink}"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.ViewPersonaIndexLink}"/>
-
-            </h:form>
+            <div class="main">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <div style="background-color: white">
+                    <br></br>
+                    <h4 align="center">Información</h4>
+                    <br></br>
+                </div>
+                <br></br>
+                <div style="background-color: white" align="center">
+                    <br></br>
+                    <h:form>
+                        <h:panelGrid columns="2">
+                            <h:outputText value="Id de la persona: "/>
+                            <h:outputText class="form-control" value="#{personaController.selected.personaid}" title="#{bundle.ViewPersonaTitle_personaid}"/>
+                            <h:outputText value="#{bundle.ViewPersonaLabel_nombres}"/>
+                            <h:outputText class="form-control" value="#{personaController.selected.nombres}" title="#{bundle.ViewPersonaTitle_nombres}"/>
+                            <h:outputText value="#{bundle.ViewPersonaLabel_apellidos}"/>
+                            <h:outputText class="form-control" value="#{personaController.selected.apellidos}" title="#{bundle.ViewPersonaTitle_apellidos}"/>
+                            <h:outputText value="Fecha de Nacimiento: "/>
+                            <h:outputText class="form-control" value="#{personaController.selected.fechaNacimiento}" title="#{bundle.ViewPersonaTitle_fechaNacimiento}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                            <h:outputText value="#{bundle.ViewPersonaLabel_telefono}"/>
+                            <h:outputText class="form-control" value="#{personaController.selected.telefono}" title="#{bundle.ViewPersonaTitle_telefono}"/>
+                            <h:outputText value="#{bundle.ViewPersonaLabel_correo}"/>
+                            <h:outputText class="form-control" value="#{personaController.selected.correo}" title="#{bundle.ViewPersonaTitle_correo}"/>
+                            <h:outputText value="#{bundle.ViewPersonaLabel_curp}"/>
+                            <h:outputText class="form-control" value="#{personaController.selected.curp}" title="#{bundle.ViewPersonaTitle_curp}"/>
+                            <h:outputText value="RFC: "/>
+                            <h:outputText class="form-control" value="#{personaController.selected.rfc}" title="#{bundle.ViewPersonaTitle_rfc}"/>
+                            <h:outputText value="#{bundle.ViewPersonaLabel_sexo}"/>
+                            <h:outputText class="form-control" value="#{personaController.selected.sexo}" title="#{bundle.ViewPersonaTitle_sexo}"/>
+                            <h:outputText value="#{bundle.ViewPersonaLabel_residencia}"/>
+                            <h:outputText class="form-control" value="#{personaController.selected.residencia}" title="#{bundle.ViewPersonaTitle_residencia}"/>
+                        </h:panelGrid>
+                        <br></br>
+                        <h:commandLink class="btn btn-sm btn-info" action="#{personaController.prepareList}" value="Aceptar"/>
+                        <br></br>
+                        <br></br>
+                    </h:form>
+                </div>
+            </div>
         </ui:define>
     </ui:composition>
 

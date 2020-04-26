@@ -10,103 +10,134 @@
             <h:outputText value="#{bundle.ListPersonaTitle}"></h:outputText>
         </ui:define>
         <ui:define name="body">
-            <h:form styleClass="jsfcrud_list_form">
-                <h:panelGroup id="messagePanel" layout="block">
-                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
-                </h:panelGroup>
-                <h:outputText escape="false" value="#{bundle.ListPersonaEmpty}" rendered="#{personaController.items.rowCount == 0}"/>
-                <h:panelGroup rendered="#{personaController.items.rowCount > 0}">
-                    <h:outputText value="#{personaController.pagination.pageFirstItem + 1}..#{personaController.pagination.pageLastItem + 1}/#{personaController.pagination.itemsCount}"/>&nbsp;
-                    <h:commandLink action="#{personaController.previous}" value="#{bundle.Previous} #{personaController.pagination.pageSize}" rendered="#{personaController.pagination.hasPreviousPage}"/>&nbsp;
-                    <h:commandLink action="#{personaController.next}" value="#{bundle.Next} #{personaController.pagination.pageSize}" rendered="#{personaController.pagination.hasNextPage}"/>&nbsp;
-                    <h:dataTable value="#{personaController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListPersonaTitle_personaid}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.personaid}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListPersonaTitle_nombres}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.nombres}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListPersonaTitle_apellidos}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.apellidos}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListPersonaTitle_fechaNacimiento}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.fechaNacimiento}">
-                                <f:convertDateTime pattern="MM/dd/yyyy" />
-                            </h:outputText>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListPersonaTitle_telefono}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.telefono}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListPersonaTitle_correo}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.correo}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListPersonaTitle_curp}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.curp}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListPersonaTitle_rfc}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.rfc}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListPersonaTitle_sexo}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.sexo}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListPersonaTitle_residencia}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.residencia}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListPersonaTitle_empleado}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.empleado}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="&nbsp;"/>
-                            </f:facet>
-                            <h:commandLink action="#{personaController.prepareView}" value="#{bundle.ListPersonaViewLink}"/>
-                            <h:outputText value=" "/>
-                            <h:commandLink action="#{personaController.prepareEdit}" value="#{bundle.ListPersonaEditLink}"/>
-                            <h:outputText value=" "/>
-                            <h:commandLink action="#{personaController.destroy}" value="#{bundle.ListPersonaDestroyLink}"/>
-                        </h:column>
-                    </h:dataTable>
-                </h:panelGroup>
-                <br />
-                <h:commandLink action="#{personaController.prepareCreate}" value="#{bundle.ListPersonaCreateLink}"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.ListPersonaIndexLink}"/>
-            </h:form>
+            <div class="main">
+                <div class="alert alert-dismissible" style="background-color: white">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <strong>!Mensajes!</strong><br></br> <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </div>
+
+                <div style="background-color: white">
+                    <br></br>
+                    <h1 align="center">Personas</h1>
+                    <br></br>
+                </div>
+
+                <div class="card">
+                    <div class="card-body">
+
+                        <p align="right">
+                            <button action="#{personaController.prepareCreate()}" type="button" class="btn btn-sm btn-info" data-toggle="modal" data-target="#modalCreate">
+                                Crear
+                            </button>
+                            <button action="#{personaController.prepareList()}" type="button" class="btn btn-sm btn-dark"><i class="fas fa-redo"></i>
+
+                            </button>
+                        </p>
+                    </div>
+                </div>
+                <br></br>
+                <h:form styleClass="jsfcrud_list_form">
+                    <h:outputText escape="false" value="#{bundle.ListPersonaEmpty}" rendered="#{personaController.items.rowCount == 0}"/>
+                    <h:panelGroup rendered="#{personaController.items.rowCount > 0}">
+                        <h:outputText value="#{personaController.pagination.pageFirstItem + 1}..#{personaController.pagination.pageLastItem + 1}/#{personaController.pagination.itemsCount}"/>&nbsp;
+                        <h:commandLink action="#{personaController.previous}" value="#{bundle.Previous} #{personaController.pagination.pageSize}" rendered="#{personaController.pagination.hasPreviousPage}"/>&nbsp;
+                        <h:commandLink action="#{personaController.next}" value="#{bundle.Next} #{personaController.pagination.pageSize}" rendered="#{personaController.pagination.hasNextPage}"/>&nbsp;
+                        <h:dataTable class="table table-sm table-light" value="#{personaController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{bundle.ListPersonaTitle_personaid}"/>
+                                </f:facet>
+                                <h:outputText value="#{item.personaid}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{bundle.ListPersonaTitle_nombres}"/>
+                                </f:facet>
+                                <h:outputText value="#{item.nombres}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{bundle.ListPersonaTitle_apellidos}"/>
+                                </f:facet>
+                                <h:outputText value="#{item.apellidos}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{bundle.ListPersonaTitle_telefono}"/>
+                                </f:facet>
+                                <h:outputText value="#{item.telefono}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{bundle.ListPersonaTitle_correo}"/>
+                                </f:facet>
+                                <h:outputText value="#{item.correo}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Acciones"/>
+                                </f:facet>
+                                <h:commandLink class="btn btn-sm btn-outline-info fas fa-eye" action="#{personaController.prepareView}"  />
+                                <h:commandLink class="btn btn-sm btn-outline-success far fa-edit" action="#{personaController.prepareEdit}" />
+                                <h:commandLink class="btn btn-sm btn-outline-danger fas fa-trash-alt" onclick="return ConfirmDelete()" action="#{personaController.destroy}" />
+                            </h:column>
+                        </h:dataTable>
+                    </h:panelGroup>
+                </h:form>
+            </div>
+
+            <!-- The Modal -->
+            <div class="modal fade" id="modalCreate">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+
+                        <!-- Modal Header -->
+                        <div class="modal-header" align="center">
+                            <h4 class="modal-title">Registro de Personas </h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+
+                        <!-- Modal body -->
+                        <div class="modal-body">
+                            <h:form>
+                                <div align="center" >
+                                    <h:panelGrid columns="2">
+                                        <h:outputLabel value="#{bundle.CreatePersonaLabel_nombres}" for="nombres" />
+                                        <h:inputText id="nombres" value="#{personaController.selected.nombres}" title="#{bundle.CreatePersonaTitle_nombres}" required="true" requiredMessage="#{bundle.CreatePersonaRequiredMessage_nombres}"/>
+                                        <h:outputLabel value="#{bundle.CreatePersonaLabel_apellidos}" for="apellidos" />
+                                        <h:inputText id="apellidos" value="#{personaController.selected.apellidos}" title="#{bundle.CreatePersonaTitle_apellidos}" required="true" requiredMessage="#{bundle.CreatePersonaRequiredMessage_apellidos}"/>
+                                        <h:outputLabel value="Fecha de Nacimiento" for="fechaNacimiento" />
+                                        <h:inputText id="fechaNacimiento" value="#{personaController.selected.fechaNacimiento}" title="#{bundle.CreatePersonaTitle_fechaNacimiento}" required="true" requiredMessage="#{bundle.CreatePersonaRequiredMessage_fechaNacimiento}">
+                                            <f:convertDateTime pattern="dd/mm/yyyy" />
+                                        </h:inputText>
+                                        <h:outputLabel value="#{bundle.CreatePersonaLabel_telefono}" for="telefono" />
+                                        <h:inputText id="telefono" value="#{personaController.selected.telefono}" title="#{bundle.CreatePersonaTitle_telefono}" required="true" requiredMessage="#{bundle.CreatePersonaRequiredMessage_telefono}"/>
+                                        <h:outputLabel value="#{bundle.CreatePersonaLabel_correo}" for="correo" />
+                                        <h:inputText id="correo" value="#{personaController.selected.correo}" title="#{bundle.CreatePersonaTitle_correo}" required="true" requiredMessage="#{bundle.CreatePersonaRequiredMessage_correo}"/>
+                                        <h:outputLabel value="#{bundle.CreatePersonaLabel_curp}" for="curp" />
+                                        <h:inputText id="curp" value="#{personaController.selected.curp}" title="#{bundle.CreatePersonaTitle_curp}" required="true" requiredMessage="#{bundle.CreatePersonaRequiredMessage_curp}"/>
+                                        <h:outputLabel value="#{bundle.CreatePersonaLabel_rfc}" for="rfc" />
+                                        <h:inputText id="rfc" value="#{personaController.selected.rfc}" title="#{bundle.CreatePersonaTitle_rfc}" required="true" requiredMessage="#{bundle.CreatePersonaRequiredMessage_rfc}"/>
+                                        <h:outputLabel value="#{bundle.CreatePersonaLabel_sexo}" for="sexo" />
+                                        <h:inputText id="sexo" value="#{personaController.selected.sexo}" title="#{bundle.CreatePersonaTitle_sexo}" required="true" requiredMessage="#{bundle.CreatePersonaRequiredMessage_sexo}"/>
+                                        <h:outputLabel value="#{bundle.CreatePersonaLabel_residencia}" for="residencia" />
+                                        <h:inputText id="residencia" value="#{personaController.selected.residencia}" title="#{bundle.CreatePersonaTitle_residencia}" required="true" requiredMessage="#{bundle.CreatePersonaRequiredMessage_residencia}"/>
+                                    </h:panelGrid>
+                                    <br></br>
+                                    <h:commandLink class="btn btn-sm btn-success" value="Guardar" action="#{personaController.create()}" />
+                                    <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal">Cancelar</button>
+                                    <br></br>
+                                    <br></br>
+                                    <!-- Modal footer -->
+                                    <div class="modal-footer">
+                                        <h:commandLink action="#{personaController.prepareList}" value="Ver Lista" immediate="true"/>
+                                    </div>
+                                </div>
+                            </h:form>
+                        </div>
+                    </div>
+                </div>
+            </div> 
         </ui:define>
     </ui:composition>
-
 </html>

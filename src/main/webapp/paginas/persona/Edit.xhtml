@@ -10,48 +10,51 @@
             <h:outputText value="#{bundle.EditPersonaTitle}"></h:outputText>
         </ui:define>
         <ui:define name="body">
-            <h:panelGroup id="messagePanel" layout="block">
-                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
-            </h:panelGroup>
-            <h:form>
-                <h:panelGrid columns="2">
-                    <h:outputLabel value="#{bundle.EditPersonaLabel_personaid}" for="personaid" />
-                    <h:inputText id="personaid" value="#{personaController.selected.personaid}" title="#{bundle.EditPersonaTitle_personaid}" required="true" requiredMessage="#{bundle.EditPersonaRequiredMessage_personaid}"/>
-                    <h:outputLabel value="#{bundle.EditPersonaLabel_nombres}" for="nombres" />
-                    <h:inputText id="nombres" value="#{personaController.selected.nombres}" title="#{bundle.EditPersonaTitle_nombres}" required="true" requiredMessage="#{bundle.EditPersonaRequiredMessage_nombres}"/>
-                    <h:outputLabel value="#{bundle.EditPersonaLabel_apellidos}" for="apellidos" />
-                    <h:inputText id="apellidos" value="#{personaController.selected.apellidos}" title="#{bundle.EditPersonaTitle_apellidos}" required="true" requiredMessage="#{bundle.EditPersonaRequiredMessage_apellidos}"/>
-                    <h:outputLabel value="#{bundle.EditPersonaLabel_fechaNacimiento}" for="fechaNacimiento" />
-                    <h:inputText id="fechaNacimiento" value="#{personaController.selected.fechaNacimiento}" title="#{bundle.EditPersonaTitle_fechaNacimiento}" required="true" requiredMessage="#{bundle.EditPersonaRequiredMessage_fechaNacimiento}">
-                        <f:convertDateTime pattern="MM/dd/yyyy" />
-                    </h:inputText>
-                    <h:outputLabel value="#{bundle.EditPersonaLabel_telefono}" for="telefono" />
-                    <h:inputText id="telefono" value="#{personaController.selected.telefono}" title="#{bundle.EditPersonaTitle_telefono}" required="true" requiredMessage="#{bundle.EditPersonaRequiredMessage_telefono}"/>
-                    <h:outputLabel value="#{bundle.EditPersonaLabel_correo}" for="correo" />
-                    <h:inputText id="correo" value="#{personaController.selected.correo}" title="#{bundle.EditPersonaTitle_correo}" required="true" requiredMessage="#{bundle.EditPersonaRequiredMessage_correo}"/>
-                    <h:outputLabel value="#{bundle.EditPersonaLabel_curp}" for="curp" />
-                    <h:inputText id="curp" value="#{personaController.selected.curp}" title="#{bundle.EditPersonaTitle_curp}" required="true" requiredMessage="#{bundle.EditPersonaRequiredMessage_curp}"/>
-                    <h:outputLabel value="#{bundle.EditPersonaLabel_rfc}" for="rfc" />
-                    <h:inputText id="rfc" value="#{personaController.selected.rfc}" title="#{bundle.EditPersonaTitle_rfc}" required="true" requiredMessage="#{bundle.EditPersonaRequiredMessage_rfc}"/>
-                    <h:outputLabel value="#{bundle.EditPersonaLabel_sexo}" for="sexo" />
-                    <h:inputText id="sexo" value="#{personaController.selected.sexo}" title="#{bundle.EditPersonaTitle_sexo}" required="true" requiredMessage="#{bundle.EditPersonaRequiredMessage_sexo}"/>
-                    <h:outputLabel value="#{bundle.EditPersonaLabel_residencia}" for="residencia" />
-                    <h:inputText id="residencia" value="#{personaController.selected.residencia}" title="#{bundle.EditPersonaTitle_residencia}" required="true" requiredMessage="#{bundle.EditPersonaRequiredMessage_residencia}"/>
-                    <h:outputLabel value="#{bundle.EditPersonaLabel_empleado}" for="empleado" />
-                    <h:selectOneMenu id="empleado" value="#{personaController.selected.empleado}" title="#{bundle.EditPersonaTitle_empleado}" >
-                        <f:selectItems value="#{empleadoController.itemsAvailableSelectOne}"/>
-                    </h:selectOneMenu>
-                </h:panelGrid>
-                <h:commandLink action="#{personaController.update}" value="#{bundle.EditPersonaSaveLink}"/>
-                <br />
-                <br />
-                <h:link outcome="View" value="#{bundle.EditPersonaViewLink}"/>
-                <br />
-                <h:commandLink action="#{personaController.prepareList}" value="#{bundle.EditPersonaShowAllLink}" immediate="true"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.EditPersonaIndexLink}" />
-            </h:form>
+            <div class="main">
+                <div class="alert alert-dismissible" style="background-color: white">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <strong>!Mensajes!</strong><br></br> <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </div>
+                <div style="background-color: white">
+                    <br></br>
+                    <h4 align="center">Editar Información</h4>
+                    <br></br>
+                </div>
+                <br></br>
+                <div style="background-color: white" align="center">
+                    <br></br>
+                    <h:form>
+                        <h:panelGrid columns="2">
+                            <h:outputLabel value="#{bundle.EditPersonaLabel_nombres}" for="nombres" />
+                            <h:inputText id="nombres" value="#{personaController.selected.nombres}" title="#{bundle.EditPersonaTitle_nombres}" required="true" requiredMessage="#{bundle.EditPersonaRequiredMessage_nombres}"/>
+                            <h:outputLabel value="#{bundle.EditPersonaLabel_apellidos}" for="apellidos" />
+                            <h:inputText id="apellidos" value="#{personaController.selected.apellidos}" title="#{bundle.EditPersonaTitle_apellidos}" required="true" requiredMessage="#{bundle.EditPersonaRequiredMessage_apellidos}"/>
+                            <h:outputLabel value="Fecha de Nacimiento" for="fechaNacimiento: " />
+                            <h:inputText id="fechaNacimiento" value="#{personaController.selected.fechaNacimiento}" title="#{bundle.EditPersonaTitle_fechaNacimiento}" required="true" requiredMessage="#{bundle.EditPersonaRequiredMessage_fechaNacimiento}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:inputText>
+                            <h:outputLabel value="#{bundle.EditPersonaLabel_telefono}" for="telefono" />
+                            <h:inputText id="telefono" value="#{personaController.selected.telefono}" title="#{bundle.EditPersonaTitle_telefono}" required="true" requiredMessage="#{bundle.EditPersonaRequiredMessage_telefono}"/>
+                            <h:outputLabel value="#{bundle.EditPersonaLabel_correo}" for="correo" />
+                            <h:inputText id="correo" value="#{personaController.selected.correo}" title="#{bundle.EditPersonaTitle_correo}" required="true" requiredMessage="#{bundle.EditPersonaRequiredMessage_correo}"/>
+                            <h:outputLabel value="#{bundle.EditPersonaLabel_curp}" for="curp" />
+                            <h:inputText id="curp" value="#{personaController.selected.curp}" title="#{bundle.EditPersonaTitle_curp}" required="true" requiredMessage="#{bundle.EditPersonaRequiredMessage_curp}"/>
+                            <h:outputLabel value="RFC: " for="rfc" />
+                            <h:inputText id="rfc" value="#{personaController.selected.rfc}" title="#{bundle.EditPersonaTitle_rfc}" required="true" requiredMessage="#{bundle.EditPersonaRequiredMessage_rfc}"/>
+                            <h:outputLabel value="#{bundle.EditPersonaLabel_sexo}" for="sexo" />
+                            <h:inputText id="sexo" value="#{personaController.selected.sexo}" title="#{bundle.EditPersonaTitle_sexo}" required="true" requiredMessage="#{bundle.EditPersonaRequiredMessage_sexo}"/>
+                            <h:outputLabel value="#{bundle.EditPersonaLabel_residencia}" for="residencia" />
+                            <h:inputText id="residencia" value="#{personaController.selected.residencia}" title="#{bundle.EditPersonaTitle_residencia}" required="true" requiredMessage="#{bundle.EditPersonaRequiredMessage_residencia}"/>
+                        </h:panelGrid>
+                        <br />
+                        <h:commandLink class="btn btn-sm btn-info" action="#{personaController.update}" value="Aceptar"/>
+                        &nbsp; 
+                        <h:commandLink class="btn btn-sm btn-danger" action="#{personaController.prepareList()}" value="Cancelar"/>
+                        <br />
+                        <br />
+                    </h:form>
+                </div>
+            </div>
         </ui:define>
     </ui:composition>
 
