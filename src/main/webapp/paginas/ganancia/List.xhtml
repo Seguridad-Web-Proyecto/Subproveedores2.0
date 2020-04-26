@@ -9,53 +9,105 @@
         <ui:define name="title">
             <h:outputText value="#{bundle.ListGananciaTitle}"></h:outputText>
         </ui:define>
-        <ui:define name="body">
-            <h:form styleClass="jsfcrud_list_form">
-                <h:panelGroup id="messagePanel" layout="block">
-                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
-                </h:panelGroup>
-                <h:outputText escape="false" value="#{bundle.ListGananciaEmpty}" rendered="#{gananciaController.items.rowCount == 0}"/>
-                <h:panelGroup rendered="#{gananciaController.items.rowCount > 0}">
-                    <h:outputText value="#{gananciaController.pagination.pageFirstItem + 1}..#{gananciaController.pagination.pageLastItem + 1}/#{gananciaController.pagination.itemsCount}"/>&nbsp;
-                    <h:commandLink action="#{gananciaController.previous}" value="#{bundle.Previous} #{gananciaController.pagination.pageSize}" rendered="#{gananciaController.pagination.hasPreviousPage}"/>&nbsp;
-                    <h:commandLink action="#{gananciaController.next}" value="#{bundle.Next} #{gananciaController.pagination.pageSize}" rendered="#{gananciaController.pagination.hasNextPage}"/>&nbsp;
-                    <h:dataTable value="#{gananciaController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListGananciaTitle_gananciaid}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.gananciaid}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListGananciaTitle_porcentaje}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.porcentaje}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListGananciaTitle_productoid}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.productoid}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="&nbsp;"/>
-                            </f:facet>
-                            <h:commandLink action="#{gananciaController.prepareView}" value="#{bundle.ListGananciaViewLink}"/>
-                            <h:outputText value=" "/>
-                            <h:commandLink action="#{gananciaController.prepareEdit}" value="#{bundle.ListGananciaEditLink}"/>
-                            <h:outputText value=" "/>
-                            <h:commandLink action="#{gananciaController.destroy}" value="#{bundle.ListGananciaDestroyLink}"/>
-                        </h:column>
-                    </h:dataTable>
-                </h:panelGroup>
-                <br />
-                <h:commandLink action="#{gananciaController.prepareCreate}" value="#{bundle.ListGananciaCreateLink}"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.ListGananciaIndexLink}"/>
-            </h:form>
+        <ui:define name="body"><div class="main">
+                <div class="alert alert-dismissible" style="background-color: white">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <strong>!Mensajes!</strong><br></br> <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </div>
+
+                <div style="background-color: white">
+                    <br></br>
+                    <h1 align="center">Ganancias</h1>
+                    <br></br>
+                </div>
+
+                <div class="card">
+                    <div class="card-body">
+
+                        <p align="right">
+                            <button action="#{gananciaController.prepareCreate()}" type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#modalCreate">
+                                Crear Ganancia
+                            </button>
+                            <button action="#{gananciaController.prepareList()}" type="button" class="btn btn-sm btn-dark"><i class="fas fa-redo"></i>
+
+                            </button>
+                        </p>
+                    </div>
+                </div>
+                <br></br>
+                <h:form styleClass="jsfcrud_list_form">
+                    <h:outputText escape="false" value="#{bundle.ListGananciaEmpty}" rendered="#{gananciaController.items.rowCount == 0}"/>
+                    <h:panelGroup rendered="#{gananciaController.items.rowCount > 0}">
+                        <h:outputText value="#{gananciaController.pagination.pageFirstItem + 1}..#{gananciaController.pagination.pageLastItem + 1}/#{gananciaController.pagination.itemsCount}"/>&nbsp;
+                        <h:commandLink action="#{gananciaController.previous}" value="#{bundle.Previous} #{gananciaController.pagination.pageSize}" rendered="#{gananciaController.pagination.hasPreviousPage}"/>&nbsp;
+                        <h:commandLink action="#{gananciaController.next}" value="#{bundle.Next} #{gananciaController.pagination.pageSize}" rendered="#{gananciaController.pagination.hasNextPage}"/>&nbsp;
+                        <h:dataTable class="table table-sm table-light" value="#{gananciaController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#"/>
+                                </f:facet>
+                                <h:outputText value="#{item.gananciaid}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Porcentaje"/>
+                                </f:facet>
+                                <h:outputText value="#{item.porcentaje}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Producto"/>
+                                </f:facet>
+                                <h:outputText value="#{item.productoid.nombre}"/>
+                            </h:column>
+                            <h:column>
+                                <h:commandLink class="btn btn-sm btn-outline-info fas fa-eye" action="#{gananciaController.prepareView}"  />
+                                <h:commandLink class="btn btn-sm btn-outline-success far fa-edit" action="#{gananciaController.prepareEdit}" />
+                                <h:commandLink class="btn btn-sm btn-outline-danger fas fa-trash-alt" onclick="return ConfirmDelete()" action="#{gananciaController.destroy}" />
+                            </h:column>
+                        </h:dataTable>
+                    </h:panelGroup>
+                </h:form>
+            </div>
+
+            <!-- The Modal -->
+            <div class="modal fade" id="modalCreate">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+
+                        <!-- Modal Header -->
+                        <div class="modal-header" align="center">
+                            <h4 class="modal-title">Registro de Usuarios </h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+
+                        <!-- Modal body -->
+                        <div class="modal-body">
+                            <h:form>
+                                <div align="center" >
+                                    <h:panelGrid columns="2">
+                                        <h:outputLabel value="#{bundle.CreateGananciaLabel_porcentaje}" for="porcentaje" />
+                                        <h:inputText class="form-control" id="porcentaje" value="#{gananciaController.selected.porcentaje}" title="#{bundle.CreateGananciaTitle_porcentaje}" required="true" requiredMessage="#{bundle.CreateGananciaRequiredMessage_porcentaje}"/>
+                                        <h:outputLabel value="Producto" for="productoid" />
+                                        <h:selectOneMenu class="form-control" id="productoid" value="#{gananciaController.selected.productoid}" title="#{bundle.CreateGananciaTitle_productoid}" required="true" requiredMessage="#{bundle.CreateGananciaRequiredMessage_productoid}">
+                                            <f:selectItems value="#{productoController.itemsAvailableSelectOne}"/>
+                                        </h:selectOneMenu>
+                                    </h:panelGrid>
+                                    <br></br>
+                                    <h:commandLink class="btn btn-sm btn-success" value="Guardar" action="#{gananciaController.create()}" />
+                                    <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal">Cancelar</button>
+                                    <br></br>
+                                    <br></br>
+                                    <!-- Modal footer -->
+                                    <div class="modal-footer">
+                                        <h:commandLink action="#{gananciaController.prepareList}" value="Ver Lista de Ganancias" immediate="true"/>
+                                    </div>
+                                </div>
+                            </h:form>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </ui:define>
     </ui:composition>
 

@@ -10,30 +10,39 @@
             <h:outputText value="#{bundle.EditGananciaTitle}"></h:outputText>
         </ui:define>
         <ui:define name="body">
-            <h:panelGroup id="messagePanel" layout="block">
-                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
-            </h:panelGroup>
-            <h:form>
-                <h:panelGrid columns="2">
-                    <h:outputLabel value="#{bundle.EditGananciaLabel_gananciaid}" for="gananciaid" />
-                    <h:inputText id="gananciaid" value="#{gananciaController.selected.gananciaid}" title="#{bundle.EditGananciaTitle_gananciaid}" required="true" requiredMessage="#{bundle.EditGananciaRequiredMessage_gananciaid}"/>
-                    <h:outputLabel value="#{bundle.EditGananciaLabel_porcentaje}" for="porcentaje" />
-                    <h:inputText id="porcentaje" value="#{gananciaController.selected.porcentaje}" title="#{bundle.EditGananciaTitle_porcentaje}" required="true" requiredMessage="#{bundle.EditGananciaRequiredMessage_porcentaje}"/>
-                    <h:outputLabel value="#{bundle.EditGananciaLabel_productoid}" for="productoid" />
-                    <h:selectOneMenu id="productoid" value="#{gananciaController.selected.productoid}" title="#{bundle.EditGananciaTitle_productoid}" required="true" requiredMessage="#{bundle.EditGananciaRequiredMessage_productoid}">
-                        <f:selectItems value="#{productoController.itemsAvailableSelectOne}"/>
-                    </h:selectOneMenu>
-                </h:panelGrid>
-                <h:commandLink action="#{gananciaController.update}" value="#{bundle.EditGananciaSaveLink}"/>
-                <br />
-                <br />
-                <h:link outcome="View" value="#{bundle.EditGananciaViewLink}"/>
-                <br />
-                <h:commandLink action="#{gananciaController.prepareList}" value="#{bundle.EditGananciaShowAllLink}" immediate="true"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.EditGananciaIndexLink}" />
-            </h:form>
+            <div class="main">
+                <div class="alert alert-dismissible" style="background-color: white">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <strong>!Mensajes!</strong><br></br> <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </div>
+                <div style="background-color: white">
+                    <br></br>
+                    <h4 align="center">Editar Información</h4>
+                    <br></br>
+                </div>
+                <br></br>
+                <div style="background-color: white" align="center">
+                    <br></br>
+                    <h:form>
+                        <h:panelGrid columns="2">
+                            <h:outputLabel value="#{bundle.EditGananciaLabel_porcentaje}" for="porcentaje" />
+                            <h:inputText class="form-control" id="porcentaje" value="#{gananciaController.selected.porcentaje}" title="#{bundle.EditGananciaTitle_porcentaje}" required="true" requiredMessage="#{bundle.EditGananciaRequiredMessage_porcentaje}">
+                                  <f:validator validatorId="numerosValidator" />
+                                        </h:inputText>
+                            <h:outputLabel value="Producto: " for="productoid" />
+                            <h:selectOneMenu class="form-control" id="productoid" value="#{gananciaController.selected.productoid}" title="#{bundle.EditGananciaTitle_productoid}" required="true" requiredMessage="#{bundle.EditGananciaRequiredMessage_productoid}">
+                                <f:selectItems value="#{productoController.itemsAvailableSelectOne}"/>
+                            </h:selectOneMenu>
+                        </h:panelGrid>
+                        <br />
+                        <h:commandLink class="btn btn-sm btn-info" action="#{gananciaController.update}" value="Aceptar"/>
+                        &nbsp; 
+                        <h:commandLink class="btn btn-sm btn-danger" action="#{gananciaController.prepareList()}" value="Cancelar"/>
+                        <br />
+                        <br />
+                    </h:form>
+                </div>
+            </div>
         </ui:define>
     </ui:composition>
 
