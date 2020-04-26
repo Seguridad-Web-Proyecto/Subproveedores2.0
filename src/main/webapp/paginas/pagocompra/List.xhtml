@@ -10,66 +10,128 @@
             <h:outputText value="#{bundle.ListPagocompraTitle}"></h:outputText>
         </ui:define>
         <ui:define name="body">
-            <h:form styleClass="jsfcrud_list_form">
-                <h:panelGroup id="messagePanel" layout="block">
-                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
-                </h:panelGroup>
-                <h:outputText escape="false" value="#{bundle.ListPagocompraEmpty}" rendered="#{pagocompraController.items.rowCount == 0}"/>
-                <h:panelGroup rendered="#{pagocompraController.items.rowCount > 0}">
-                    <h:outputText value="#{pagocompraController.pagination.pageFirstItem + 1}..#{pagocompraController.pagination.pageLastItem + 1}/#{pagocompraController.pagination.itemsCount}"/>&nbsp;
-                    <h:commandLink action="#{pagocompraController.previous}" value="#{bundle.Previous} #{pagocompraController.pagination.pageSize}" rendered="#{pagocompraController.pagination.hasPreviousPage}"/>&nbsp;
-                    <h:commandLink action="#{pagocompraController.next}" value="#{bundle.Next} #{pagocompraController.pagination.pageSize}" rendered="#{pagocompraController.pagination.hasNextPage}"/>&nbsp;
-                    <h:dataTable value="#{pagocompraController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListPagocompraTitle_pagocompraid}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.pagocompraid}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListPagocompraTitle_fechaPago}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.fechaPago}">
-                                <f:convertDateTime pattern="MM/dd/yyyy" />
-                            </h:outputText>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListPagocompraTitle_monto}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.monto}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListPagocompraTitle_estado}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.estado}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListPagocompraTitle_tarjetacreditoid}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.tarjetacreditoid}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="&nbsp;"/>
-                            </f:facet>
-                            <h:commandLink action="#{pagocompraController.prepareView}" value="#{bundle.ListPagocompraViewLink}"/>
-                            <h:outputText value=" "/>
-                            <h:commandLink action="#{pagocompraController.prepareEdit}" value="#{bundle.ListPagocompraEditLink}"/>
-                            <h:outputText value=" "/>
-                            <h:commandLink action="#{pagocompraController.destroy}" value="#{bundle.ListPagocompraDestroyLink}"/>
-                        </h:column>
-                    </h:dataTable>
-                </h:panelGroup>
-                <br />
-                <h:commandLink action="#{pagocompraController.prepareCreate}" value="#{bundle.ListPagocompraCreateLink}"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.ListPagocompraIndexLink}"/>
-            </h:form>
+            <div class="main">
+                <div class="alert alert-dismissible" style="background-color: white">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <strong>!Mensajes!</strong><br></br> <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </div>
+
+                <div style="background-color: white">
+                    <br></br>
+                    <h1 align="center">Pago de Compras</h1>
+                    <br></br>
+                </div>
+
+                <div class="card">
+                    <div class="card-body">
+
+                        <p align="right">
+                            <button action="#{pagocompraController.prepareCreate()}" type="button" class="btn btn-sm btn-info" data-toggle="modal" data-target="#modalCreate">
+                                Crear
+                            </button>
+                            <button action="#{pagocompraController.prepareList()}" type="button" class="btn btn-sm btn-dark"><i class="fas fa-redo"></i>
+
+                            </button>
+                        </p>
+                    </div>
+                </div>
+                <br></br>
+                <h:form styleClass="jsfcrud_list_form">
+                    <h:outputText escape="false" value="#{bundle.ListPagocompraEmpty}" rendered="#{pagocompraController.items.rowCount == 0}"/>
+                    <h:panelGroup rendered="#{pagocompraController.items.rowCount > 0}">
+                        <h:outputText value="#{pagocompraController.pagination.pageFirstItem + 1}..#{pagocompraController.pagination.pageLastItem + 1}/#{pagocompraController.pagination.itemsCount}"/>&nbsp;
+                        <h:commandLink action="#{pagocompraController.previous}" value="#{bundle.Previous} #{pagocompraController.pagination.pageSize}" rendered="#{pagocompraController.pagination.hasPreviousPage}"/>&nbsp;
+                        <h:commandLink action="#{pagocompraController.next}" value="#{bundle.Next} #{pagocompraController.pagination.pageSize}" rendered="#{pagocompraController.pagination.hasNextPage}"/>&nbsp;
+                        <h:dataTable class="table table-sm table-light" value="#{pagocompraController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#"/>
+                                </f:facet>
+                                <h:outputText value="#{item.pagocompraid}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Fecha de Pago "/>
+                                </f:facet>
+                                <h:outputText value="#{item.fechaPago}">
+                                    <f:convertDateTime pattern="MM/dd/yyyy" />
+                                </h:outputText>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Monto "/>
+                                </f:facet>
+                                <h:outputText value="#{item.monto}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Estado "/>
+                                </f:facet>
+                                <h:outputText value="#{item.estado}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Id de Tarjeta "/>
+                                </f:facet>
+                                <h:outputText value="#{item.tarjetacreditoid}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Acciones"/>
+                                </f:facet>
+                                <h:commandLink class="btn btn-sm btn-outline-info fas fa-eye" action="#{pagocompraController.prepareView}"  />
+                                <h:commandLink class="btn btn-sm btn-outline-success far fa-edit" action="#{pagocompraController.prepareEdit}" />
+                                <h:commandLink class="btn btn-sm btn-outline-danger fas fa-trash-alt" onclick="return ConfirmDelete()" action="#{pagocompraController.destroy}" />
+                            </h:column>
+                        </h:dataTable>
+                    </h:panelGroup>
+                </h:form>
+            </div>
+
+            <!-- The Modal -->
+            <div class="modal fade" id="modalCreate">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+
+                        <!-- Modal Header -->
+                        <div class="modal-header" align="center">
+                            <h4 class="modal-title">Registro de Pago </h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+
+                        <!-- Modal body -->
+                        <div class="modal-body">
+                            <h:form>
+                                <div align="center" >
+                                    <h:panelGrid columns="2">
+                                        <h:outputLabel value="Fecha de Pago:" for="fechaPago" />
+                                        <h:inputText class="form-control" id="fechaPago" value="#{pagocompraController.selected.fechaPago}" title="#{bundle.CreatePagocompraTitle_fechaPago}" required="true" requiredMessage="#{bundle.CreatePagocompraRequiredMessage_fechaPago}">
+                                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                                        </h:inputText>
+                                        <h:outputLabel value="Monto: " for="monto" />
+                                        <h:inputText class="form-control" id="monto" value="#{pagocompraController.selected.monto}" title="#{bundle.CreatePagocompraTitle_monto}" required="true" requiredMessage="#{bundle.CreatePagocompraRequiredMessage_monto}"/>
+                                        <h:outputLabel value="Estado: " for="estado" />
+                                        <h:inputText class="form-control" id="estado" value="#{pagocompraController.selected.estado}" title="#{bundle.CreatePagocompraTitle_estado}" required="true" requiredMessage="#{bundle.CreatePagocompraRequiredMessage_estado}"/>
+                                        <h:outputLabel value="Id de Tarjeta" for="tarjetacreditoid" />
+                                        <h:selectOneMenu class="form-control" id="tarjetacreditoid" value="#{pagocompraController.selected.tarjetacreditoid}" title="#{bundle.CreatePagocompraTitle_tarjetacreditoid}" required="true" requiredMessage="#{bundle.CreatePagocompraRequiredMessage_tarjetacreditoid}">
+                                            <f:selectItems value="#{tarjetacreditocompraController.itemsAvailableSelectOne}"/>
+                                        </h:selectOneMenu>
+                                    </h:panelGrid>
+                                    <br></br>
+                                    <h:commandLink class="btn btn-sm btn-success" value="Guardar" action="#{pagocompraController.create()}" />
+                                    <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal">Cancelar</button>
+                                    <br></br>
+                                    <br></br>
+                                    <!-- Modal footer -->
+                                    <div class="modal-footer">
+                                        <h:commandLink action="#{pagocompraController.prepareList}" value="Ver Lista" immediate="true"/>
+                                    </div>
+                                </div>
+                            </h:form>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </ui:define>
     </ui:composition>
 

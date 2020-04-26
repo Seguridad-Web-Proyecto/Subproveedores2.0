@@ -10,36 +10,43 @@
             <h:outputText value="#{bundle.EditPagocompraTitle}"></h:outputText>
         </ui:define>
         <ui:define name="body">
-            <h:panelGroup id="messagePanel" layout="block">
-                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
-            </h:panelGroup>
-            <h:form>
-                <h:panelGrid columns="2">
-                    <h:outputLabel value="#{bundle.EditPagocompraLabel_pagocompraid}" for="pagocompraid" />
-                    <h:inputText id="pagocompraid" value="#{pagocompraController.selected.pagocompraid}" title="#{bundle.EditPagocompraTitle_pagocompraid}" required="true" requiredMessage="#{bundle.EditPagocompraRequiredMessage_pagocompraid}"/>
-                    <h:outputLabel value="#{bundle.EditPagocompraLabel_fechaPago}" for="fechaPago" />
-                    <h:inputText id="fechaPago" value="#{pagocompraController.selected.fechaPago}" title="#{bundle.EditPagocompraTitle_fechaPago}" required="true" requiredMessage="#{bundle.EditPagocompraRequiredMessage_fechaPago}">
-                        <f:convertDateTime pattern="MM/dd/yyyy" />
-                    </h:inputText>
-                    <h:outputLabel value="#{bundle.EditPagocompraLabel_monto}" for="monto" />
-                    <h:inputText id="monto" value="#{pagocompraController.selected.monto}" title="#{bundle.EditPagocompraTitle_monto}" required="true" requiredMessage="#{bundle.EditPagocompraRequiredMessage_monto}"/>
-                    <h:outputLabel value="#{bundle.EditPagocompraLabel_estado}" for="estado" />
-                    <h:inputText id="estado" value="#{pagocompraController.selected.estado}" title="#{bundle.EditPagocompraTitle_estado}" required="true" requiredMessage="#{bundle.EditPagocompraRequiredMessage_estado}"/>
-                    <h:outputLabel value="#{bundle.EditPagocompraLabel_tarjetacreditoid}" for="tarjetacreditoid" />
-                    <h:selectOneMenu id="tarjetacreditoid" value="#{pagocompraController.selected.tarjetacreditoid}" title="#{bundle.EditPagocompraTitle_tarjetacreditoid}" required="true" requiredMessage="#{bundle.EditPagocompraRequiredMessage_tarjetacreditoid}">
-                        <f:selectItems value="#{tarjetacreditocompraController.itemsAvailableSelectOne}"/>
-                    </h:selectOneMenu>
-                </h:panelGrid>
-                <h:commandLink action="#{pagocompraController.update}" value="#{bundle.EditPagocompraSaveLink}"/>
-                <br />
-                <br />
-                <h:link outcome="View" value="#{bundle.EditPagocompraViewLink}"/>
-                <br />
-                <h:commandLink action="#{pagocompraController.prepareList}" value="#{bundle.EditPagocompraShowAllLink}" immediate="true"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.EditPagocompraIndexLink}" />
-            </h:form>
+            <div class="main">
+                <div class="alert alert-dismissible" style="background-color: white">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <strong>!Mensajes!</strong><br></br> <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </div>
+                <div style="background-color: white">
+                    <br></br>
+                    <h4 align="center">Editar Información</h4>
+                    <br></br>
+                </div>
+                <br></br>
+                <div style="background-color: white" align="center">
+                    <br></br>
+                    <h:form>
+                        <h:panelGrid columns="2">
+                            <h:outputLabel value="Fecha de Pago:" for="fechaPago" />
+                            <h:inputText class="form-control" id="fechaPago" value="#{pagocompraController.selected.fechaPago}" title="#{bundle.EditPagocompraTitle_fechaPago}" required="true" requiredMessage="#{bundle.EditPagocompraRequiredMessage_fechaPago}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:inputText>
+                            <h:outputLabel value="Monto: " for="monto" />
+                            <h:inputText class="form-control" id="monto" value="#{pagocompraController.selected.monto}" title="#{bundle.EditPagocompraTitle_monto}" required="true" requiredMessage="#{bundle.EditPagocompraRequiredMessage_monto}"/>
+                            <h:outputLabel value="Estado: " for="estado" />
+                            <h:inputText class="form-control" id="estado" value="#{pagocompraController.selected.estado}" title="#{bundle.EditPagocompraTitle_estado}" required="true" requiredMessage="#{bundle.EditPagocompraRequiredMessage_estado}"/>
+                            <h:outputLabel value="Id de Tarjeta: " for="tarjetacreditoid" />
+                            <h:selectOneMenu class="form-control" id="tarjetacreditoid" value="#{pagocompraController.selected.tarjetacreditoid}" title="#{bundle.EditPagocompraTitle_tarjetacreditoid}" required="true" requiredMessage="#{bundle.EditPagocompraRequiredMessage_tarjetacreditoid}">
+                                <f:selectItems value="#{tarjetacreditocompraController.itemsAvailableSelectOne}"/>
+                            </h:selectOneMenu>
+                        </h:panelGrid>
+                        <br />
+                        <h:commandLink class="btn btn-sm btn-info" action="#{pagocompraController.update}" value="Aceptar"/>
+                        &nbsp; 
+                        <h:commandLink class="btn btn-sm btn-danger" action="#{pagocompraController.prepareList()}" value="Cancelar"/>
+                        <br />
+                        <br />
+                    </h:form>
+                </div>
+            </div>
         </ui:define>
     </ui:composition>
 

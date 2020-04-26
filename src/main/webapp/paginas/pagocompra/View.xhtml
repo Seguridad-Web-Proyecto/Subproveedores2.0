@@ -10,38 +10,40 @@
             <h:outputText value="#{bundle.ViewPagocompraTitle}"></h:outputText>
         </ui:define>
         <ui:define name="body">
-            <h:panelGroup id="messagePanel" layout="block">
-                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
-            </h:panelGroup>
-            <h:form>
-                <h:panelGrid columns="2">
-                    <h:outputText value="#{bundle.ViewPagocompraLabel_pagocompraid}"/>
-                    <h:outputText value="#{pagocompraController.selected.pagocompraid}" title="#{bundle.ViewPagocompraTitle_pagocompraid}"/>
-                    <h:outputText value="#{bundle.ViewPagocompraLabel_fechaPago}"/>
-                    <h:outputText value="#{pagocompraController.selected.fechaPago}" title="#{bundle.ViewPagocompraTitle_fechaPago}">
-                        <f:convertDateTime pattern="MM/dd/yyyy" />
-                    </h:outputText>
-                    <h:outputText value="#{bundle.ViewPagocompraLabel_monto}"/>
-                    <h:outputText value="#{pagocompraController.selected.monto}" title="#{bundle.ViewPagocompraTitle_monto}"/>
-                    <h:outputText value="#{bundle.ViewPagocompraLabel_estado}"/>
-                    <h:outputText value="#{pagocompraController.selected.estado}" title="#{bundle.ViewPagocompraTitle_estado}"/>
-                    <h:outputText value="#{bundle.ViewPagocompraLabel_tarjetacreditoid}"/>
-                    <h:outputText value="#{pagocompraController.selected.tarjetacreditoid}" title="#{bundle.ViewPagocompraTitle_tarjetacreditoid}"/>
-                </h:panelGrid>
-                <br />
-                <h:commandLink action="#{pagocompraController.destroyAndView}" value="#{bundle.ViewPagocompraDestroyLink}"/>
-                <br />
-                <br />
-                <h:link outcome="Edit" value="#{bundle.ViewPagocompraEditLink}"/>
-                <br />
-                <h:commandLink action="#{pagocompraController.prepareCreate}" value="#{bundle.ViewPagocompraCreateLink}" />
-                <br />
-                <h:commandLink action="#{pagocompraController.prepareList}" value="#{bundle.ViewPagocompraShowAllLink}"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.ViewPagocompraIndexLink}"/>
-
-            </h:form>
+            <div class="main">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <div style="background-color: white">
+                    <br></br>
+                    <h4 align="center">Información</h4>
+                    <br></br>
+                </div>
+                <br></br>
+                <div style="background-color: white" align="center">
+                    <br></br>
+                    <h:form>
+                        <h:panelGrid columns="2">
+                            <h:outputText value="Id de Pago: "/>
+                            <h:outputText class="form-control" value="#{pagocompraController.selected.pagocompraid}" title="#{bundle.ViewPagocompraTitle_pagocompraid}"/>
+                            <h:outputText value="Fecha de Pago: "/>
+                            <h:outputText class="form-control" value="#{pagocompraController.selected.fechaPago}" title="#{bundle.ViewPagocompraTitle_fechaPago}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                            <h:outputText value="Monto: "/>
+                            <h:outputText class="form-control" value="#{pagocompraController.selected.monto}" title="#{bundle.ViewPagocompraTitle_monto}"/>
+                            <h:outputText value="Status: "/>
+                            <h:outputText class="form-control" value="#{pagocompraController.selected.estado}" title="#{bundle.ViewPagocompraTitle_estado}"/>
+                            <h:outputText value="Id de Tarjeta: "/>
+                            <h:outputText class="form-control" value="#{pagocompraController.selected.tarjetacreditoid}" title="#{bundle.ViewPagocompraTitle_tarjetacreditoid}"/>
+                        </h:panelGrid>
+                        <br></br>
+                        <h:commandLink class="btn btn-sm btn-info" action="#{pagocompraController.prepareList}" value="Aceptar"/>
+                        <br></br>
+                        <br></br>
+                    </h:form>
+                </div>
+            </div>
         </ui:define>
     </ui:composition>
 
