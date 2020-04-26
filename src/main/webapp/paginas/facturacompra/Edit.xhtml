@@ -10,38 +10,45 @@
             <h:outputText value="#{bundle.EditFacturacompraTitle}"></h:outputText>
         </ui:define>
         <ui:define name="body">
-            <h:panelGroup id="messagePanel" layout="block">
-                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
-            </h:panelGroup>
-            <h:form>
-                <h:panelGrid columns="2">
-                    <h:outputLabel value="#{bundle.EditFacturacompraLabel_facturacompraid}" for="facturacompraid" />
-                    <h:inputText id="facturacompraid" value="#{facturacompraController.selected.facturacompraid}" title="#{bundle.EditFacturacompraTitle_facturacompraid}" required="true" requiredMessage="#{bundle.EditFacturacompraRequiredMessage_facturacompraid}"/>
-                    <h:outputLabel value="#{bundle.EditFacturacompraLabel_fechaEmision}" for="fechaEmision" />
-                    <h:inputText id="fechaEmision" value="#{facturacompraController.selected.fechaEmision}" title="#{bundle.EditFacturacompraTitle_fechaEmision}" required="true" requiredMessage="#{bundle.EditFacturacompraRequiredMessage_fechaEmision}">
-                        <f:convertDateTime pattern="MM/dd/yyyy" />
-                    </h:inputText>
-                    <h:outputLabel value="#{bundle.EditFacturacompraLabel_fechaVencimientoPago}" for="fechaVencimientoPago" />
-                    <h:inputText id="fechaVencimientoPago" value="#{facturacompraController.selected.fechaVencimientoPago}" title="#{bundle.EditFacturacompraTitle_fechaVencimientoPago}" required="true" requiredMessage="#{bundle.EditFacturacompraRequiredMessage_fechaVencimientoPago}">
-                        <f:convertDateTime pattern="MM/dd/yyyy" />
-                    </h:inputText>
-                    <h:outputLabel value="#{bundle.EditFacturacompraLabel_descripcion}" for="descripcion" />
-                    <h:inputText id="descripcion" value="#{facturacompraController.selected.descripcion}" title="#{bundle.EditFacturacompraTitle_descripcion}" required="true" requiredMessage="#{bundle.EditFacturacompraRequiredMessage_descripcion}"/>
-                    <h:outputLabel value="#{bundle.EditFacturacompraLabel_pagoid}" for="pagoid" />
-                    <h:selectOneMenu id="pagoid" value="#{facturacompraController.selected.pagoid}" title="#{bundle.EditFacturacompraTitle_pagoid}" required="true" requiredMessage="#{bundle.EditFacturacompraRequiredMessage_pagoid}">
-                        <f:selectItems value="#{pagocompraController.itemsAvailableSelectOne}"/>
-                    </h:selectOneMenu>
-                </h:panelGrid>
-                <h:commandLink action="#{facturacompraController.update}" value="#{bundle.EditFacturacompraSaveLink}"/>
-                <br />
-                <br />
-                <h:link outcome="View" value="#{bundle.EditFacturacompraViewLink}"/>
-                <br />
-                <h:commandLink action="#{facturacompraController.prepareList}" value="#{bundle.EditFacturacompraShowAllLink}" immediate="true"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.EditFacturacompraIndexLink}" />
-            </h:form>
+            <div class="main">
+                <div class="alert alert-dismissible" style="background-color: white">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <strong>!Mensajes!</strong><br></br> <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </div>
+                <div style="background-color: white">
+                    <br></br>
+                    <h4 align="center">Editar Información</h4>
+                    <br></br>
+                </div>
+                <br></br>
+                <div style="background-color: white" align="center">
+                    <br></br>
+                    <h:form>
+                        <h:panelGrid columns="2">
+                            <h:outputLabel value="Fecha de Emisión: " for="fechaEmision" />
+                            <h:inputText class="form-control" id="fechaEmision" value="#{facturacompraController.selected.fechaEmision}" title="#{bundle.EditFacturacompraTitle_fechaEmision}" required="true" requiredMessage="#{bundle.EditFacturacompraRequiredMessage_fechaEmision}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:inputText>
+                            <h:outputLabel value="Fecha de vencimiento de pago: " for="fechaVencimientoPago" />
+                            <h:inputText class="form-control" id="fechaVencimientoPago" value="#{facturacompraController.selected.fechaVencimientoPago}" title="#{bundle.EditFacturacompraTitle_fechaVencimientoPago}" required="true" requiredMessage="#{bundle.EditFacturacompraRequiredMessage_fechaVencimientoPago}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:inputText>
+                            <h:outputLabel value="Descripción: " for="descripcion" />
+                            <h:inputText class="form-control" id="descripcion" value="#{facturacompraController.selected.descripcion}" title="#{bundle.EditFacturacompraTitle_descripcion}" required="true" requiredMessage="#{bundle.EditFacturacompraRequiredMessage_descripcion}"/>
+                            <h:outputLabel value="Id de pago: " for="pagoid" />
+                            <h:selectOneMenu class="form-control" id="pagoid" value="#{facturacompraController.selected.pagoid}" title="#{bundle.EditFacturacompraTitle_pagoid}" required="true" requiredMessage="#{bundle.EditFacturacompraRequiredMessage_pagoid}">
+                                <f:selectItems value="#{pagocompraController.itemsAvailableSelectOne}"/>
+                            </h:selectOneMenu>
+                        </h:panelGrid>
+                        <br />
+                        <h:commandLink class="btn btn-sm btn-info" action="#{facturacompraController.update}" value="Aceptar"/>
+                        &nbsp; 
+                        <h:commandLink class="btn btn-sm btn-danger" action="#{facturacompraController.prepareList()}" value="Cancelar"/>
+                        <br />
+                        <br />
+                    </h:form>
+                </div>
+            </div>
         </ui:define>
     </ui:composition>
 

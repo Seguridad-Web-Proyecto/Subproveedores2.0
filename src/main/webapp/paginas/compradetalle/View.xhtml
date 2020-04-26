@@ -10,36 +10,38 @@
             <h:outputText value="#{bundle.ViewCompradetalleTitle}"></h:outputText>
         </ui:define>
         <ui:define name="body">
-            <h:panelGroup id="messagePanel" layout="block">
-                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
-            </h:panelGroup>
-            <h:form>
-                <h:panelGrid columns="2">
-                    <h:outputText value="#{bundle.ViewCompradetalleLabel_cantidad}"/>
-                    <h:outputText value="#{compradetalleController.selected.cantidad}" title="#{bundle.ViewCompradetalleTitle_cantidad}"/>
-                    <h:outputText value="#{bundle.ViewCompradetalleLabel_precioUnitario}"/>
-                    <h:outputText value="#{compradetalleController.selected.precioUnitario}" title="#{bundle.ViewCompradetalleTitle_precioUnitario}"/>
-                    <h:outputText value="#{bundle.ViewCompradetalleLabel_importe}"/>
-                    <h:outputText value="#{compradetalleController.selected.importe}" title="#{bundle.ViewCompradetalleTitle_importe}"/>
-                    <h:outputText value="#{bundle.ViewCompradetalleLabel_ordencompra}"/>
-                    <h:outputText value="#{compradetalleController.selected.ordencompra}" title="#{bundle.ViewCompradetalleTitle_ordencompra}"/>
-                    <h:outputText value="#{bundle.ViewCompradetalleLabel_producto}"/>
-                    <h:outputText value="#{compradetalleController.selected.producto}" title="#{bundle.ViewCompradetalleTitle_producto}"/>
-                </h:panelGrid>
-                <br />
-                <h:commandLink action="#{compradetalleController.destroyAndView}" value="#{bundle.ViewCompradetalleDestroyLink}"/>
-                <br />
-                <br />
-                <h:link outcome="Edit" value="#{bundle.ViewCompradetalleEditLink}"/>
-                <br />
-                <h:commandLink action="#{compradetalleController.prepareCreate}" value="#{bundle.ViewCompradetalleCreateLink}" />
-                <br />
-                <h:commandLink action="#{compradetalleController.prepareList}" value="#{bundle.ViewCompradetalleShowAllLink}"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.ViewCompradetalleIndexLink}"/>
-
-            </h:form>
+            <div class="main">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <div style="background-color: white">
+                    <br></br>
+                    <h4 align="center">Información</h4>
+                    <br></br>
+                </div>
+                <br></br>
+                <div style="background-color: white" align="center">
+                    <br></br>
+                    <h:form>
+                        <h:panelGrid columns="2">
+                            <h:outputText value="Cantidad"/>
+                            <h:outputText class="form-control" value="#{compradetalleController.selected.cantidad}" title="#{bundle.ViewCompradetalleTitle_cantidad}"/>
+                            <h:outputText value="Precio Unitario"/>
+                            <h:outputText class="form-control" value="#{compradetalleController.selected.precioUnitario}" title="#{bundle.ViewCompradetalleTitle_precioUnitario}"/>
+                            <h:outputText value="Importe"/>
+                            <h:outputText class="form-control" value="#{compradetalleController.selected.importe}" title="#{bundle.ViewCompradetalleTitle_importe}"/>
+                            <h:outputText value="Orden de Compra"/>
+                            <h:outputText class="form-control" value="#{compradetalleController.selected.ordencompra}" title="#{bundle.ViewCompradetalleTitle_ordencompra}"/>
+                            <h:outputText value="Producto"/>
+                            <h:outputText class="form-control" value="#{compradetalleController.selected.producto}" title="#{bundle.ViewCompradetalleTitle_producto}"/>
+                        </h:panelGrid>
+                        <br></br>
+                        <h:commandLink class="btn btn-sm btn-info" action="#{compradetalleController.prepareList}" value="Aceptar"/>
+                        <br></br>
+                        <br></br>
+                    </h:form>
+                </div>
+            </div>
         </ui:define>
     </ui:composition>
 
