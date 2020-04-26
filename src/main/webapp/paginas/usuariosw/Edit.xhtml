@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditUsuarioswTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditUsuarioswLabel_usuarioid}" for="usuarioid" />
+                    <h:inputText id="usuarioid" value="#{usuarioswController.selected.usuarioid}" title="#{bundle.EditUsuarioswTitle_usuarioid}" required="true" requiredMessage="#{bundle.EditUsuarioswRequiredMessage_usuarioid}"/>
+                    <h:outputLabel value="#{bundle.EditUsuarioswLabel_usuario}" for="usuario" />
+                    <h:inputText id="usuario" value="#{usuarioswController.selected.usuario}" title="#{bundle.EditUsuarioswTitle_usuario}" required="true" requiredMessage="#{bundle.EditUsuarioswRequiredMessage_usuario}"/>
+                    <h:outputLabel value="#{bundle.EditUsuarioswLabel_contrasenia}" for="contrasenia" />
+                    <h:inputText id="contrasenia" value="#{usuarioswController.selected.contrasenia}" title="#{bundle.EditUsuarioswTitle_contrasenia}" required="true" requiredMessage="#{bundle.EditUsuarioswRequiredMessage_contrasenia}"/>
+                    <h:outputLabel value="#{bundle.EditUsuarioswLabel_activo}" for="activo" />
+                    <h:inputText id="activo" value="#{usuarioswController.selected.activo}" title="#{bundle.EditUsuarioswTitle_activo}" required="true" requiredMessage="#{bundle.EditUsuarioswRequiredMessage_activo}"/>
+                    <h:outputLabel value="#{bundle.EditUsuarioswLabel_empresa}" for="empresa" />
+                    <h:inputText id="empresa" value="#{usuarioswController.selected.empresa}" title="#{bundle.EditUsuarioswTitle_empresa}" required="true" requiredMessage="#{bundle.EditUsuarioswRequiredMessage_empresa}"/>
+                    <h:outputLabel value="#{bundle.EditUsuarioswLabel_rfc}" for="rfc" />
+                    <h:inputText id="rfc" value="#{usuarioswController.selected.rfc}" title="#{bundle.EditUsuarioswTitle_rfc}" required="true" requiredMessage="#{bundle.EditUsuarioswRequiredMessage_rfc}"/>
+                </h:panelGrid>
+                <h:commandLink action="#{usuarioswController.update}" value="#{bundle.EditUsuarioswSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditUsuarioswViewLink}"/>
+                <br />
+                <h:commandLink action="#{usuarioswController.prepareList}" value="#{bundle.EditUsuarioswShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditUsuarioswIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

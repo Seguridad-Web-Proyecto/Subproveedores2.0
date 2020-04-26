@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreatePagoventaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreatePagoventaLabel_pagoventaid}" for="pagoventaid" />
+                    <h:inputText id="pagoventaid" value="#{pagoventaController.selected.pagoventaid}" title="#{bundle.CreatePagoventaTitle_pagoventaid}" required="true" requiredMessage="#{bundle.CreatePagoventaRequiredMessage_pagoventaid}"/>
+                    <h:outputLabel value="#{bundle.CreatePagoventaLabel_fechaPago}" for="fechaPago" />
+                    <h:inputText id="fechaPago" value="#{pagoventaController.selected.fechaPago}" title="#{bundle.CreatePagoventaTitle_fechaPago}" required="true" requiredMessage="#{bundle.CreatePagoventaRequiredMessage_fechaPago}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreatePagoventaLabel_monto}" for="monto" />
+                    <h:inputText id="monto" value="#{pagoventaController.selected.monto}" title="#{bundle.CreatePagoventaTitle_monto}" required="true" requiredMessage="#{bundle.CreatePagoventaRequiredMessage_monto}"/>
+                    <h:outputLabel value="#{bundle.CreatePagoventaLabel_estado}" for="estado" />
+                    <h:inputText id="estado" value="#{pagoventaController.selected.estado}" title="#{bundle.CreatePagoventaTitle_estado}" required="true" requiredMessage="#{bundle.CreatePagoventaRequiredMessage_estado}"/>
+                    <h:outputLabel value="#{bundle.CreatePagoventaLabel_tarjetacreditoid}" for="tarjetacreditoid" />
+                    <h:selectOneMenu id="tarjetacreditoid" value="#{pagoventaController.selected.tarjetacreditoid}" title="#{bundle.CreatePagoventaTitle_tarjetacreditoid}" required="true" requiredMessage="#{bundle.CreatePagoventaRequiredMessage_tarjetacreditoid}">
+                        <f:selectItems value="#{tarjetacreditoventaController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{pagoventaController.create}" value="#{bundle.CreatePagoventaSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{pagoventaController.prepareList}" value="#{bundle.CreatePagoventaShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreatePagoventaIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateTarjetacreditoventaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateTarjetacreditoventaLabel_tarjetacreditoventaid}" for="tarjetacreditoventaid" />
+                    <h:inputText id="tarjetacreditoventaid" value="#{tarjetacreditoventaController.selected.tarjetacreditoventaid}" title="#{bundle.CreateTarjetacreditoventaTitle_tarjetacreditoventaid}" required="true" requiredMessage="#{bundle.CreateTarjetacreditoventaRequiredMessage_tarjetacreditoventaid}"/>
+                    <h:outputLabel value="#{bundle.CreateTarjetacreditoventaLabel_numero}" for="numero" />
+                    <h:inputText id="numero" value="#{tarjetacreditoventaController.selected.numero}" title="#{bundle.CreateTarjetacreditoventaTitle_numero}" required="true" requiredMessage="#{bundle.CreateTarjetacreditoventaRequiredMessage_numero}"/>
+                    <h:outputLabel value="#{bundle.CreateTarjetacreditoventaLabel_cvc}" for="cvc" />
+                    <h:inputText id="cvc" value="#{tarjetacreditoventaController.selected.cvc}" title="#{bundle.CreateTarjetacreditoventaTitle_cvc}" required="true" requiredMessage="#{bundle.CreateTarjetacreditoventaRequiredMessage_cvc}"/>
+                    <h:outputLabel value="#{bundle.CreateTarjetacreditoventaLabel_nombreTitular}" for="nombreTitular" />
+                    <h:inputText id="nombreTitular" value="#{tarjetacreditoventaController.selected.nombreTitular}" title="#{bundle.CreateTarjetacreditoventaTitle_nombreTitular}" required="true" requiredMessage="#{bundle.CreateTarjetacreditoventaRequiredMessage_nombreTitular}"/>
+                    <h:outputLabel value="#{bundle.CreateTarjetacreditoventaLabel_fechaExpiracion}" for="fechaExpiracion" />
+                    <h:inputText id="fechaExpiracion" value="#{tarjetacreditoventaController.selected.fechaExpiracion}" title="#{bundle.CreateTarjetacreditoventaTitle_fechaExpiracion}" required="true" requiredMessage="#{bundle.CreateTarjetacreditoventaRequiredMessage_fechaExpiracion}"/>
+                    <h:outputLabel value="#{bundle.CreateTarjetacreditoventaLabel_lugarFacturacion}" for="lugarFacturacion" />
+                    <h:inputText id="lugarFacturacion" value="#{tarjetacreditoventaController.selected.lugarFacturacion}" title="#{bundle.CreateTarjetacreditoventaTitle_lugarFacturacion}" required="true" requiredMessage="#{bundle.CreateTarjetacreditoventaRequiredMessage_lugarFacturacion}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{tarjetacreditoventaController.create}" value="#{bundle.CreateTarjetacreditoventaSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{tarjetacreditoventaController.prepareList}" value="#{bundle.CreateTarjetacreditoventaShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateTarjetacreditoventaIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

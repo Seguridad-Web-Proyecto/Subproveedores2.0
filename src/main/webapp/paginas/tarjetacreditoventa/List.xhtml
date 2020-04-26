@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListTarjetacreditoventaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListTarjetacreditoventaEmpty}" rendered="#{tarjetacreditoventaController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{tarjetacreditoventaController.items.rowCount > 0}">
+                    <h:outputText value="#{tarjetacreditoventaController.pagination.pageFirstItem + 1}..#{tarjetacreditoventaController.pagination.pageLastItem + 1}/#{tarjetacreditoventaController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{tarjetacreditoventaController.previous}" value="#{bundle.Previous} #{tarjetacreditoventaController.pagination.pageSize}" rendered="#{tarjetacreditoventaController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{tarjetacreditoventaController.next}" value="#{bundle.Next} #{tarjetacreditoventaController.pagination.pageSize}" rendered="#{tarjetacreditoventaController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{tarjetacreditoventaController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTarjetacreditoventaTitle_tarjetacreditoventaid}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.tarjetacreditoventaid}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTarjetacreditoventaTitle_numero}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.numero}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTarjetacreditoventaTitle_cvc}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.cvc}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTarjetacreditoventaTitle_nombreTitular}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.nombreTitular}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTarjetacreditoventaTitle_fechaExpiracion}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.fechaExpiracion}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTarjetacreditoventaTitle_lugarFacturacion}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.lugarFacturacion}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{tarjetacreditoventaController.prepareView}" value="#{bundle.ListTarjetacreditoventaViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{tarjetacreditoventaController.prepareEdit}" value="#{bundle.ListTarjetacreditoventaEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{tarjetacreditoventaController.destroy}" value="#{bundle.ListTarjetacreditoventaDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{tarjetacreditoventaController.prepareCreate}" value="#{bundle.ListTarjetacreditoventaCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListTarjetacreditoventaIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

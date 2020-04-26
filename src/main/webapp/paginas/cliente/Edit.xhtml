@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditClienteTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditClienteLabel_clienteid}" for="clienteid" />
+                    <h:inputText id="clienteid" value="#{clienteController.selected.clienteid}" title="#{bundle.EditClienteTitle_clienteid}" required="true" requiredMessage="#{bundle.EditClienteRequiredMessage_clienteid}"/>
+                    <h:outputLabel value="#{bundle.EditClienteLabel_empresa}" for="empresa" />
+                    <h:inputText id="empresa" value="#{clienteController.selected.empresa}" title="#{bundle.EditClienteTitle_empresa}" required="true" requiredMessage="#{bundle.EditClienteRequiredMessage_empresa}"/>
+                    <h:outputLabel value="#{bundle.EditClienteLabel_nombreContacto}" for="nombreContacto" />
+                    <h:inputText id="nombreContacto" value="#{clienteController.selected.nombreContacto}" title="#{bundle.EditClienteTitle_nombreContacto}" required="true" requiredMessage="#{bundle.EditClienteRequiredMessage_nombreContacto}"/>
+                    <h:outputLabel value="#{bundle.EditClienteLabel_area}" for="area" />
+                    <h:inputText id="area" value="#{clienteController.selected.area}" title="#{bundle.EditClienteTitle_area}" required="true" requiredMessage="#{bundle.EditClienteRequiredMessage_area}"/>
+                    <h:outputLabel value="#{bundle.EditClienteLabel_telefono}" for="telefono" />
+                    <h:inputText id="telefono" value="#{clienteController.selected.telefono}" title="#{bundle.EditClienteTitle_telefono}" required="true" requiredMessage="#{bundle.EditClienteRequiredMessage_telefono}"/>
+                    <h:outputLabel value="#{bundle.EditClienteLabel_rfc}" for="rfc" />
+                    <h:inputText id="rfc" value="#{clienteController.selected.rfc}" title="#{bundle.EditClienteTitle_rfc}" required="true" requiredMessage="#{bundle.EditClienteRequiredMessage_rfc}"/>
+                    <h:outputLabel value="#{bundle.EditClienteLabel_email}" for="email" />
+                    <h:inputText id="email" value="#{clienteController.selected.email}" title="#{bundle.EditClienteTitle_email}" required="true" requiredMessage="#{bundle.EditClienteRequiredMessage_email}"/>
+                    <h:outputLabel value="#{bundle.EditClienteLabel_activo}" for="activo" />
+                    <h:inputText id="activo" value="#{clienteController.selected.activo}" title="#{bundle.EditClienteTitle_activo}" required="true" requiredMessage="#{bundle.EditClienteRequiredMessage_activo}"/>
+                    <h:outputLabel value="#{bundle.EditClienteLabel_paginaWeb}" for="paginaWeb" />
+                    <h:inputText id="paginaWeb" value="#{clienteController.selected.paginaWeb}" title="#{bundle.EditClienteTitle_paginaWeb}" required="true" requiredMessage="#{bundle.EditClienteRequiredMessage_paginaWeb}"/>
+                    <h:outputLabel value="#{bundle.EditClienteLabel_domicilioFiscal}" for="domicilioFiscal" />
+                    <h:inputText id="domicilioFiscal" value="#{clienteController.selected.domicilioFiscal}" title="#{bundle.EditClienteTitle_domicilioFiscal}" required="true" requiredMessage="#{bundle.EditClienteRequiredMessage_domicilioFiscal}"/>
+                </h:panelGrid>
+                <h:commandLink action="#{clienteController.update}" value="#{bundle.EditClienteSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditClienteViewLink}"/>
+                <br />
+                <h:commandLink action="#{clienteController.prepareList}" value="#{bundle.EditClienteShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditClienteIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

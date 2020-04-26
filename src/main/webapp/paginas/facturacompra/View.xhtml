@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewFacturacompraTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewFacturacompraLabel_facturacompraid}"/>
+                    <h:outputText value="#{facturacompraController.selected.facturacompraid}" title="#{bundle.ViewFacturacompraTitle_facturacompraid}"/>
+                    <h:outputText value="#{bundle.ViewFacturacompraLabel_fechaEmision}"/>
+                    <h:outputText value="#{facturacompraController.selected.fechaEmision}" title="#{bundle.ViewFacturacompraTitle_fechaEmision}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewFacturacompraLabel_fechaVencimientoPago}"/>
+                    <h:outputText value="#{facturacompraController.selected.fechaVencimientoPago}" title="#{bundle.ViewFacturacompraTitle_fechaVencimientoPago}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewFacturacompraLabel_descripcion}"/>
+                    <h:outputText value="#{facturacompraController.selected.descripcion}" title="#{bundle.ViewFacturacompraTitle_descripcion}"/>
+                    <h:outputText value="#{bundle.ViewFacturacompraLabel_pagoid}"/>
+                    <h:outputText value="#{facturacompraController.selected.pagoid}" title="#{bundle.ViewFacturacompraTitle_pagoid}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{facturacompraController.destroyAndView}" value="#{bundle.ViewFacturacompraDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewFacturacompraEditLink}"/>
+                <br />
+                <h:commandLink action="#{facturacompraController.prepareCreate}" value="#{bundle.ViewFacturacompraCreateLink}" />
+                <br />
+                <h:commandLink action="#{facturacompraController.prepareList}" value="#{bundle.ViewFacturacompraShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewFacturacompraIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

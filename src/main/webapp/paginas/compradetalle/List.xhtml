@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListCompradetalleTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListCompradetalleEmpty}" rendered="#{compradetalleController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{compradetalleController.items.rowCount > 0}">
+                    <h:outputText value="#{compradetalleController.pagination.pageFirstItem + 1}..#{compradetalleController.pagination.pageLastItem + 1}/#{compradetalleController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{compradetalleController.previous}" value="#{bundle.Previous} #{compradetalleController.pagination.pageSize}" rendered="#{compradetalleController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{compradetalleController.next}" value="#{bundle.Next} #{compradetalleController.pagination.pageSize}" rendered="#{compradetalleController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{compradetalleController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCompradetalleTitle_cantidad}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.cantidad}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCompradetalleTitle_precioUnitario}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.precioUnitario}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCompradetalleTitle_importe}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.importe}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCompradetalleTitle_ordencompra}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.ordencompra}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCompradetalleTitle_producto}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.producto}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{compradetalleController.prepareView}" value="#{bundle.ListCompradetalleViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{compradetalleController.prepareEdit}" value="#{bundle.ListCompradetalleEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{compradetalleController.destroy}" value="#{bundle.ListCompradetalleDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{compradetalleController.prepareCreate}" value="#{bundle.ListCompradetalleCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListCompradetalleIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

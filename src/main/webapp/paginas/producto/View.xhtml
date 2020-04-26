@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewProductoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewProductoLabel_productoid}"/>
+                    <h:outputText value="#{productoController.selected.productoid}" title="#{bundle.ViewProductoTitle_productoid}"/>
+                    <h:outputText value="#{bundle.ViewProductoLabel_nombre}"/>
+                    <h:outputText value="#{productoController.selected.nombre}" title="#{bundle.ViewProductoTitle_nombre}"/>
+                    <h:outputText value="#{bundle.ViewProductoLabel_descripcion}"/>
+                    <h:outputText value="#{productoController.selected.descripcion}" title="#{bundle.ViewProductoTitle_descripcion}"/>
+                    <h:outputText value="#{bundle.ViewProductoLabel_unidadMedida}"/>
+                    <h:outputText value="#{productoController.selected.unidadMedida}" title="#{bundle.ViewProductoTitle_unidadMedida}"/>
+                    <h:outputText value="#{bundle.ViewProductoLabel_precioUnitario}"/>
+                    <h:outputText value="#{productoController.selected.precioUnitario}" title="#{bundle.ViewProductoTitle_precioUnitario}"/>
+                    <h:outputText value="#{bundle.ViewProductoLabel_categoriaid}"/>
+                    <h:outputText value="#{productoController.selected.categoriaid}" title="#{bundle.ViewProductoTitle_categoriaid}"/>
+                    <h:outputText value="#{bundle.ViewProductoLabel_ganancia}"/>
+                    <h:outputText value="#{productoController.selected.ganancia}" title="#{bundle.ViewProductoTitle_ganancia}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{productoController.destroyAndView}" value="#{bundle.ViewProductoDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewProductoEditLink}"/>
+                <br />
+                <h:commandLink action="#{productoController.prepareCreate}" value="#{bundle.ViewProductoCreateLink}" />
+                <br />
+                <h:commandLink action="#{productoController.prepareList}" value="#{bundle.ViewProductoShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewProductoIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

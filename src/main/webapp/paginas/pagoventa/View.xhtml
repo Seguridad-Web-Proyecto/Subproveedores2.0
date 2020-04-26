@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewPagoventaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewPagoventaLabel_pagoventaid}"/>
+                    <h:outputText value="#{pagoventaController.selected.pagoventaid}" title="#{bundle.ViewPagoventaTitle_pagoventaid}"/>
+                    <h:outputText value="#{bundle.ViewPagoventaLabel_fechaPago}"/>
+                    <h:outputText value="#{pagoventaController.selected.fechaPago}" title="#{bundle.ViewPagoventaTitle_fechaPago}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewPagoventaLabel_monto}"/>
+                    <h:outputText value="#{pagoventaController.selected.monto}" title="#{bundle.ViewPagoventaTitle_monto}"/>
+                    <h:outputText value="#{bundle.ViewPagoventaLabel_estado}"/>
+                    <h:outputText value="#{pagoventaController.selected.estado}" title="#{bundle.ViewPagoventaTitle_estado}"/>
+                    <h:outputText value="#{bundle.ViewPagoventaLabel_tarjetacreditoid}"/>
+                    <h:outputText value="#{pagoventaController.selected.tarjetacreditoid}" title="#{bundle.ViewPagoventaTitle_tarjetacreditoid}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{pagoventaController.destroyAndView}" value="#{bundle.ViewPagoventaDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewPagoventaEditLink}"/>
+                <br />
+                <h:commandLink action="#{pagoventaController.prepareCreate}" value="#{bundle.ViewPagoventaCreateLink}" />
+                <br />
+                <h:commandLink action="#{pagoventaController.prepareList}" value="#{bundle.ViewPagoventaShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewPagoventaIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

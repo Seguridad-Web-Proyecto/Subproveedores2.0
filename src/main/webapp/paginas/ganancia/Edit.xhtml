@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditGananciaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditGananciaLabel_gananciaid}" for="gananciaid" />
+                    <h:inputText id="gananciaid" value="#{gananciaController.selected.gananciaid}" title="#{bundle.EditGananciaTitle_gananciaid}" required="true" requiredMessage="#{bundle.EditGananciaRequiredMessage_gananciaid}"/>
+                    <h:outputLabel value="#{bundle.EditGananciaLabel_porcentaje}" for="porcentaje" />
+                    <h:inputText id="porcentaje" value="#{gananciaController.selected.porcentaje}" title="#{bundle.EditGananciaTitle_porcentaje}" required="true" requiredMessage="#{bundle.EditGananciaRequiredMessage_porcentaje}"/>
+                    <h:outputLabel value="#{bundle.EditGananciaLabel_productoid}" for="productoid" />
+                    <h:selectOneMenu id="productoid" value="#{gananciaController.selected.productoid}" title="#{bundle.EditGananciaTitle_productoid}" required="true" requiredMessage="#{bundle.EditGananciaRequiredMessage_productoid}">
+                        <f:selectItems value="#{productoController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{gananciaController.update}" value="#{bundle.EditGananciaSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditGananciaViewLink}"/>
+                <br />
+                <h:commandLink action="#{gananciaController.prepareList}" value="#{bundle.EditGananciaShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditGananciaIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

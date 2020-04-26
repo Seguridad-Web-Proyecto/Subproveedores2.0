@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditOrdencompraTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditOrdencompraLabel_ordencompraid}" for="ordencompraid" />
+                    <h:inputText id="ordencompraid" value="#{ordencompraController.selected.ordencompraid}" title="#{bundle.EditOrdencompraTitle_ordencompraid}" required="true" requiredMessage="#{bundle.EditOrdencompraRequiredMessage_ordencompraid}"/>
+                    <h:outputLabel value="#{bundle.EditOrdencompraLabel_fechaCompra}" for="fechaCompra" />
+                    <h:inputText id="fechaCompra" value="#{ordencompraController.selected.fechaCompra}" title="#{bundle.EditOrdencompraTitle_fechaCompra}" required="true" requiredMessage="#{bundle.EditOrdencompraRequiredMessage_fechaCompra}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditOrdencompraLabel_status}" for="status" />
+                    <h:inputText id="status" value="#{ordencompraController.selected.status}" title="#{bundle.EditOrdencompraTitle_status}" required="true" requiredMessage="#{bundle.EditOrdencompraRequiredMessage_status}"/>
+                    <h:outputLabel value="#{bundle.EditOrdencompraLabel_iva}" for="iva" />
+                    <h:inputText id="iva" value="#{ordencompraController.selected.iva}" title="#{bundle.EditOrdencompraTitle_iva}" required="true" requiredMessage="#{bundle.EditOrdencompraRequiredMessage_iva}"/>
+                    <h:outputLabel value="#{bundle.EditOrdencompraLabel_subtotal}" for="subtotal" />
+                    <h:inputText id="subtotal" value="#{ordencompraController.selected.subtotal}" title="#{bundle.EditOrdencompraTitle_subtotal}" required="true" requiredMessage="#{bundle.EditOrdencompraRequiredMessage_subtotal}"/>
+                    <h:outputLabel value="#{bundle.EditOrdencompraLabel_total}" for="total" />
+                    <h:inputText id="total" value="#{ordencompraController.selected.total}" title="#{bundle.EditOrdencompraTitle_total}" required="true" requiredMessage="#{bundle.EditOrdencompraRequiredMessage_total}"/>
+                    <h:outputLabel value="#{bundle.EditOrdencompraLabel_descripcion}" for="descripcion" />
+                    <h:inputText id="descripcion" value="#{ordencompraController.selected.descripcion}" title="#{bundle.EditOrdencompraTitle_descripcion}" required="true" requiredMessage="#{bundle.EditOrdencompraRequiredMessage_descripcion}"/>
+                    <h:outputLabel value="#{bundle.EditOrdencompraLabel_facturaid}" for="facturaid" />
+                    <h:selectOneMenu id="facturaid" value="#{ordencompraController.selected.facturaid}" title="#{bundle.EditOrdencompraTitle_facturaid}" required="true" requiredMessage="#{bundle.EditOrdencompraRequiredMessage_facturaid}">
+                        <f:selectItems value="#{facturacompraController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditOrdencompraLabel_proveedorid}" for="proveedorid" />
+                    <h:selectOneMenu id="proveedorid" value="#{ordencompraController.selected.proveedorid}" title="#{bundle.EditOrdencompraTitle_proveedorid}" required="true" requiredMessage="#{bundle.EditOrdencompraRequiredMessage_proveedorid}">
+                        <f:selectItems value="#{proveedorController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{ordencompraController.update}" value="#{bundle.EditOrdencompraSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditOrdencompraViewLink}"/>
+                <br />
+                <h:commandLink action="#{ordencompraController.prepareList}" value="#{bundle.EditOrdencompraShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditOrdencompraIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

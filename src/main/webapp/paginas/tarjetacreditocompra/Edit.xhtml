@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditTarjetacreditocompraTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditTarjetacreditocompraLabel_tarjetacreditocompraid}" for="tarjetacreditocompraid" />
+                    <h:inputText id="tarjetacreditocompraid" value="#{tarjetacreditocompraController.selected.tarjetacreditocompraid}" title="#{bundle.EditTarjetacreditocompraTitle_tarjetacreditocompraid}" required="true" requiredMessage="#{bundle.EditTarjetacreditocompraRequiredMessage_tarjetacreditocompraid}"/>
+                    <h:outputLabel value="#{bundle.EditTarjetacreditocompraLabel_numero}" for="numero" />
+                    <h:inputText id="numero" value="#{tarjetacreditocompraController.selected.numero}" title="#{bundle.EditTarjetacreditocompraTitle_numero}" required="true" requiredMessage="#{bundle.EditTarjetacreditocompraRequiredMessage_numero}"/>
+                    <h:outputLabel value="#{bundle.EditTarjetacreditocompraLabel_cvc}" for="cvc" />
+                    <h:inputText id="cvc" value="#{tarjetacreditocompraController.selected.cvc}" title="#{bundle.EditTarjetacreditocompraTitle_cvc}" required="true" requiredMessage="#{bundle.EditTarjetacreditocompraRequiredMessage_cvc}"/>
+                    <h:outputLabel value="#{bundle.EditTarjetacreditocompraLabel_nombreTitular}" for="nombreTitular" />
+                    <h:inputText id="nombreTitular" value="#{tarjetacreditocompraController.selected.nombreTitular}" title="#{bundle.EditTarjetacreditocompraTitle_nombreTitular}" required="true" requiredMessage="#{bundle.EditTarjetacreditocompraRequiredMessage_nombreTitular}"/>
+                    <h:outputLabel value="#{bundle.EditTarjetacreditocompraLabel_fechaExpiracion}" for="fechaExpiracion" />
+                    <h:inputText id="fechaExpiracion" value="#{tarjetacreditocompraController.selected.fechaExpiracion}" title="#{bundle.EditTarjetacreditocompraTitle_fechaExpiracion}" required="true" requiredMessage="#{bundle.EditTarjetacreditocompraRequiredMessage_fechaExpiracion}"/>
+                    <h:outputLabel value="#{bundle.EditTarjetacreditocompraLabel_lugarFacturacion}" for="lugarFacturacion" />
+                    <h:inputText id="lugarFacturacion" value="#{tarjetacreditocompraController.selected.lugarFacturacion}" title="#{bundle.EditTarjetacreditocompraTitle_lugarFacturacion}" required="true" requiredMessage="#{bundle.EditTarjetacreditocompraRequiredMessage_lugarFacturacion}"/>
+                </h:panelGrid>
+                <h:commandLink action="#{tarjetacreditocompraController.update}" value="#{bundle.EditTarjetacreditocompraSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditTarjetacreditocompraViewLink}"/>
+                <br />
+                <h:commandLink action="#{tarjetacreditocompraController.prepareList}" value="#{bundle.EditTarjetacreditocompraShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditTarjetacreditocompraIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

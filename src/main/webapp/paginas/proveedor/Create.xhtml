@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateProveedorTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateProveedorLabel_proveedorid}" for="proveedorid" />
+                    <h:inputText id="proveedorid" value="#{proveedorController.selected.proveedorid}" title="#{bundle.CreateProveedorTitle_proveedorid}" required="true" requiredMessage="#{bundle.CreateProveedorRequiredMessage_proveedorid}"/>
+                    <h:outputLabel value="#{bundle.CreateProveedorLabel_empresa}" for="empresa" />
+                    <h:inputText id="empresa" value="#{proveedorController.selected.empresa}" title="#{bundle.CreateProveedorTitle_empresa}" required="true" requiredMessage="#{bundle.CreateProveedorRequiredMessage_empresa}"/>
+                    <h:outputLabel value="#{bundle.CreateProveedorLabel_nombreContacto}" for="nombreContacto" />
+                    <h:inputText id="nombreContacto" value="#{proveedorController.selected.nombreContacto}" title="#{bundle.CreateProveedorTitle_nombreContacto}" required="true" requiredMessage="#{bundle.CreateProveedorRequiredMessage_nombreContacto}"/>
+                    <h:outputLabel value="#{bundle.CreateProveedorLabel_area}" for="area" />
+                    <h:inputText id="area" value="#{proveedorController.selected.area}" title="#{bundle.CreateProveedorTitle_area}" required="true" requiredMessage="#{bundle.CreateProveedorRequiredMessage_area}"/>
+                    <h:outputLabel value="#{bundle.CreateProveedorLabel_telefono}" for="telefono" />
+                    <h:inputText id="telefono" value="#{proveedorController.selected.telefono}" title="#{bundle.CreateProveedorTitle_telefono}" required="true" requiredMessage="#{bundle.CreateProveedorRequiredMessage_telefono}"/>
+                    <h:outputLabel value="#{bundle.CreateProveedorLabel_rfc}" for="rfc" />
+                    <h:inputText id="rfc" value="#{proveedorController.selected.rfc}" title="#{bundle.CreateProveedorTitle_rfc}" required="true" requiredMessage="#{bundle.CreateProveedorRequiredMessage_rfc}"/>
+                    <h:outputLabel value="#{bundle.CreateProveedorLabel_email}" for="email" />
+                    <h:inputText id="email" value="#{proveedorController.selected.email}" title="#{bundle.CreateProveedorTitle_email}" required="true" requiredMessage="#{bundle.CreateProveedorRequiredMessage_email}"/>
+                    <h:outputLabel value="#{bundle.CreateProveedorLabel_activo}" for="activo" />
+                    <h:inputText id="activo" value="#{proveedorController.selected.activo}" title="#{bundle.CreateProveedorTitle_activo}" required="true" requiredMessage="#{bundle.CreateProveedorRequiredMessage_activo}"/>
+                    <h:outputLabel value="#{bundle.CreateProveedorLabel_paginaWeb}" for="paginaWeb" />
+                    <h:inputText id="paginaWeb" value="#{proveedorController.selected.paginaWeb}" title="#{bundle.CreateProveedorTitle_paginaWeb}" required="true" requiredMessage="#{bundle.CreateProveedorRequiredMessage_paginaWeb}"/>
+                    <h:outputLabel value="#{bundle.CreateProveedorLabel_domicilioFiscal}" for="domicilioFiscal" />
+                    <h:inputText id="domicilioFiscal" value="#{proveedorController.selected.domicilioFiscal}" title="#{bundle.CreateProveedorTitle_domicilioFiscal}" required="true" requiredMessage="#{bundle.CreateProveedorRequiredMessage_domicilioFiscal}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{proveedorController.create}" value="#{bundle.CreateProveedorSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{proveedorController.prepareList}" value="#{bundle.CreateProveedorShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateProveedorIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

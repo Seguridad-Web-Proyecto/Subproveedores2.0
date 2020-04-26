@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateFacturacompraTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateFacturacompraLabel_facturacompraid}" for="facturacompraid" />
+                    <h:inputText id="facturacompraid" value="#{facturacompraController.selected.facturacompraid}" title="#{bundle.CreateFacturacompraTitle_facturacompraid}" required="true" requiredMessage="#{bundle.CreateFacturacompraRequiredMessage_facturacompraid}"/>
+                    <h:outputLabel value="#{bundle.CreateFacturacompraLabel_fechaEmision}" for="fechaEmision" />
+                    <h:inputText id="fechaEmision" value="#{facturacompraController.selected.fechaEmision}" title="#{bundle.CreateFacturacompraTitle_fechaEmision}" required="true" requiredMessage="#{bundle.CreateFacturacompraRequiredMessage_fechaEmision}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateFacturacompraLabel_fechaVencimientoPago}" for="fechaVencimientoPago" />
+                    <h:inputText id="fechaVencimientoPago" value="#{facturacompraController.selected.fechaVencimientoPago}" title="#{bundle.CreateFacturacompraTitle_fechaVencimientoPago}" required="true" requiredMessage="#{bundle.CreateFacturacompraRequiredMessage_fechaVencimientoPago}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateFacturacompraLabel_descripcion}" for="descripcion" />
+                    <h:inputText id="descripcion" value="#{facturacompraController.selected.descripcion}" title="#{bundle.CreateFacturacompraTitle_descripcion}" required="true" requiredMessage="#{bundle.CreateFacturacompraRequiredMessage_descripcion}"/>
+                    <h:outputLabel value="#{bundle.CreateFacturacompraLabel_pagoid}" for="pagoid" />
+                    <h:selectOneMenu id="pagoid" value="#{facturacompraController.selected.pagoid}" title="#{bundle.CreateFacturacompraTitle_pagoid}" required="true" requiredMessage="#{bundle.CreateFacturacompraRequiredMessage_pagoid}">
+                        <f:selectItems value="#{pagocompraController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{facturacompraController.create}" value="#{bundle.CreateFacturacompraSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{facturacompraController.prepareList}" value="#{bundle.CreateFacturacompraShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateFacturacompraIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewUsuarioswTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewUsuarioswLabel_usuarioid}"/>
+                    <h:outputText value="#{usuarioswController.selected.usuarioid}" title="#{bundle.ViewUsuarioswTitle_usuarioid}"/>
+                    <h:outputText value="#{bundle.ViewUsuarioswLabel_usuario}"/>
+                    <h:outputText value="#{usuarioswController.selected.usuario}" title="#{bundle.ViewUsuarioswTitle_usuario}"/>
+                    <h:outputText value="#{bundle.ViewUsuarioswLabel_contrasenia}"/>
+                    <h:outputText value="#{usuarioswController.selected.contrasenia}" title="#{bundle.ViewUsuarioswTitle_contrasenia}"/>
+                    <h:outputText value="#{bundle.ViewUsuarioswLabel_activo}"/>
+                    <h:outputText value="#{usuarioswController.selected.activo}" title="#{bundle.ViewUsuarioswTitle_activo}"/>
+                    <h:outputText value="#{bundle.ViewUsuarioswLabel_empresa}"/>
+                    <h:outputText value="#{usuarioswController.selected.empresa}" title="#{bundle.ViewUsuarioswTitle_empresa}"/>
+                    <h:outputText value="#{bundle.ViewUsuarioswLabel_rfc}"/>
+                    <h:outputText value="#{usuarioswController.selected.rfc}" title="#{bundle.ViewUsuarioswTitle_rfc}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{usuarioswController.destroyAndView}" value="#{bundle.ViewUsuarioswDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewUsuarioswEditLink}"/>
+                <br />
+                <h:commandLink action="#{usuarioswController.prepareCreate}" value="#{bundle.ViewUsuarioswCreateLink}" />
+                <br />
+                <h:commandLink action="#{usuarioswController.prepareList}" value="#{bundle.ViewUsuarioswShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewUsuarioswIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

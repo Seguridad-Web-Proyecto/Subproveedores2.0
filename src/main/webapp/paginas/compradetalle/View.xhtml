@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewCompradetalleTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewCompradetalleLabel_cantidad}"/>
+                    <h:outputText value="#{compradetalleController.selected.cantidad}" title="#{bundle.ViewCompradetalleTitle_cantidad}"/>
+                    <h:outputText value="#{bundle.ViewCompradetalleLabel_precioUnitario}"/>
+                    <h:outputText value="#{compradetalleController.selected.precioUnitario}" title="#{bundle.ViewCompradetalleTitle_precioUnitario}"/>
+                    <h:outputText value="#{bundle.ViewCompradetalleLabel_importe}"/>
+                    <h:outputText value="#{compradetalleController.selected.importe}" title="#{bundle.ViewCompradetalleTitle_importe}"/>
+                    <h:outputText value="#{bundle.ViewCompradetalleLabel_ordencompra}"/>
+                    <h:outputText value="#{compradetalleController.selected.ordencompra}" title="#{bundle.ViewCompradetalleTitle_ordencompra}"/>
+                    <h:outputText value="#{bundle.ViewCompradetalleLabel_producto}"/>
+                    <h:outputText value="#{compradetalleController.selected.producto}" title="#{bundle.ViewCompradetalleTitle_producto}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{compradetalleController.destroyAndView}" value="#{bundle.ViewCompradetalleDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewCompradetalleEditLink}"/>
+                <br />
+                <h:commandLink action="#{compradetalleController.prepareCreate}" value="#{bundle.ViewCompradetalleCreateLink}" />
+                <br />
+                <h:commandLink action="#{compradetalleController.prepareList}" value="#{bundle.ViewCompradetalleShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewCompradetalleIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

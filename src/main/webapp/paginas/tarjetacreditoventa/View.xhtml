@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewTarjetacreditoventaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewTarjetacreditoventaLabel_tarjetacreditoventaid}"/>
+                    <h:outputText value="#{tarjetacreditoventaController.selected.tarjetacreditoventaid}" title="#{bundle.ViewTarjetacreditoventaTitle_tarjetacreditoventaid}"/>
+                    <h:outputText value="#{bundle.ViewTarjetacreditoventaLabel_numero}"/>
+                    <h:outputText value="#{tarjetacreditoventaController.selected.numero}" title="#{bundle.ViewTarjetacreditoventaTitle_numero}"/>
+                    <h:outputText value="#{bundle.ViewTarjetacreditoventaLabel_cvc}"/>
+                    <h:outputText value="#{tarjetacreditoventaController.selected.cvc}" title="#{bundle.ViewTarjetacreditoventaTitle_cvc}"/>
+                    <h:outputText value="#{bundle.ViewTarjetacreditoventaLabel_nombreTitular}"/>
+                    <h:outputText value="#{tarjetacreditoventaController.selected.nombreTitular}" title="#{bundle.ViewTarjetacreditoventaTitle_nombreTitular}"/>
+                    <h:outputText value="#{bundle.ViewTarjetacreditoventaLabel_fechaExpiracion}"/>
+                    <h:outputText value="#{tarjetacreditoventaController.selected.fechaExpiracion}" title="#{bundle.ViewTarjetacreditoventaTitle_fechaExpiracion}"/>
+                    <h:outputText value="#{bundle.ViewTarjetacreditoventaLabel_lugarFacturacion}"/>
+                    <h:outputText value="#{tarjetacreditoventaController.selected.lugarFacturacion}" title="#{bundle.ViewTarjetacreditoventaTitle_lugarFacturacion}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{tarjetacreditoventaController.destroyAndView}" value="#{bundle.ViewTarjetacreditoventaDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewTarjetacreditoventaEditLink}"/>
+                <br />
+                <h:commandLink action="#{tarjetacreditoventaController.prepareCreate}" value="#{bundle.ViewTarjetacreditoventaCreateLink}" />
+                <br />
+                <h:commandLink action="#{tarjetacreditoventaController.prepareList}" value="#{bundle.ViewTarjetacreditoventaShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewTarjetacreditoventaIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

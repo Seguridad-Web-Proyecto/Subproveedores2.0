@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditFacturaventaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditFacturaventaLabel_facturaventaid}" for="facturaventaid" />
+                    <h:inputText id="facturaventaid" value="#{facturaventaController.selected.facturaventaid}" title="#{bundle.EditFacturaventaTitle_facturaventaid}" required="true" requiredMessage="#{bundle.EditFacturaventaRequiredMessage_facturaventaid}"/>
+                    <h:outputLabel value="#{bundle.EditFacturaventaLabel_fechaEmision}" for="fechaEmision" />
+                    <h:inputText id="fechaEmision" value="#{facturaventaController.selected.fechaEmision}" title="#{bundle.EditFacturaventaTitle_fechaEmision}" required="true" requiredMessage="#{bundle.EditFacturaventaRequiredMessage_fechaEmision}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditFacturaventaLabel_fechaVencimientoPago}" for="fechaVencimientoPago" />
+                    <h:inputText id="fechaVencimientoPago" value="#{facturaventaController.selected.fechaVencimientoPago}" title="#{bundle.EditFacturaventaTitle_fechaVencimientoPago}" required="true" requiredMessage="#{bundle.EditFacturaventaRequiredMessage_fechaVencimientoPago}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditFacturaventaLabel_descripcion}" for="descripcion" />
+                    <h:inputText id="descripcion" value="#{facturaventaController.selected.descripcion}" title="#{bundle.EditFacturaventaTitle_descripcion}" required="true" requiredMessage="#{bundle.EditFacturaventaRequiredMessage_descripcion}"/>
+                    <h:outputLabel value="#{bundle.EditFacturaventaLabel_pagoid}" for="pagoid" />
+                    <h:selectOneMenu id="pagoid" value="#{facturaventaController.selected.pagoid}" title="#{bundle.EditFacturaventaTitle_pagoid}" required="true" requiredMessage="#{bundle.EditFacturaventaRequiredMessage_pagoid}">
+                        <f:selectItems value="#{pagoventaController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{facturaventaController.update}" value="#{bundle.EditFacturaventaSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditFacturaventaViewLink}"/>
+                <br />
+                <h:commandLink action="#{facturaventaController.prepareList}" value="#{bundle.EditFacturaventaShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditFacturaventaIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

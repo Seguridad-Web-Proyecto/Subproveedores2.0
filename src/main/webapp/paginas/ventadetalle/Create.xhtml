@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateVentadetalleTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateVentadetalleLabel_cantidad}" for="cantidad" />
+                    <h:inputText id="cantidad" value="#{ventadetalleController.selected.cantidad}" title="#{bundle.CreateVentadetalleTitle_cantidad}" required="true" requiredMessage="#{bundle.CreateVentadetalleRequiredMessage_cantidad}"/>
+                    <h:outputLabel value="#{bundle.CreateVentadetalleLabel_precioUnitario}" for="precioUnitario" />
+                    <h:inputText id="precioUnitario" value="#{ventadetalleController.selected.precioUnitario}" title="#{bundle.CreateVentadetalleTitle_precioUnitario}" required="true" requiredMessage="#{bundle.CreateVentadetalleRequiredMessage_precioUnitario}"/>
+                    <h:outputLabel value="#{bundle.CreateVentadetalleLabel_importe}" for="importe" />
+                    <h:inputText id="importe" value="#{ventadetalleController.selected.importe}" title="#{bundle.CreateVentadetalleTitle_importe}" required="true" requiredMessage="#{bundle.CreateVentadetalleRequiredMessage_importe}"/>
+                    <h:outputLabel value="#{bundle.CreateVentadetalleLabel_ordenventa}" for="ordenventa" />
+                    <h:selectOneMenu id="ordenventa" value="#{ventadetalleController.selected.ordenventa}" title="#{bundle.CreateVentadetalleTitle_ordenventa}" required="true" requiredMessage="#{bundle.CreateVentadetalleRequiredMessage_ordenventa}">
+                        <f:selectItems value="#{ordenventaController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateVentadetalleLabel_producto}" for="producto" />
+                    <h:selectOneMenu id="producto" value="#{ventadetalleController.selected.producto}" title="#{bundle.CreateVentadetalleTitle_producto}" required="true" requiredMessage="#{bundle.CreateVentadetalleRequiredMessage_producto}">
+                        <f:selectItems value="#{productoController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{ventadetalleController.create}" value="#{bundle.CreateVentadetalleSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{ventadetalleController.prepareList}" value="#{bundle.CreateVentadetalleShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateVentadetalleIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

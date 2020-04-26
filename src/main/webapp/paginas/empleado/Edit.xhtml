@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditEmpleadoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditEmpleadoLabel_empleadoid}" for="empleadoid" />
+                    <h:inputText id="empleadoid" value="#{empleadoController.selected.empleadoid}" title="#{bundle.EditEmpleadoTitle_empleadoid}" required="true" requiredMessage="#{bundle.EditEmpleadoRequiredMessage_empleadoid}"/>
+                    <h:outputLabel value="#{bundle.EditEmpleadoLabel_fechaVinculo}" for="fechaVinculo" />
+                    <h:inputText id="fechaVinculo" value="#{empleadoController.selected.fechaVinculo}" title="#{bundle.EditEmpleadoTitle_fechaVinculo}" required="true" requiredMessage="#{bundle.EditEmpleadoRequiredMessage_fechaVinculo}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditEmpleadoLabel_fechaRetiro}" for="fechaRetiro" />
+                    <h:inputText id="fechaRetiro" value="#{empleadoController.selected.fechaRetiro}" title="#{bundle.EditEmpleadoTitle_fechaRetiro}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditEmpleadoLabel_persona}" for="persona" />
+                    <h:selectOneMenu id="persona" value="#{empleadoController.selected.persona}" title="#{bundle.EditEmpleadoTitle_persona}" required="true" requiredMessage="#{bundle.EditEmpleadoRequiredMessage_persona}">
+                        <f:selectItems value="#{personaController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditEmpleadoLabel_usuarioid}" for="usuarioid" />
+                    <h:selectOneMenu id="usuarioid" value="#{empleadoController.selected.usuarioid}" title="#{bundle.EditEmpleadoTitle_usuarioid}" required="true" requiredMessage="#{bundle.EditEmpleadoRequiredMessage_usuarioid}">
+                        <f:selectItems value="#{usuarioController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{empleadoController.update}" value="#{bundle.EditEmpleadoSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditEmpleadoViewLink}"/>
+                <br />
+                <h:commandLink action="#{empleadoController.prepareList}" value="#{bundle.EditEmpleadoShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditEmpleadoIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
