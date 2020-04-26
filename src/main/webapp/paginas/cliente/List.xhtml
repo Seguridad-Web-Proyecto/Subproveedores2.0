@@ -103,7 +103,9 @@
                                             <f:validator validatorId="letrasValidator" />
                                         </h:inputText> 
                                         <h:outputLabel value="#{bundle.CreateClienteLabel_area}" for="area" />
-                                        <h:inputText class="form-control" id="area" value="#{clienteController.selected.area}" title="#{bundle.CreateClienteTitle_area}" required="true" requiredMessage="#{bundle.CreateClienteRequiredMessage_area}"/>
+                                        <h:inputText class="form-control" id="area" value="#{clienteController.selected.area}" title="#{bundle.CreateClienteTitle_area}" required="true" requiredMessage="#{bundle.CreateClienteRequiredMessage_area}">
+                                              <f:validator validatorId="letrasValidator" />
+                                        </h:inputText> 
                                         <h:outputLabel value="#{bundle.CreateClienteLabel_telefono}" for="telefono" />
                                         <h:inputText class="form-control" id="telefono" value="#{clienteController.selected.telefono}" title="#{bundle.CreateClienteTitle_telefono}" required="true" requiredMessage="#{bundle.CreateClienteRequiredMessage_telefono}">
                                              <f:validator validatorId="telefonoValidator" />

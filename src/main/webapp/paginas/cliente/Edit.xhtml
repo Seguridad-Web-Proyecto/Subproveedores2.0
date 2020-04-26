@@ -32,7 +32,9 @@
                             <f:validator validatorId="letrasValidator" />
                                         </h:inputText> 
                         <h:outputLabel value="#{bundle.EditClienteLabel_area}" for="area" />
-                        <h:inputText class="form-control" id="area" value="#{clienteController.selected.area}" title="#{bundle.EditClienteTitle_area}" required="true" requiredMessage="#{bundle.EditClienteRequiredMessage_area}"/>
+                        <h:inputText class="form-control" id="area" value="#{clienteController.selected.area}" title="#{bundle.EditClienteTitle_area}" required="true" requiredMessage="#{bundle.EditClienteRequiredMessage_area}">
+                              <f:validator validatorId="letrasValidator" />
+                                        </h:inputText> 
                         <h:outputLabel value="#{bundle.EditClienteLabel_telefono}" for="telefono" />
                         <h:inputText class="form-control" id="telefono" value="#{clienteController.selected.telefono}" title="#{bundle.EditClienteTitle_telefono}" required="true" requiredMessage="#{bundle.EditClienteRequiredMessage_telefono}">
                              <f:validator validatorId="telefonoValidator" />
