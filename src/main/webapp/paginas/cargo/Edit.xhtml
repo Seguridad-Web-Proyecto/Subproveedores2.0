@@ -27,8 +27,10 @@
                         <h:panelGrid columns="2">
                             <h:outputLabel value="Nombre del Cargo: " for="nombreCargo" />
                             <h:inputText class="form-control" id="nombreCargo" value="#{cargoController.selected.nombreCargo}" title="#{bundle.EditCargoTitle_nombreCargo}" required="true" requiredMessage="#{bundle.EditCargoRequiredMessage_nombreCargo}"/>
-                            <h:outputLabel value="Salario Mensual: " />
-                            <h:inputText class="form-control" id="salarioMensual" value="#{cargoController.selected.salarioMensual}" title="#{bundle.EditCargoTitle_salarioMensual}" required="true" requiredMessage="#{bundle.EditCargoRequiredMessage_salarioMensual}"/>
+                            <h:outputLabel value="Salario Mensual: $ " />
+                            <h:inputText class="form-control" id="salarioMensual" value="#{cargoController.selected.salarioMensual}" title="#{bundle.EditCargoTitle_salarioMensual}" required="true" requiredMessage="#{bundle.EditCargoRequiredMessage_salarioMensual}">
+                                          <f:validator validatorId="numerosValidator" />
+                                        </h:inputText> 
                         </h:panelGrid>
                         <br />
                         <h:commandLink class="btn btn-sm btn-info" action="#{cargoController.update}" value="Aceptar"/>
