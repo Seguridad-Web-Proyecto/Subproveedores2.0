@@ -10,27 +10,34 @@
             <h:outputText value="#{bundle.EditCategoriaTitle}"></h:outputText>
         </ui:define>
         <ui:define name="body">
-            <h:panelGroup id="messagePanel" layout="block">
-                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
-            </h:panelGroup>
-            <h:form>
-                <h:panelGrid columns="2">
-                    <h:outputLabel value="#{bundle.EditCategoriaLabel_categoriaid}" for="categoriaid" />
-                    <h:inputText id="categoriaid" value="#{categoriaController.selected.categoriaid}" title="#{bundle.EditCategoriaTitle_categoriaid}" required="true" requiredMessage="#{bundle.EditCategoriaRequiredMessage_categoriaid}"/>
-                    <h:outputLabel value="#{bundle.EditCategoriaLabel_nombre}" for="nombre" />
-                    <h:inputText id="nombre" value="#{categoriaController.selected.nombre}" title="#{bundle.EditCategoriaTitle_nombre}" required="true" requiredMessage="#{bundle.EditCategoriaRequiredMessage_nombre}"/>
-                </h:panelGrid>
-                <h:commandLink action="#{categoriaController.update}" value="#{bundle.EditCategoriaSaveLink}"/>
-                <br />
-                <br />
-                <h:link outcome="View" value="#{bundle.EditCategoriaViewLink}"/>
-                <br />
-                <h:commandLink action="#{categoriaController.prepareList}" value="#{bundle.EditCategoriaShowAllLink}" immediate="true"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.EditCategoriaIndexLink}" />
-            </h:form>
-        </ui:define>
-    </ui:composition>
+            <div class="main">
+                <div class="alert alert-dismissible" style="background-color: white">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <strong>!Mensajes!</strong><br></br> <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </div>
+                <div style="background-color: white">
+                    <br></br>
+                    <h4 align="center">Editar Información</h4>
+                    <br></br>
+                </div>
+                <br></br>
+                <div style="background-color: white" align="center">
+                    <br></br>
+                    <h:form>
+                        <h:panelGrid columns="2">
+                            <h:outputLabel value="Nombre de categoria: " for="nombre" />
+                            <h:inputText class="form-control" id="nombre" value="#{categoriaController.selected.nombre}" title="#{bundle.EditCategoriaTitle_nombre}" required="true" requiredMessage="#{bundle.EditCategoriaRequiredMessage_nombre}"/>
+                        </h:panelGrid>
+                        <br />
+                        <h:commandLink class="btn btn-sm btn-info" action="#{categoriaController.update}" value="Aceptar"/>
+                        &nbsp; 
+                        <h:commandLink class="btn btn-sm btn-danger" action="#{categoriaController.prepareList()}" value="Cancelar"/>
+                        <br />
+                        <br />
+                    </h:form>
+                </div>
+            </div>
+                    </ui:define>
+                    </ui:composition>
 
-</html>
+                    </html>

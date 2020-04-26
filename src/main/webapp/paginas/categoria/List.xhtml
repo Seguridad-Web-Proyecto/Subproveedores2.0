@@ -10,46 +10,98 @@
             <h:outputText value="#{bundle.ListCategoriaTitle}"></h:outputText>
         </ui:define>
         <ui:define name="body">
-            <h:form styleClass="jsfcrud_list_form">
-                <h:panelGroup id="messagePanel" layout="block">
-                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
-                </h:panelGroup>
-                <h:outputText escape="false" value="#{bundle.ListCategoriaEmpty}" rendered="#{categoriaController.items.rowCount == 0}"/>
-                <h:panelGroup rendered="#{categoriaController.items.rowCount > 0}">
-                    <h:outputText value="#{categoriaController.pagination.pageFirstItem + 1}..#{categoriaController.pagination.pageLastItem + 1}/#{categoriaController.pagination.itemsCount}"/>&nbsp;
-                    <h:commandLink action="#{categoriaController.previous}" value="#{bundle.Previous} #{categoriaController.pagination.pageSize}" rendered="#{categoriaController.pagination.hasPreviousPage}"/>&nbsp;
-                    <h:commandLink action="#{categoriaController.next}" value="#{bundle.Next} #{categoriaController.pagination.pageSize}" rendered="#{categoriaController.pagination.hasNextPage}"/>&nbsp;
-                    <h:dataTable value="#{categoriaController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListCategoriaTitle_categoriaid}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.categoriaid}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListCategoriaTitle_nombre}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.nombre}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="&nbsp;"/>
-                            </f:facet>
-                            <h:commandLink action="#{categoriaController.prepareView}" value="#{bundle.ListCategoriaViewLink}"/>
-                            <h:outputText value=" "/>
-                            <h:commandLink action="#{categoriaController.prepareEdit}" value="#{bundle.ListCategoriaEditLink}"/>
-                            <h:outputText value=" "/>
-                            <h:commandLink action="#{categoriaController.destroy}" value="#{bundle.ListCategoriaDestroyLink}"/>
-                        </h:column>
-                    </h:dataTable>
-                </h:panelGroup>
-                <br />
-                <h:commandLink action="#{categoriaController.prepareCreate}" value="#{bundle.ListCategoriaCreateLink}"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.ListCategoriaIndexLink}"/>
-            </h:form>
+            <div class="main">
+                <div class="alert alert-dismissible" style="background-color: white">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <strong>!Mensajes!</strong><br></br> <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </div>
+
+                <div style="background-color: white">
+                    <br></br>
+                    <h1 align="center">Categorias</h1>
+                    <br></br>
+                </div>
+
+                <div class="card">
+                    <div class="card-body">
+
+                        <p align="right">
+                            <button action="#{categoriaController.prepareCreate()}" type="button" class="btn btn-sm btn-info" data-toggle="modal" data-target="#modalCreate">
+                                Crear 
+                            </button>
+                            <button action="#{categoriaController.prepareList()}" type="button" class="btn btn-sm btn-dark"><i class="fas fa-redo"></i>
+
+                            </button>
+                        </p>
+                    </div>
+                </div>
+                <br></br>
+                <h:form styleClass="jsfcrud_list_form">
+                    <h:outputText escape="false" value="#{bundle.ListCategoriaEmpty}" rendered="#{categoriaController.items.rowCount == 0}"/>
+                    <h:panelGroup rendered="#{categoriaController.items.rowCount > 0}">
+                        <h:outputText value="#{categoriaController.pagination.pageFirstItem + 1}..#{categoriaController.pagination.pageLastItem + 1}/#{categoriaController.pagination.itemsCount}"/>&nbsp;
+                        <h:commandLink action="#{categoriaController.previous}" value="#{bundle.Previous} #{categoriaController.pagination.pageSize}" rendered="#{categoriaController.pagination.hasPreviousPage}"/>&nbsp;
+                        <h:commandLink action="#{categoriaController.next}" value="#{bundle.Next} #{categoriaController.pagination.pageSize}" rendered="#{categoriaController.pagination.hasNextPage}"/>&nbsp;
+                        <h:dataTable class="table table-sm table-light" value="#{categoriaController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#"/>
+                                </f:facet>
+                                <h:outputText value="#{item.categoriaid}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Nombre de categoria: "/>
+                                </f:facet>
+                                <h:outputText value="#{item.nombre}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Acciones"/>
+                                </f:facet>
+                                <h:commandLink class="btn btn-sm btn-outline-info fas fa-eye" action="#{categoriaController.prepareView}"  />
+                                <h:commandLink class="btn btn-sm btn-outline-success far fa-edit" action="#{categoriaController.prepareEdit}" />
+                                <h:commandLink class="btn btn-sm btn-outline-danger fas fa-trash-alt" onclick="return ConfirmDelete()" action="#{categoriaController.destroy}" />
+                            </h:column>
+                        </h:dataTable>
+                    </h:panelGroup>
+                </h:form>
+            </div>
+
+            <!-- The Modal -->
+            <div class="modal fade" id="modalCreate">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+
+                        <!-- Modal Header -->
+                        <div class="modal-header" align="center">
+                            <h4 class="modal-title">Registro de Categorias </h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+
+                        <!-- Modal body -->
+                        <div class="modal-body">
+                            <h:form>
+                                <div align="center" >
+                                    <h:panelGrid columns="2">
+                                        <h:outputLabel value="Nombre de Categoria: " for="nombre" />
+                                        <h:inputText class="form-control" id="nombre" value="#{categoriaController.selected.nombre}" title="#{bundle.CreateCategoriaTitle_nombre}" required="true" requiredMessage="#{bundle.CreateCategoriaRequiredMessage_nombre}"/>
+                                    </h:panelGrid>
+                                    <br></br>
+                                    <h:commandLink class="btn btn-sm btn-success" value="Guardar" action="#{categoriaController.create()}" />
+                                    <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal">Cancelar</button>
+                                    <br></br>
+                                    <br></br>
+                                    <!-- Modal footer -->
+                                    <div class="modal-footer">
+                                        <h:commandLink action="#{categoriaController.prepareList}" value="Ver Lista" immediate="true"/>
+                                    </div>
+                                </div>
+                            </h:form>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </ui:define>
     </ui:composition>
 

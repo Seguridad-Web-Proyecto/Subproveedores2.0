@@ -10,30 +10,32 @@
             <h:outputText value="#{bundle.ViewCategoriaTitle}"></h:outputText>
         </ui:define>
         <ui:define name="body">
-            <h:panelGroup id="messagePanel" layout="block">
-                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
-            </h:panelGroup>
-            <h:form>
-                <h:panelGrid columns="2">
-                    <h:outputText value="#{bundle.ViewCategoriaLabel_categoriaid}"/>
-                    <h:outputText value="#{categoriaController.selected.categoriaid}" title="#{bundle.ViewCategoriaTitle_categoriaid}"/>
-                    <h:outputText value="#{bundle.ViewCategoriaLabel_nombre}"/>
-                    <h:outputText value="#{categoriaController.selected.nombre}" title="#{bundle.ViewCategoriaTitle_nombre}"/>
-                </h:panelGrid>
-                <br />
-                <h:commandLink action="#{categoriaController.destroyAndView}" value="#{bundle.ViewCategoriaDestroyLink}"/>
-                <br />
-                <br />
-                <h:link outcome="Edit" value="#{bundle.ViewCategoriaEditLink}"/>
-                <br />
-                <h:commandLink action="#{categoriaController.prepareCreate}" value="#{bundle.ViewCategoriaCreateLink}" />
-                <br />
-                <h:commandLink action="#{categoriaController.prepareList}" value="#{bundle.ViewCategoriaShowAllLink}"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.ViewCategoriaIndexLink}"/>
-
-            </h:form>
+            <div class="main">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <div style="background-color: white">
+                    <br></br>
+                    <h4 align="center">Información</h4>
+                    <br></br>
+                </div>
+                <br></br>
+                <div style="background-color: white" align="center">
+                    <br></br>
+                    <h:form>
+                        <h:panelGrid columns="2">
+                            <h:outputText value="#{bundle.ViewCategoriaLabel_categoriaid}"/>
+                            <h:outputText class="form-control" value="#{categoriaController.selected.categoriaid}" title="#{bundle.ViewCategoriaTitle_categoriaid}"/>
+                            <h:outputText value="#{bundle.ViewCategoriaLabel_nombre}"/>
+                            <h:outputText class="form-control" value="#{categoriaController.selected.nombre}" title="#{bundle.ViewCategoriaTitle_nombre}"/>
+                        </h:panelGrid>
+                        <br></br>
+                        <h:commandLink class="btn btn-sm btn-info" action="#{categoriaController.prepareList}" value="Aceptar"/>
+                        <br></br>
+                        <br></br>
+                    </h:form>
+                </div>
+            </div>
         </ui:define>
     </ui:composition>
 
