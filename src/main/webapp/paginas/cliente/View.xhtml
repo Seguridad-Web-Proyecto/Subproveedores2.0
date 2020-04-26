@@ -10,46 +10,48 @@
             <h:outputText value="#{bundle.ViewClienteTitle}"></h:outputText>
         </ui:define>
         <ui:define name="body">
-            <h:panelGroup id="messagePanel" layout="block">
-                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
-            </h:panelGroup>
-            <h:form>
-                <h:panelGrid columns="2">
-                    <h:outputText value="#{bundle.ViewClienteLabel_clienteid}"/>
-                    <h:outputText value="#{clienteController.selected.clienteid}" title="#{bundle.ViewClienteTitle_clienteid}"/>
-                    <h:outputText value="#{bundle.ViewClienteLabel_empresa}"/>
-                    <h:outputText value="#{clienteController.selected.empresa}" title="#{bundle.ViewClienteTitle_empresa}"/>
-                    <h:outputText value="#{bundle.ViewClienteLabel_nombreContacto}"/>
-                    <h:outputText value="#{clienteController.selected.nombreContacto}" title="#{bundle.ViewClienteTitle_nombreContacto}"/>
-                    <h:outputText value="#{bundle.ViewClienteLabel_area}"/>
-                    <h:outputText value="#{clienteController.selected.area}" title="#{bundle.ViewClienteTitle_area}"/>
-                    <h:outputText value="#{bundle.ViewClienteLabel_telefono}"/>
-                    <h:outputText value="#{clienteController.selected.telefono}" title="#{bundle.ViewClienteTitle_telefono}"/>
-                    <h:outputText value="#{bundle.ViewClienteLabel_rfc}"/>
-                    <h:outputText value="#{clienteController.selected.rfc}" title="#{bundle.ViewClienteTitle_rfc}"/>
-                    <h:outputText value="#{bundle.ViewClienteLabel_email}"/>
-                    <h:outputText value="#{clienteController.selected.email}" title="#{bundle.ViewClienteTitle_email}"/>
-                    <h:outputText value="#{bundle.ViewClienteLabel_activo}"/>
-                    <h:outputText value="#{clienteController.selected.activo}" title="#{bundle.ViewClienteTitle_activo}"/>
-                    <h:outputText value="#{bundle.ViewClienteLabel_paginaWeb}"/>
-                    <h:outputText value="#{clienteController.selected.paginaWeb}" title="#{bundle.ViewClienteTitle_paginaWeb}"/>
-                    <h:outputText value="#{bundle.ViewClienteLabel_domicilioFiscal}"/>
-                    <h:outputText value="#{clienteController.selected.domicilioFiscal}" title="#{bundle.ViewClienteTitle_domicilioFiscal}"/>
-                </h:panelGrid>
-                <br />
-                <h:commandLink action="#{clienteController.destroyAndView}" value="#{bundle.ViewClienteDestroyLink}"/>
-                <br />
-                <br />
-                <h:link outcome="Edit" value="#{bundle.ViewClienteEditLink}"/>
-                <br />
-                <h:commandLink action="#{clienteController.prepareCreate}" value="#{bundle.ViewClienteCreateLink}" />
-                <br />
-                <h:commandLink action="#{clienteController.prepareList}" value="#{bundle.ViewClienteShowAllLink}"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.ViewClienteIndexLink}"/>
-
-            </h:form>
+            <div class="main">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <div style="background-color: white">
+                    <br></br>
+                    <h4 align="center">Información</h4>
+                    <br></br>
+                </div>
+                <br></br>
+                <div style="background-color: white" align="center">
+                    <br></br>
+                    <h:form>
+                        <h:panelGrid columns="2">
+                            <h:outputText value="#{bundle.ViewClienteLabel_clienteid}"/>
+                            <h:outputText class="form-control" value="#{clienteController.selected.clienteid}" title="#{bundle.ViewClienteTitle_clienteid}"/>
+                            <h:outputText value="#{bundle.ViewClienteLabel_empresa}"/>
+                            <h:outputText class="form-control" value="#{clienteController.selected.empresa}" title="#{bundle.ViewClienteTitle_empresa}"/>
+                            <h:outputText value="#{bundle.ViewClienteLabel_nombreContacto}"/>
+                            <h:outputText class="form-control" value="#{clienteController.selected.nombreContacto}" title="#{bundle.ViewClienteTitle_nombreContacto}"/>
+                            <h:outputText value="#{bundle.ViewClienteLabel_area}"/>
+                            <h:outputText class="form-control" value="#{clienteController.selected.area}" title="#{bundle.ViewClienteTitle_area}"/>
+                            <h:outputText value="#{bundle.ViewClienteLabel_telefono}"/>
+                            <h:outputText class="form-control" value="#{clienteController.selected.telefono}" title="#{bundle.ViewClienteTitle_telefono}"/>
+                            <h:outputText value="#{bundle.ViewClienteLabel_rfc}"/>
+                            <h:outputText class="form-control" value="#{clienteController.selected.rfc}" title="#{bundle.ViewClienteTitle_rfc}"/>
+                            <h:outputText value="#{bundle.ViewClienteLabel_email}"/>
+                            <h:outputText class="form-control" value="#{clienteController.selected.email}" title="#{bundle.ViewClienteTitle_email}"/>
+                            <h:outputText value="#{bundle.ViewClienteLabel_activo}"/>
+                            <h:outputText class="form-control" value="#{clienteController.selected.activo}" title="#{bundle.ViewClienteTitle_activo}"/>
+                            <h:outputText value="#{bundle.ViewClienteLabel_paginaWeb}"/>
+                            <h:outputText class="form-control" value="#{clienteController.selected.paginaWeb}" title="#{bundle.ViewClienteTitle_paginaWeb}"/>
+                            <h:outputText value="#{bundle.ViewClienteLabel_domicilioFiscal}"/>
+                            <h:outputText class="form-control" value="#{clienteController.selected.domicilioFiscal}" title="#{bundle.ViewClienteTitle_domicilioFiscal}"/>
+                        </h:panelGrid>
+                        <br></br>
+                        <h:commandLink class="btn btn-sm btn-info" action="#{clienteController.prepareList}" value="Aceptar"/>
+                        <br></br>
+                        <br></br>
+                    </h:form>
+                </div>
+            </div>
         </ui:define>
     </ui:composition>
 
