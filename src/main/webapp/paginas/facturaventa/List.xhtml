@@ -105,10 +105,14 @@
                                     <h:panelGrid columns="2">
                                         <h:outputLabel value="Fecha de Emisión: " for="fechaEmision" />
                                         <h:inputText class="form-control" id="fechaEmision" value="#{facturaventaController.selected.fechaEmision}" title="#{bundle.CreateFacturaventaTitle_fechaEmision}" required="true" requiredMessage="#{bundle.CreateFacturaventaRequiredMessage_fechaEmision}">
+                                            <f:validator validatorId="fechaValidator" />
+
                                             <f:convertDateTime pattern="MM/dd/yyyy" />
                                         </h:inputText>
                                         <h:outputLabel value="Fecha de vencimiento de pago:" for="fechaVencimientoPago" />
                                         <h:inputText class="form-control" id="fechaVencimientoPago" value="#{facturaventaController.selected.fechaVencimientoPago}" title="#{bundle.CreateFacturaventaTitle_fechaVencimientoPago}" required="true" requiredMessage="#{bundle.CreateFacturaventaRequiredMessage_fechaVencimientoPago}">
+                                            <f:validator validatorId="fechaValidator" />
+
                                             <f:convertDateTime pattern="MM/dd/yyyy" />
                                         </h:inputText>
                                         <h:outputLabel value="Descripción: " for="descripcion" />
