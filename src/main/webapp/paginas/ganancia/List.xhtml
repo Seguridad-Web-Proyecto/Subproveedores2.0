@@ -87,7 +87,9 @@
                                 <div align="center" >
                                     <h:panelGrid columns="2">
                                         <h:outputLabel value="#{bundle.CreateGananciaLabel_porcentaje}" for="porcentaje" />
-                                        <h:inputText class="form-control" id="porcentaje" value="#{gananciaController.selected.porcentaje}" title="#{bundle.CreateGananciaTitle_porcentaje}" required="true" requiredMessage="#{bundle.CreateGananciaRequiredMessage_porcentaje}"/>
+                                        <h:inputText class="form-control" id="porcentaje" value="#{gananciaController.selected.porcentaje}" title="#{bundle.CreateGananciaTitle_porcentaje}" required="true" requiredMessage="#{bundle.CreateGananciaRequiredMessage_porcentaje}">
+                                                  <f:validator validatorId="numerosValidator" />
+                                        </h:inputText>
                                         <h:outputLabel value="Producto" for="productoid" />
                                         <h:selectOneMenu class="form-control" id="productoid" value="#{gananciaController.selected.productoid}" title="#{bundle.CreateGananciaTitle_productoid}" required="true" requiredMessage="#{bundle.CreateGananciaRequiredMessage_productoid}">
                                             <f:selectItems value="#{productoController.itemsAvailableSelectOne}"/>
