@@ -10,26 +10,33 @@
             <h:outputText value="#{bundle.EditRolTitle}"></h:outputText>
         </ui:define>
         <ui:define name="body">
-            <h:panelGroup id="messagePanel" layout="block">
-                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
-            </h:panelGroup>
-            <h:form>
-                <h:panelGrid columns="2">
-                    <h:outputLabel value="#{bundle.EditRolLabel_rolid}" for="rolid" />
-                    <h:inputText id="rolid" value="#{rolController.selected.rolid}" title="#{bundle.EditRolTitle_rolid}" required="true" requiredMessage="#{bundle.EditRolRequiredMessage_rolid}"/>
-                    <h:outputLabel value="#{bundle.EditRolLabel_nombre}" for="nombre" />
-                    <h:inputText id="nombre" value="#{rolController.selected.nombre}" title="#{bundle.EditRolTitle_nombre}" required="true" requiredMessage="#{bundle.EditRolRequiredMessage_nombre}"/>
-                </h:panelGrid>
-                <h:commandLink action="#{rolController.update}" value="#{bundle.EditRolSaveLink}"/>
-                <br />
-                <br />
-                <h:link outcome="View" value="#{bundle.EditRolViewLink}"/>
-                <br />
-                <h:commandLink action="#{rolController.prepareList}" value="#{bundle.EditRolShowAllLink}" immediate="true"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.EditRolIndexLink}" />
-            </h:form>
+            <div class="main">
+                <div class="alert alert-dismissible" style="background-color: white">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <strong>!Mensajes!</strong><br></br> <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </div>
+                <div style="background-color: white">
+                    <br></br>
+                    <h4 align="center">Editar Información</h4>
+                    <br></br>
+                </div>
+                <br></br>
+                <div style="background-color: white" align="center">
+                    <br></br>
+                    <h:form>
+                        <h:panelGrid columns="2">
+                            <h:outputLabel value="Nombre del Rol: " for="nombre" />
+                            <h:inputText class="form-control" id="nombre" value="#{rolController.selected.nombre}" title="#{bundle.EditRolTitle_nombre}" required="true" requiredMessage="#{bundle.EditRolRequiredMessage_nombre}"/>
+                        </h:panelGrid>
+                        <br />
+                        <h:commandLink class="btn btn-sm btn-info" action="#{rolController.update}" value="Aceptar"/>
+                        &nbsp; 
+                        <h:commandLink class="btn btn-sm btn-danger" action="#{rolController.prepareList()}" value="Cancelar"/>
+                        <br />
+                        <br />
+                    </h:form>
+                </div>
+            </div>
         </ui:define>
     </ui:composition>
 

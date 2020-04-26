@@ -10,30 +10,32 @@
             <h:outputText value="#{bundle.ViewRolTitle}"></h:outputText>
         </ui:define>
         <ui:define name="body">
-            <h:panelGroup id="messagePanel" layout="block">
-                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
-            </h:panelGroup>
-            <h:form>
-                <h:panelGrid columns="2">
-                    <h:outputText value="#{bundle.ViewRolLabel_rolid}"/>
-                    <h:outputText value="#{rolController.selected.rolid}" title="#{bundle.ViewRolTitle_rolid}"/>
-                    <h:outputText value="#{bundle.ViewRolLabel_nombre}"/>
-                    <h:outputText value="#{rolController.selected.nombre}" title="#{bundle.ViewRolTitle_nombre}"/>
-                </h:panelGrid>
-                <br />
-                <h:commandLink action="#{rolController.destroyAndView}" value="#{bundle.ViewRolDestroyLink}"/>
-                <br />
-                <br />
-                <h:link outcome="Edit" value="#{bundle.ViewRolEditLink}"/>
-                <br />
-                <h:commandLink action="#{rolController.prepareCreate}" value="#{bundle.ViewRolCreateLink}" />
-                <br />
-                <h:commandLink action="#{rolController.prepareList}" value="#{bundle.ViewRolShowAllLink}"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.ViewRolIndexLink}"/>
-
-            </h:form>
+            <div class="main">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <div style="background-color: white">
+                    <br></br>
+                    <h4 align="center">Información</h4>
+                    <br></br>
+                </div>
+                <br></br>
+                <div style="background-color: white" align="center">
+                    <br></br>
+                    <h:form>
+                        <h:panelGrid columns="2">
+                            <h:outputText value="Id del Rol"/>
+                            <h:outputText class="form-control" value="#{rolController.selected.rolid}" title="#{bundle.ViewRolTitle_rolid}"/>
+                            <h:outputText value="Nombre del Rol: "/>
+                            <h:outputText class="form-control" value="#{rolController.selected.nombre}" title="#{bundle.ViewRolTitle_nombre}"/>
+                        </h:panelGrid>
+                        <br></br>
+                        <h:commandLink class="btn btn-sm btn-info" action="#{rolController.prepareList}" value="Aceptar"/>
+                        <br></br>
+                        <br></br>
+                    </h:form>
+                </div>
+            </div>
         </ui:define>
     </ui:composition>
 

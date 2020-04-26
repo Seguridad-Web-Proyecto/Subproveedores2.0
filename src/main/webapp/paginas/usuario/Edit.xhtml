@@ -10,38 +10,45 @@
             <h:outputText value="#{bundle.EditUsuarioTitle}"></h:outputText>
         </ui:define>
         <ui:define name="body">
-            <h:panelGroup id="messagePanel" layout="block">
-                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
-            </h:panelGroup>
-            <h:form>
-                <h:panelGrid columns="2">
-                    <h:outputLabel value="#{bundle.EditUsuarioLabel_usuarioid}" for="usuarioid" />
-                    <h:inputText id="usuarioid" value="#{usuarioController.selected.usuarioid}" title="#{bundle.EditUsuarioTitle_usuarioid}" required="true" requiredMessage="#{bundle.EditUsuarioRequiredMessage_usuarioid}"/>
-                    <h:outputLabel value="#{bundle.EditUsuarioLabel_usuario}" for="usuario" />
-                    <h:inputText id="usuario" value="#{usuarioController.selected.usuario}" title="#{bundle.EditUsuarioTitle_usuario}" required="true" requiredMessage="#{bundle.EditUsuarioRequiredMessage_usuario}"/>
-                    <h:outputLabel value="#{bundle.EditUsuarioLabel_contrasenia}" for="contrasenia" />
-                    <h:inputText id="contrasenia" value="#{usuarioController.selected.contrasenia}" title="#{bundle.EditUsuarioTitle_contrasenia}" required="true" requiredMessage="#{bundle.EditUsuarioRequiredMessage_contrasenia}"/>
-                    <h:outputLabel value="#{bundle.EditUsuarioLabel_activo}" for="activo" />
-                    <h:inputText id="activo" value="#{usuarioController.selected.activo}" title="#{bundle.EditUsuarioTitle_activo}" required="true" requiredMessage="#{bundle.EditUsuarioRequiredMessage_activo}"/>
-                    <h:outputLabel value="#{bundle.EditUsuarioLabel_fechaCreacion}" for="fechaCreacion" />
-                    <h:inputText id="fechaCreacion" value="#{usuarioController.selected.fechaCreacion}" title="#{bundle.EditUsuarioTitle_fechaCreacion}" required="true" requiredMessage="#{bundle.EditUsuarioRequiredMessage_fechaCreacion}">
-                        <f:convertDateTime pattern="MM/dd/yyyy" />
-                    </h:inputText>
-                    <h:outputLabel value="#{bundle.EditUsuarioLabel_rolid}" for="rolid" />
-                    <h:selectOneMenu id="rolid" value="#{usuarioController.selected.rolid}" title="#{bundle.EditUsuarioTitle_rolid}" required="true" requiredMessage="#{bundle.EditUsuarioRequiredMessage_rolid}">
-                        <f:selectItems value="#{rolController.itemsAvailableSelectOne}"/>
-                    </h:selectOneMenu>
-                </h:panelGrid>
-                <h:commandLink action="#{usuarioController.update}" value="#{bundle.EditUsuarioSaveLink}"/>
-                <br />
-                <br />
-                <h:link outcome="View" value="#{bundle.EditUsuarioViewLink}"/>
-                <br />
-                <h:commandLink action="#{usuarioController.prepareList}" value="#{bundle.EditUsuarioShowAllLink}" immediate="true"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.EditUsuarioIndexLink}" />
-            </h:form>
+            <div class="main">
+                <div class="alert alert-dismissible" style="background-color: white">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <strong>!Mensajes!</strong><br></br> <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </div>
+                <div style="background-color: white">
+                    <br></br>
+                    <h4 align="center">Editar Información</h4>
+                    <br></br>
+                </div>
+                <br></br>
+                <div style="background-color: white" align="center">
+                    <br></br>
+                    <h:form>
+                        <h:panelGrid columns="2">
+                            <h:outputLabel value="#{bundle.EditUsuarioLabel_usuario}" for="usuario" />
+                            <h:inputText class="form-control" id="usuario" value="#{usuarioController.selected.usuario}" title="#{bundle.EditUsuarioTitle_usuario}" required="true" requiredMessage="#{bundle.EditUsuarioRequiredMessage_usuario}"/>
+                            <h:outputLabel value="Contraseña: " for="contrasenia" />
+                            <h:inputText class="form-control" id="contrasenia" value="#{usuarioController.selected.contrasenia}" title="#{bundle.EditUsuarioTitle_contrasenia}" required="true" requiredMessage="#{bundle.EditUsuarioRequiredMessage_contrasenia}"/>
+                            <h:outputLabel value="Status: " for="activo" />
+                            <h:inputText class="form-control" id="activo" value="#{usuarioController.selected.activo}" title="#{bundle.EditUsuarioTitle_activo}" required="true" requiredMessage="#{bundle.EditUsuarioRequiredMessage_activo}"/>
+                            <h:outputLabel value="Fecha de creacion:" for="fechaCreacion" />
+                            <h:inputText class="form-control" id="fechaCreacion" value="#{usuarioController.selected.fechaCreacion}" title="#{bundle.EditUsuarioTitle_fechaCreacion}" required="true" requiredMessage="#{bundle.EditUsuarioRequiredMessage_fechaCreacion}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:inputText>
+                            <h:outputLabel value="Rol: " for="rolid" />
+                            <h:selectOneMenu class="form-control" id="rolid" value="#{usuarioController.selected.rolid}" title="#{bundle.EditUsuarioTitle_rolid}" required="true" requiredMessage="#{bundle.EditUsuarioRequiredMessage_rolid}">
+                                <f:selectItems value="#{rolController.itemsAvailableSelectOne}"/>
+                            </h:selectOneMenu>
+                        </h:panelGrid>
+                        <br />
+                        <h:commandLink class="btn btn-sm btn-info" action="#{usuarioController.update}" value="Aceptar"/>
+                        &nbsp; 
+                        <h:commandLink class="btn btn-sm btn-danger" action="#{usuarioController.prepareList()}" value="Cancelar"/>
+                        <br />
+                        <br />
+                    </h:form>
+                </div>
+            </div>
         </ui:define>
     </ui:composition>
 

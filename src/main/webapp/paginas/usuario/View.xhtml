@@ -10,40 +10,42 @@
             <h:outputText value="#{bundle.ViewUsuarioTitle}"></h:outputText>
         </ui:define>
         <ui:define name="body">
-            <h:panelGroup id="messagePanel" layout="block">
-                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
-            </h:panelGroup>
-            <h:form>
-                <h:panelGrid columns="2">
-                    <h:outputText value="#{bundle.ViewUsuarioLabel_usuarioid}"/>
-                    <h:outputText value="#{usuarioController.selected.usuarioid}" title="#{bundle.ViewUsuarioTitle_usuarioid}"/>
-                    <h:outputText value="#{bundle.ViewUsuarioLabel_usuario}"/>
-                    <h:outputText value="#{usuarioController.selected.usuario}" title="#{bundle.ViewUsuarioTitle_usuario}"/>
-                    <h:outputText value="#{bundle.ViewUsuarioLabel_contrasenia}"/>
-                    <h:outputText value="#{usuarioController.selected.contrasenia}" title="#{bundle.ViewUsuarioTitle_contrasenia}"/>
-                    <h:outputText value="#{bundle.ViewUsuarioLabel_activo}"/>
-                    <h:outputText value="#{usuarioController.selected.activo}" title="#{bundle.ViewUsuarioTitle_activo}"/>
-                    <h:outputText value="#{bundle.ViewUsuarioLabel_fechaCreacion}"/>
-                    <h:outputText value="#{usuarioController.selected.fechaCreacion}" title="#{bundle.ViewUsuarioTitle_fechaCreacion}">
-                        <f:convertDateTime pattern="MM/dd/yyyy" />
-                    </h:outputText>
-                    <h:outputText value="#{bundle.ViewUsuarioLabel_rolid}"/>
-                    <h:outputText value="#{usuarioController.selected.rolid}" title="#{bundle.ViewUsuarioTitle_rolid}"/>
-                </h:panelGrid>
-                <br />
-                <h:commandLink action="#{usuarioController.destroyAndView}" value="#{bundle.ViewUsuarioDestroyLink}"/>
-                <br />
-                <br />
-                <h:link outcome="Edit" value="#{bundle.ViewUsuarioEditLink}"/>
-                <br />
-                <h:commandLink action="#{usuarioController.prepareCreate}" value="#{bundle.ViewUsuarioCreateLink}" />
-                <br />
-                <h:commandLink action="#{usuarioController.prepareList}" value="#{bundle.ViewUsuarioShowAllLink}"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.ViewUsuarioIndexLink}"/>
-
-            </h:form>
+            <div class="main">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <div style="background-color: white">
+                    <br></br>
+                    <h4 align="center">Información</h4>
+                    <br></br>
+                </div>
+                <br></br>
+                <div style="background-color: white" align="center">
+                    <br></br>
+                    <h:form>
+                        <h:panelGrid columns="2">
+                            <h:outputText value="Id de Usuario: "/>
+                            <h:outputText class="form-control" value="#{usuarioController.selected.usuarioid}" title="#{bundle.ViewUsuarioTitle_usuarioid}"/>
+                            <h:outputText value="#{bundle.ViewUsuarioLabel_usuario}"/>
+                            <h:outputText class="form-control" value="#{usuarioController.selected.usuario}" title="#{bundle.ViewUsuarioTitle_usuario}"/>
+                            <h:outputText value="Contraseña: "/>
+                            <h:outputText class="form-control" value="#{usuarioController.selected.contrasenia}" title="#{bundle.ViewUsuarioTitle_contrasenia}"/>
+                            <h:outputText value="Status: "/>
+                            <h:outputText class="form-control" value="#{usuarioController.selected.activo}" title="#{bundle.ViewUsuarioTitle_activo}"/>
+                            <h:outputText value="Fecha de Creación:"/>
+                            <h:outputText class="form-control" value="#{usuarioController.selected.fechaCreacion}" title="#{bundle.ViewUsuarioTitle_fechaCreacion}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                            <h:outputText value="Rol: "/>
+                            <h:outputText class="form-control" value="#{usuarioController.selected.rolid}" title="#{bundle.ViewUsuarioTitle_rolid}"/>
+                        </h:panelGrid>
+                        <br></br>
+                        <h:commandLink class="btn btn-sm btn-info" action="#{usuarioController.prepareList}" value="Aceptar"/>
+                        <br></br>
+                        <br></br>
+                    </h:form>
+                </div>
+            </div>
         </ui:define>
     </ui:composition>
 
