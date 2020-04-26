@@ -10,32 +10,35 @@
             <h:outputText value="#{bundle.ViewInventarioTitle}"></h:outputText>
         </ui:define>
         <ui:define name="body">
-            <h:panelGroup id="messagePanel" layout="block">
-                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
-            </h:panelGroup>
+            <div class="main">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <div style="background-color: white">
+                    <br></br>
+                    <h4 align="center">Información</h4>
+                    <br></br>
+                </div>
+                <br></br>
+                <div style="background-color: white" align="center">
+                    <br></br>
+            
             <h:form>
                 <h:panelGrid columns="2">
                     <h:outputText value="#{bundle.ViewInventarioLabel_inventarioid}"/>
-                    <h:outputText value="#{inventarioController.selected.inventarioid}" title="#{bundle.ViewInventarioTitle_inventarioid}"/>
+                    <h:outputText class="form-control" value="#{inventarioController.selected.inventarioid}" title="#{bundle.ViewInventarioTitle_inventarioid}"/>
                     <h:outputText value="#{bundle.ViewInventarioLabel_existencias}"/>
-                    <h:outputText value="#{inventarioController.selected.existencias}" title="#{bundle.ViewInventarioTitle_existencias}"/>
+                    <h:outputText class="form-control" value="#{inventarioController.selected.existencias}" title="#{bundle.ViewInventarioTitle_existencias}"/>
                     <h:outputText value="#{bundle.ViewInventarioLabel_productoid}"/>
-                    <h:outputText value="#{inventarioController.selected.productoid}" title="#{bundle.ViewInventarioTitle_productoid}"/>
+                    <h:outputText class="form-control" value="#{inventarioController.selected.productoid}" title="#{bundle.ViewInventarioTitle_productoid}"/>
                 </h:panelGrid>
-                <br />
-                <h:commandLink action="#{inventarioController.destroyAndView}" value="#{bundle.ViewInventarioDestroyLink}"/>
-                <br />
-                <br />
-                <h:link outcome="Edit" value="#{bundle.ViewInventarioEditLink}"/>
-                <br />
-                <h:commandLink action="#{inventarioController.prepareCreate}" value="#{bundle.ViewInventarioCreateLink}" />
-                <br />
-                <h:commandLink action="#{inventarioController.prepareList}" value="#{bundle.ViewInventarioShowAllLink}"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.ViewInventarioIndexLink}"/>
-
+                <br></br>
+                        <h:commandLink class="btn btn-sm btn-info" action="#{inventarioController.prepareList}" value="Aceptar"/>
+                        <br></br>
+                        <br></br>
             </h:form>
+                </div>
+            </div>
         </ui:define>
     </ui:composition>
 

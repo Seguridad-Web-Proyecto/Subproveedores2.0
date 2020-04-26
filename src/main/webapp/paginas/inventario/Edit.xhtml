@@ -10,31 +10,38 @@
             <h:outputText value="#{bundle.EditInventarioTitle}"></h:outputText>
         </ui:define>
         <ui:define name="body">
-            <h:panelGroup id="messagePanel" layout="block">
-                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
-            </h:panelGroup>
+            <div class="main">
+                <div class="alert alert-dismissible" style="background-color: white">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <strong>!Mensajes!</strong><br></br> <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </div>
+                <div style="background-color: white">
+                    <br></br>
+                    <h4 align="center">Editar Información</h4>
+                    <br></br>
+                </div>
+                <br></br>
+                <div style="background-color: white" align="center">
+                    <br></br>
             <h:form>
                 <h:panelGrid columns="2">
-                    <h:outputLabel value="#{bundle.EditInventarioLabel_inventarioid}" for="inventarioid" />
-                    <h:inputText id="inventarioid" value="#{inventarioController.selected.inventarioid}" title="#{bundle.EditInventarioTitle_inventarioid}" required="true" requiredMessage="#{bundle.EditInventarioRequiredMessage_inventarioid}"/>
                     <h:outputLabel value="#{bundle.EditInventarioLabel_existencias}" for="existencias" />
-                    <h:inputText id="existencias" value="#{inventarioController.selected.existencias}" title="#{bundle.EditInventarioTitle_existencias}" required="true" requiredMessage="#{bundle.EditInventarioRequiredMessage_existencias}"/>
+                    <h:inputText class="form-control" id="existencias" value="#{inventarioController.selected.existencias}" title="#{bundle.EditInventarioTitle_existencias}" required="true" requiredMessage="#{bundle.EditInventarioRequiredMessage_existencias}"/>
                     <h:outputLabel value="#{bundle.EditInventarioLabel_productoid}" for="productoid" />
-                    <h:selectOneMenu id="productoid" value="#{inventarioController.selected.productoid}" title="#{bundle.EditInventarioTitle_productoid}" required="true" requiredMessage="#{bundle.EditInventarioRequiredMessage_productoid}">
+                    <h:selectOneMenu class="form-control" id="productoid" value="#{inventarioController.selected.productoid}" title="#{bundle.EditInventarioTitle_productoid}" required="true" requiredMessage="#{bundle.EditInventarioRequiredMessage_productoid}">
                         <f:selectItems value="#{productoController.itemsAvailableSelectOne}"/>
                     </h:selectOneMenu>
                 </h:panelGrid>
-                <h:commandLink action="#{inventarioController.update}" value="#{bundle.EditInventarioSaveLink}"/>
                 <br />
-                <br />
-                <h:link outcome="View" value="#{bundle.EditInventarioViewLink}"/>
-                <br />
-                <h:commandLink action="#{inventarioController.prepareList}" value="#{bundle.EditInventarioShowAllLink}" immediate="true"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.EditInventarioIndexLink}" />
+                        <h:commandLink class="btn btn-sm btn-info" action="#{inventarioController.update}" value="Aceptar"/>
+                        &nbsp; 
+                        <h:commandLink class="btn btn-sm btn-danger" action="#{inventarioController.prepareList()}" value="Cancelar"/>
+                        <br />
+                        <br />
             </h:form>
-        </ui:define>
+                </div>
+            </div>
+         </ui:define>
     </ui:composition>
 
 </html>
