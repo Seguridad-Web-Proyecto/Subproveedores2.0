@@ -10,36 +10,45 @@
             <h:outputText value="#{bundle.EditCompradetalleTitle}"></h:outputText>
         </ui:define>
         <ui:define name="body">
-            <h:panelGroup id="messagePanel" layout="block">
-                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
-            </h:panelGroup>
+            <div class="main">
+                <div class="alert alert-dismissible" style="background-color: white">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <strong>!Mensajes!</strong><br></br> <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </div>
+                <div style="background-color: white">
+                    <br></br>
+                    <h4 align="center">Editar Información</h4>
+                    <br></br>
+                </div>
+                <br></br>
+                <div style="background-color: white" align="center">
+                    <br></br>
             <h:form>
-                <h:panelGrid columns="2">
-                    <h:outputLabel value="#{bundle.EditCompradetalleLabel_cantidad}" for="cantidad" />
-                    <h:inputText id="cantidad" value="#{compradetalleController.selected.cantidad}" title="#{bundle.EditCompradetalleTitle_cantidad}" required="true" requiredMessage="#{bundle.EditCompradetalleRequiredMessage_cantidad}"/>
-                    <h:outputLabel value="#{bundle.EditCompradetalleLabel_precioUnitario}" for="precioUnitario" />
-                    <h:inputText id="precioUnitario" value="#{compradetalleController.selected.precioUnitario}" title="#{bundle.EditCompradetalleTitle_precioUnitario}" required="true" requiredMessage="#{bundle.EditCompradetalleRequiredMessage_precioUnitario}"/>
-                    <h:outputLabel value="#{bundle.EditCompradetalleLabel_importe}" for="importe" />
-                    <h:inputText id="importe" value="#{compradetalleController.selected.importe}" title="#{bundle.EditCompradetalleTitle_importe}" required="true" requiredMessage="#{bundle.EditCompradetalleRequiredMessage_importe}"/>
-                    <h:outputLabel value="#{bundle.EditCompradetalleLabel_ordencompra}" for="ordencompra" />
-                    <h:selectOneMenu id="ordencompra" value="#{compradetalleController.selected.ordencompra}" title="#{bundle.EditCompradetalleTitle_ordencompra}" required="true" requiredMessage="#{bundle.EditCompradetalleRequiredMessage_ordencompra}">
-                        <f:selectItems value="#{ordencompraController.itemsAvailableSelectOne}"/>
-                    </h:selectOneMenu>
-                    <h:outputLabel value="#{bundle.EditCompradetalleLabel_producto}" for="producto" />
-                    <h:selectOneMenu id="producto" value="#{compradetalleController.selected.producto}" title="#{bundle.EditCompradetalleTitle_producto}" required="true" requiredMessage="#{bundle.EditCompradetalleRequiredMessage_producto}">
-                        <f:selectItems value="#{productoController.itemsAvailableSelectOne}"/>
-                    </h:selectOneMenu>
-                </h:panelGrid>
-                <h:commandLink action="#{compradetalleController.update}" value="#{bundle.EditCompradetalleSaveLink}"/>
-                <br />
-                <br />
-                <h:link outcome="View" value="#{bundle.EditCompradetalleViewLink}"/>
-                <br />
-                <h:commandLink action="#{compradetalleController.prepareList}" value="#{bundle.EditCompradetalleShowAllLink}" immediate="true"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.EditCompradetalleIndexLink}" />
-            </h:form>
+                        <h:panelGrid columns="2">
+                            <h:outputLabel value="Cantidad: " for="cantidad" />
+                            <h:inputText class="form-control" id="cantidad" value="#{compradetalleController.selected.cantidad}" title="#{bundle.EditCompradetalleTitle_cantidad}" required="true" requiredMessage="#{bundle.EditCompradetalleRequiredMessage_cantidad}"/>
+                            <h:outputLabel value="Precio Unitatio: " for="precioUnitario" />
+                            <h:inputText class="form-control" id="precioUnitario" value="#{compradetalleController.selected.precioUnitario}" title="#{bundle.EditCompradetalleTitle_precioUnitario}" required="true" requiredMessage="#{bundle.EditCompradetalleRequiredMessage_precioUnitario}"/>
+                            <h:outputLabel value="Importe: " for="importe" />
+                            <h:inputText class="form-control" id="importe" value="#{compradetalleController.selected.importe}" title="#{bundle.EditCompradetalleTitle_importe}" required="true" requiredMessage="#{bundle.EditCompradetalleRequiredMessage_importe}"/>
+                            <h:outputLabel value="Orden de Compra: " for="ordencompra" />
+                            <h:selectOneMenu class="form-control" id="ordencompra" value="#{compradetalleController.selected.ordencompra}" title="#{bundle.EditCompradetalleTitle_ordencompra}" required="true" requiredMessage="#{bundle.EditCompradetalleRequiredMessage_ordencompra}">
+                                <f:selectItems value="#{ordencompraController.itemsAvailableSelectOne}"/>
+                            </h:selectOneMenu>
+                            <h:outputLabel value="Id Producto" for="producto" />
+                            <h:selectOneMenu class="form-control" id="producto" value="#{compradetalleController.selected.producto}" title="#{bundle.EditCompradetalleTitle_producto}" required="true" requiredMessage="#{bundle.EditCompradetalleRequiredMessage_producto}">
+                                <f:selectItems value="#{productoController.itemsAvailableSelectOne}"/>
+                            </h:selectOneMenu>
+                        </h:panelGrid>
+                        <br />
+                        <h:commandLink class="btn btn-sm btn-info" action="#{compradetalleController.update}" value="Aceptar"/>
+                        &nbsp; 
+                        <h:commandLink class="btn btn-sm btn-danger" action="#{compradetalleController.prepareList()}" value="Cancelar"/>
+                        <br />
+                        <br />
+                    </h:form>
+                </div>
+            </div>
         </ui:define>
     </ui:composition>
 

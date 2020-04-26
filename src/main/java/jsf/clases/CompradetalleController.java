@@ -78,7 +78,7 @@ public class CompradetalleController implements Serializable {
         current = new Compradetalle();
         current.setCompradetallePK(new entidades.CompradetallePK());
         selectedItemIndex = -1;
-        return "Create";
+        return "List";
     }
 
     public String create() {
@@ -86,11 +86,11 @@ public class CompradetalleController implements Serializable {
             current.getCompradetallePK().setCompraid(current.getOrdencompra().getOrdencompraid());
             current.getCompradetallePK().setProductoid(current.getProducto().getProductoid());
             getFacade().create(current);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("CompradetalleCreated"));
+            JsfUtil.addSuccessMessage("¡Detalle de compra creado con exito!");
             return prepareCreate();
         } catch (Exception e) {
-            JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
-            return null;
+            JsfUtil.addSuccessMessage("¡Lo sentimos la operación no pudo completarse intente mas tarde!");
+            return "List";
         }
     }
 
@@ -105,11 +105,11 @@ public class CompradetalleController implements Serializable {
             current.getCompradetallePK().setCompraid(current.getOrdencompra().getOrdencompraid());
             current.getCompradetallePK().setProductoid(current.getProducto().getProductoid());
             getFacade().edit(current);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("CompradetalleUpdated"));
-            return "View";
+            JsfUtil.addSuccessMessage("¡Detalle de compra editado con exito!");
+            return "List";
         } catch (Exception e) {
-            JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
-            return null;
+            JsfUtil.addSuccessMessage("¡Lo sentimos la operación no pudo completarse intente mas tarde!");
+            return "List";
         }
     }
 
@@ -138,9 +138,10 @@ public class CompradetalleController implements Serializable {
     private void performDestroy() {
         try {
             getFacade().remove(current);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("CompradetalleDeleted"));
+            JsfUtil.addSuccessMessage("¡Detalle de compra eliminado con exito!");
+           
         } catch (Exception e) {
-            JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
+          JsfUtil.addSuccessMessage("¡Lo sentimos la operación no pudo completarse intente mas tarde!");
         }
     }
 
