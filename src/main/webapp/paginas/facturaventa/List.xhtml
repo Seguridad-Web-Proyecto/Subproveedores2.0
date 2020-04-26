@@ -10,68 +10,129 @@
             <h:outputText value="#{bundle.ListFacturaventaTitle}"></h:outputText>
         </ui:define>
         <ui:define name="body">
-            <h:form styleClass="jsfcrud_list_form">
-                <h:panelGroup id="messagePanel" layout="block">
-                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
-                </h:panelGroup>
-                <h:outputText escape="false" value="#{bundle.ListFacturaventaEmpty}" rendered="#{facturaventaController.items.rowCount == 0}"/>
-                <h:panelGroup rendered="#{facturaventaController.items.rowCount > 0}">
-                    <h:outputText value="#{facturaventaController.pagination.pageFirstItem + 1}..#{facturaventaController.pagination.pageLastItem + 1}/#{facturaventaController.pagination.itemsCount}"/>&nbsp;
-                    <h:commandLink action="#{facturaventaController.previous}" value="#{bundle.Previous} #{facturaventaController.pagination.pageSize}" rendered="#{facturaventaController.pagination.hasPreviousPage}"/>&nbsp;
-                    <h:commandLink action="#{facturaventaController.next}" value="#{bundle.Next} #{facturaventaController.pagination.pageSize}" rendered="#{facturaventaController.pagination.hasNextPage}"/>&nbsp;
-                    <h:dataTable value="#{facturaventaController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListFacturaventaTitle_facturaventaid}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.facturaventaid}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListFacturaventaTitle_fechaEmision}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.fechaEmision}">
-                                <f:convertDateTime pattern="MM/dd/yyyy" />
-                            </h:outputText>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListFacturaventaTitle_fechaVencimientoPago}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.fechaVencimientoPago}">
-                                <f:convertDateTime pattern="MM/dd/yyyy" />
-                            </h:outputText>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListFacturaventaTitle_descripcion}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.descripcion}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListFacturaventaTitle_pagoid}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.pagoid}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="&nbsp;"/>
-                            </f:facet>
-                            <h:commandLink action="#{facturaventaController.prepareView}" value="#{bundle.ListFacturaventaViewLink}"/>
-                            <h:outputText value=" "/>
-                            <h:commandLink action="#{facturaventaController.prepareEdit}" value="#{bundle.ListFacturaventaEditLink}"/>
-                            <h:outputText value=" "/>
-                            <h:commandLink action="#{facturaventaController.destroy}" value="#{bundle.ListFacturaventaDestroyLink}"/>
-                        </h:column>
-                    </h:dataTable>
-                </h:panelGroup>
-                <br />
-                <h:commandLink action="#{facturaventaController.prepareCreate}" value="#{bundle.ListFacturaventaCreateLink}"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.ListFacturaventaIndexLink}"/>
-            </h:form>
+            <div class="main">
+                <div class="alert alert-dismissible" style="background-color: white">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <strong>!Mensajes!</strong><br></br> <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </div>
+
+                <div style="background-color: white">
+                    <br></br>
+                    <h1 align="center">Factura de ventas</h1>
+                    <br></br>
+                </div>
+
+                <div class="card">
+                    <div class="card-body">
+
+                        <p align="right">
+                            <button action="#{facturaventaController.prepareCreate()}" type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#modalCreate">
+                                Crear Factura
+                            </button>
+                            <button action="#{facturaventaController.prepareList()}" type="button" class="btn btn-sm btn-dark"><i class="fas fa-redo"></i>
+
+                            </button>
+                        </p>
+                    </div>
+                </div>
+                <br></br>
+                <h:form styleClass="jsfcrud_list_form">
+                    <h:outputText escape="false" value="#{bundle.ListFacturaventaEmpty}" rendered="#{facturaventaController.items.rowCount == 0}"/>
+                    <h:panelGroup rendered="#{facturaventaController.items.rowCount > 0}">
+                        <h:outputText value="#{facturaventaController.pagination.pageFirstItem + 1}..#{facturaventaController.pagination.pageLastItem + 1}/#{facturaventaController.pagination.itemsCount}"/>&nbsp;
+                        <h:commandLink action="#{facturaventaController.previous}" value="#{bundle.Previous} #{facturaventaController.pagination.pageSize}" rendered="#{facturaventaController.pagination.hasPreviousPage}"/>&nbsp;
+                        <h:commandLink action="#{facturaventaController.next}" value="#{bundle.Next} #{facturaventaController.pagination.pageSize}" rendered="#{facturaventaController.pagination.hasNextPage}"/>&nbsp;
+                        <h:dataTable class="table table-sm table-light" value="#{facturaventaController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#"/>
+                                </f:facet>
+                                <h:outputText value="#{item.facturaventaid}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Fecha de Emisión"/>
+                                </f:facet>
+                                <h:outputText value="#{item.fechaEmision}">
+                                    <f:convertDateTime pattern="MM/dd/yyyy" />
+                                </h:outputText>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Fecha Vencimiento de Pago"/>
+                                </f:facet>
+                                <h:outputText value="#{item.fechaVencimientoPago}">
+                                    <f:convertDateTime pattern="MM/dd/yyyy" />
+                                </h:outputText>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Descripción"/>
+                                </f:facet>
+                                <h:outputText value="#{item.descripcion}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Id de Pago"/>
+                                </f:facet>
+                                <h:outputText value="#{item.pagoid}"/>
+                            </h:column>
+                            <h:column>
+                                <h:commandLink class="btn btn-sm btn-outline-info fas fa-eye" action="#{facturaventaController.prepareView}"  />
+                                <h:commandLink class="btn btn-sm btn-outline-success far fa-edit" action="#{facturaventaController.prepareEdit}" />
+                                <h:commandLink class="btn btn-sm btn-outline-danger fas fa-trash-alt" onclick="return ConfirmDelete()" action="#{facturaventaController.destroy}" />
+                            </h:column>
+                        </h:dataTable>
+                    </h:panelGroup>
+                </h:form>
+            </div>
+
+            <!-- The Modal -->
+            <div class="modal fade" id="modalCreate">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+
+                        <!-- Modal Header -->
+                        <div class="modal-header" align="center">
+                            <h4 class="modal-title">Registro de Facturas </h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+
+                        <!-- Modal body -->
+                        <div class="modal-body">
+                            <h:form>
+                                <div align="center" >
+                                    <h:panelGrid columns="2">
+                                        <h:outputLabel value="Fecha de Emisión: " for="fechaEmision" />
+                                        <h:inputText class="form-control" id="fechaEmision" value="#{facturaventaController.selected.fechaEmision}" title="#{bundle.CreateFacturaventaTitle_fechaEmision}" required="true" requiredMessage="#{bundle.CreateFacturaventaRequiredMessage_fechaEmision}">
+                                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                                        </h:inputText>
+                                        <h:outputLabel value="Fecha de vencimiento de pago:" for="fechaVencimientoPago" />
+                                        <h:inputText class="form-control" id="fechaVencimientoPago" value="#{facturaventaController.selected.fechaVencimientoPago}" title="#{bundle.CreateFacturaventaTitle_fechaVencimientoPago}" required="true" requiredMessage="#{bundle.CreateFacturaventaRequiredMessage_fechaVencimientoPago}">
+                                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                                        </h:inputText>
+                                        <h:outputLabel value="Descripción: " for="descripcion" />
+                                        <h:inputText class="form-control" id="descripcion" value="#{facturaventaController.selected.descripcion}" title="#{bundle.CreateFacturaventaTitle_descripcion}" required="true" requiredMessage="#{bundle.CreateFacturaventaRequiredMessage_descripcion}"/>
+                                        <h:outputLabel value="Id de Pago: " for="pagoid" />
+                                        <h:selectOneMenu class="form-control" id="pagoid" value="#{facturaventaController.selected.pagoid}" title="#{bundle.CreateFacturaventaTitle_pagoid}" required="true" requiredMessage="#{bundle.CreateFacturaventaRequiredMessage_pagoid}">
+                                            <f:selectItems value="#{pagoventaController.itemsAvailableSelectOne}"/>
+                                        </h:selectOneMenu>
+                                    </h:panelGrid>
+                                    <br></br>
+                                    <h:commandLink class="btn btn-sm btn-success" value="Guardar" action="#{facturaventaController.create()}" />
+                                    <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal">Cancelar</button>
+                                    <br></br>
+                                    <br></br>
+                                    <!-- Modal footer -->
+                                    <div class="modal-footer">
+                                        <h:commandLink action="#{facturaventaController.prepareList}" value="Ver Lista de Facturas" immediate="true"/>
+                                    </div>
+                                </div>
+                            </h:form>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </ui:define>
     </ui:composition>
 
