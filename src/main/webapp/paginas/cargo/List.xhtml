@@ -10,52 +10,107 @@
             <h:outputText value="#{bundle.ListCargoTitle}"></h:outputText>
         </ui:define>
         <ui:define name="body">
-            <h:form styleClass="jsfcrud_list_form">
-                <h:panelGroup id="messagePanel" layout="block">
-                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
-                </h:panelGroup>
-                <h:outputText escape="false" value="#{bundle.ListCargoEmpty}" rendered="#{cargoController.items.rowCount == 0}"/>
-                <h:panelGroup rendered="#{cargoController.items.rowCount > 0}">
-                    <h:outputText value="#{cargoController.pagination.pageFirstItem + 1}..#{cargoController.pagination.pageLastItem + 1}/#{cargoController.pagination.itemsCount}"/>&nbsp;
-                    <h:commandLink action="#{cargoController.previous}" value="#{bundle.Previous} #{cargoController.pagination.pageSize}" rendered="#{cargoController.pagination.hasPreviousPage}"/>&nbsp;
-                    <h:commandLink action="#{cargoController.next}" value="#{bundle.Next} #{cargoController.pagination.pageSize}" rendered="#{cargoController.pagination.hasNextPage}"/>&nbsp;
-                    <h:dataTable value="#{cargoController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListCargoTitle_cargoid}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.cargoid}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListCargoTitle_nombreCargo}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.nombreCargo}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListCargoTitle_salarioMensual}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.salarioMensual}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="&nbsp;"/>
-                            </f:facet>
-                            <h:commandLink action="#{cargoController.prepareView}" value="#{bundle.ListCargoViewLink}"/>
-                            <h:outputText value=" "/>
-                            <h:commandLink action="#{cargoController.prepareEdit}" value="#{bundle.ListCargoEditLink}"/>
-                            <h:outputText value=" "/>
-                            <h:commandLink action="#{cargoController.destroy}" value="#{bundle.ListCargoDestroyLink}"/>
-                        </h:column>
-                    </h:dataTable>
-                </h:panelGroup>
-                <br />
-                <h:commandLink action="#{cargoController.prepareCreate}" value="#{bundle.ListCargoCreateLink}"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.ListCargoIndexLink}"/>
-            </h:form>
+            <div class="main">
+                <div class="alert alert-dismissible" style="background-color: white">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <strong>!Mensajes!</strong><br></br> <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </div>
+
+                <div style="background-color: white">
+                    <br></br>
+                    <h1 align="center">Cargo</h1>
+                    <br></br>
+                </div>
+
+                <div class="card">
+                    <div class="card-body">
+
+                        <p align="right">
+                            <button action="#{cargoController.prepareCreate()}" type="button" class="btn btn-sm btn-info" data-toggle="modal" data-target="#modalCreate">
+                                Crear
+                            </button>
+                            <button action="#{cargoController.prepareList()}" type="button" class="btn btn-sm btn-dark"><i class="fas fa-redo"></i>
+
+                            </button>
+                        </p>
+                    </div>
+                </div>
+                <br></br>
+                <h:form styleClass="jsfcrud_list_form">
+                    <h:outputText escape="false" value="#{bundle.ListCargoEmpty}" rendered="#{cargoController.items.rowCount == 0}"/>
+                    <h:panelGroup rendered="#{cargoController.items.rowCount > 0}">
+                        <h:outputText value="#{cargoController.pagination.pageFirstItem + 1}..#{cargoController.pagination.pageLastItem + 1}/#{cargoController.pagination.itemsCount}"/>&nbsp;
+                        <h:commandLink action="#{cargoController.previous}" value="#{bundle.Previous} #{cargoController.pagination.pageSize}" rendered="#{cargoController.pagination.hasPreviousPage}"/>&nbsp;
+                        <h:commandLink action="#{cargoController.next}" value="#{bundle.Next} #{cargoController.pagination.pageSize}" rendered="#{cargoController.pagination.hasNextPage}"/>&nbsp;
+                        <h:dataTable class="table table-sm table-light" value="#{cargoController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#"/>
+                                </f:facet>
+                                <h:outputText value="#{item.cargoid}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Cargo"/>
+                                </f:facet>
+                                <h:outputText value="#{item.nombreCargo}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Salario Mensual"/>
+                                </f:facet>
+                                <h:outputText value="#{item.salarioMensual}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Acciones"/>
+                                </f:facet>
+                                <h:commandLink class="btn btn-sm btn-outline-info fas fa-eye" action="#{cargoController.prepareView}"  />
+                                <h:commandLink class="btn btn-sm btn-outline-success far fa-edit" action="#{cargoController.prepareEdit}" />
+                                <h:commandLink class="btn btn-sm btn-outline-danger fas fa-trash-alt" onclick="return ConfirmDelete()" action="#{cargoController.destroy}" />
+                            </h:column>
+                        </h:dataTable>
+                    </h:panelGroup>
+                </h:form>
+            </div>
+
+
+            <!-- The Modal -->
+            <div class="modal fade" id="modalCreate">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+
+                        <!-- Modal Header -->
+                        <div class="modal-header" align="center">
+                            <h4 class="modal-title">Registro de Cargo </h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+
+                        <!-- Modal body -->
+                        <div class="modal-body">
+                            <h:form>
+                                <div align="center" >
+                                    <h:panelGrid columns="2">
+                                        <h:outputLabel value="Nombre del cargo: " for="nombreCargo" />
+                                        <h:inputText class="form-control" id="nombreCargo" value="#{cargoController.selected.nombreCargo}" title="#{bundle.CreateCargoTitle_nombreCargo}" required="true" requiredMessage="#{bundle.CreateCargoRequiredMessage_nombreCargo}"/>
+                                        <h:outputLabel value="Salario mensual: " for="salarioMensual" />
+                                        <h:inputText class="form-control" id="salarioMensual" value="#{cargoController.selected.salarioMensual}" title="#{bundle.CreateCargoTitle_salarioMensual}" required="true" requiredMessage="#{bundle.CreateCargoRequiredMessage_salarioMensual}"/>
+                                    </h:panelGrid>
+                                    <br></br>
+                                    <h:commandLink class="btn btn-sm btn-success" value="Guardar" action="#{cargoController.create()}" />
+                                    <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal">Cancelar</button>
+                                    <br></br>
+                                    <br></br>
+                                    <!-- Modal footer -->
+                                    <div class="modal-footer">
+                                        <h:commandLink action="#{cargoController.prepareList}" value="Ver Lista" immediate="true"/>
+                                    </div>
+                                </div>
+                            </h:form>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </ui:define>
     </ui:composition>
 

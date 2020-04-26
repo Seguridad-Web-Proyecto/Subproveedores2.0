@@ -10,28 +10,35 @@
             <h:outputText value="#{bundle.EditCargoTitle}"></h:outputText>
         </ui:define>
         <ui:define name="body">
-            <h:panelGroup id="messagePanel" layout="block">
-                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
-            </h:panelGroup>
-            <h:form>
-                <h:panelGrid columns="2">
-                    <h:outputLabel value="#{bundle.EditCargoLabel_cargoid}" for="cargoid" />
-                    <h:inputText id="cargoid" value="#{cargoController.selected.cargoid}" title="#{bundle.EditCargoTitle_cargoid}" required="true" requiredMessage="#{bundle.EditCargoRequiredMessage_cargoid}"/>
-                    <h:outputLabel value="#{bundle.EditCargoLabel_nombreCargo}" for="nombreCargo" />
-                    <h:inputText id="nombreCargo" value="#{cargoController.selected.nombreCargo}" title="#{bundle.EditCargoTitle_nombreCargo}" required="true" requiredMessage="#{bundle.EditCargoRequiredMessage_nombreCargo}"/>
-                    <h:outputLabel value="#{bundle.EditCargoLabel_salarioMensual}" for="salarioMensual" />
-                    <h:inputText id="salarioMensual" value="#{cargoController.selected.salarioMensual}" title="#{bundle.EditCargoTitle_salarioMensual}" required="true" requiredMessage="#{bundle.EditCargoRequiredMessage_salarioMensual}"/>
-                </h:panelGrid>
-                <h:commandLink action="#{cargoController.update}" value="#{bundle.EditCargoSaveLink}"/>
-                <br />
-                <br />
-                <h:link outcome="View" value="#{bundle.EditCargoViewLink}"/>
-                <br />
-                <h:commandLink action="#{cargoController.prepareList}" value="#{bundle.EditCargoShowAllLink}" immediate="true"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.EditCargoIndexLink}" />
-            </h:form>
+            <div class="main">
+                <div class="alert alert-dismissible" style="background-color: white">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <strong>!Mensajes!</strong><br></br> <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </div>
+                <div style="background-color: white">
+                    <br></br>
+                    <h4 align="center">Editar Información</h4>
+                    <br></br>
+                </div>
+                <br></br>
+                <div style="background-color: white" align="center">
+                    <br></br>
+                    <h:form>
+                        <h:panelGrid columns="2">
+                            <h:outputLabel value="Nombre del Cargo: " for="nombreCargo" />
+                            <h:inputText class="form-control" id="nombreCargo" value="#{cargoController.selected.nombreCargo}" title="#{bundle.EditCargoTitle_nombreCargo}" required="true" requiredMessage="#{bundle.EditCargoRequiredMessage_nombreCargo}"/>
+                            <h:outputLabel value="Salario Mensual: " />
+                            <h:inputText class="form-control" id="salarioMensual" value="#{cargoController.selected.salarioMensual}" title="#{bundle.EditCargoTitle_salarioMensual}" required="true" requiredMessage="#{bundle.EditCargoRequiredMessage_salarioMensual}"/>
+                        </h:panelGrid>
+                        <br />
+                        <h:commandLink class="btn btn-sm btn-info" action="#{cargoController.update}" value="Aceptar"/>
+                        &nbsp; 
+                        <h:commandLink class="btn btn-sm btn-danger" action="#{cargoController.prepareList()}" value="Cancelar"/>
+                        <br />
+                        <br />
+                    </h:form>
+                </div>
+            </div>
         </ui:define>
     </ui:composition>
 

@@ -10,32 +10,34 @@
             <h:outputText value="#{bundle.ViewCargoTitle}"></h:outputText>
         </ui:define>
         <ui:define name="body">
-            <h:panelGroup id="messagePanel" layout="block">
-                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
-            </h:panelGroup>
-            <h:form>
-                <h:panelGrid columns="2">
-                    <h:outputText value="#{bundle.ViewCargoLabel_cargoid}"/>
-                    <h:outputText value="#{cargoController.selected.cargoid}" title="#{bundle.ViewCargoTitle_cargoid}"/>
-                    <h:outputText value="#{bundle.ViewCargoLabel_nombreCargo}"/>
-                    <h:outputText value="#{cargoController.selected.nombreCargo}" title="#{bundle.ViewCargoTitle_nombreCargo}"/>
-                    <h:outputText value="#{bundle.ViewCargoLabel_salarioMensual}"/>
-                    <h:outputText value="#{cargoController.selected.salarioMensual}" title="#{bundle.ViewCargoTitle_salarioMensual}"/>
-                </h:panelGrid>
-                <br />
-                <h:commandLink action="#{cargoController.destroyAndView}" value="#{bundle.ViewCargoDestroyLink}"/>
-                <br />
-                <br />
-                <h:link outcome="Edit" value="#{bundle.ViewCargoEditLink}"/>
-                <br />
-                <h:commandLink action="#{cargoController.prepareCreate}" value="#{bundle.ViewCargoCreateLink}" />
-                <br />
-                <h:commandLink action="#{cargoController.prepareList}" value="#{bundle.ViewCargoShowAllLink}"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.ViewCargoIndexLink}"/>
-
-            </h:form>
+            <div class="main">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <div style="background-color: white">
+                    <br></br>
+                    <h4 align="center">Información</h4>
+                    <br></br>
+                </div>
+                <br></br>
+                <div style="background-color: white" align="center">
+                    <br></br>
+                    <h:form>
+                        <h:panelGrid columns="2">
+                            <h:outputText value="Id del cargo: "/>
+                            <h:outputText class="form-control" value="#{cargoController.selected.cargoid}" title="#{bundle.ViewCargoTitle_cargoid}"/>
+                            <h:outputText value="Nombre del cargo: "/>
+                            <h:outputText class="form-control" value="#{cargoController.selected.nombreCargo}" title="#{bundle.ViewCargoTitle_nombreCargo}"/>
+                            <h:outputText value="Salario mensual: "/>
+                            <h:outputText class="form-control" value="#{cargoController.selected.salarioMensual}" title="#{bundle.ViewCargoTitle_salarioMensual}"/>
+                        </h:panelGrid>
+                        <br></br>
+                        <h:commandLink class="btn btn-sm btn-info" action="#{cargoController.prepareList}" value="Aceptar"/>
+                        <br></br>
+                        <br></br>
+                    </h:form>
+                </div>
+            </div>
         </ui:define>
     </ui:composition>
 
