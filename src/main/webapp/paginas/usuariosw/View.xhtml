@@ -10,38 +10,41 @@
             <h:outputText value="#{bundle.ViewUsuarioswTitle}"></h:outputText>
         </ui:define>
         <ui:define name="body">
-            <h:panelGroup id="messagePanel" layout="block">
-                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
-            </h:panelGroup>
+            <div class="main">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <div style="background-color: white">
+                    <br></br>
+                    <h4 align="center">Información</h4>
+                    <br></br>
+                </div>
+                <br></br>
+                <div style="background-color: white" align="center">
+                    <br></br>
             <h:form>
                 <h:panelGrid columns="2">
-                    <h:outputText value="#{bundle.ViewUsuarioswLabel_usuarioid}"/>
-                    <h:outputText value="#{usuarioswController.selected.usuarioid}" title="#{bundle.ViewUsuarioswTitle_usuarioid}"/>
-                    <h:outputText value="#{bundle.ViewUsuarioswLabel_usuario}"/>
-                    <h:outputText value="#{usuarioswController.selected.usuario}" title="#{bundle.ViewUsuarioswTitle_usuario}"/>
-                    <h:outputText value="#{bundle.ViewUsuarioswLabel_contrasenia}"/>
-                    <h:outputText value="#{usuarioswController.selected.contrasenia}" title="#{bundle.ViewUsuarioswTitle_contrasenia}"/>
-                    <h:outputText value="#{bundle.ViewUsuarioswLabel_activo}"/>
-                    <h:outputText value="#{usuarioswController.selected.activo}" title="#{bundle.ViewUsuarioswTitle_activo}"/>
-                    <h:outputText value="#{bundle.ViewUsuarioswLabel_empresa}"/>
-                    <h:outputText value="#{usuarioswController.selected.empresa}" title="#{bundle.ViewUsuarioswTitle_empresa}"/>
-                    <h:outputText value="#{bundle.ViewUsuarioswLabel_rfc}"/>
-                    <h:outputText value="#{usuarioswController.selected.rfc}" title="#{bundle.ViewUsuarioswTitle_rfc}"/>
+                    <h:outputText value="Id: "/>
+                    <h:outputText class="form-control" value="#{usuarioswController.selected.usuarioid}" title="#{bundle.ViewUsuarioswTitle_usuarioid}"/>
+                    <h:outputText value="Usuario: "/>
+                    <h:outputText class="form-control" value="#{usuarioswController.selected.usuario}" title="#{bundle.ViewUsuarioswTitle_usuario}"/>
+                    <h:outputText value="Contraseña: "/>
+                    <h:outputText class="form-control" value="#{usuarioswController.selected.contrasenia}" title="#{bundle.ViewUsuarioswTitle_contrasenia}"/>
+                    <h:outputText value="Activo: "/>
+                    <h:outputText class="form-control" value="#{usuarioswController.selected.activo}" title="#{bundle.ViewUsuarioswTitle_activo}"/>
+                    <h:outputText value="Empresa: "/>
+                    <h:outputText class="form-control" value="#{usuarioswController.selected.empresa}" title="#{bundle.ViewUsuarioswTitle_empresa}"/>
+                    <h:outputText value="Rfc: "/>
+                    <h:outputText class="form-control" value="#{usuarioswController.selected.rfc}" title="#{bundle.ViewUsuarioswTitle_rfc}"/>
                 </h:panelGrid>
-                <br />
-                <h:commandLink action="#{usuarioswController.destroyAndView}" value="#{bundle.ViewUsuarioswDestroyLink}"/>
-                <br />
-                <br />
-                <h:link outcome="Edit" value="#{bundle.ViewUsuarioswEditLink}"/>
-                <br />
-                <h:commandLink action="#{usuarioswController.prepareCreate}" value="#{bundle.ViewUsuarioswCreateLink}" />
-                <br />
-                <h:commandLink action="#{usuarioswController.prepareList}" value="#{bundle.ViewUsuarioswShowAllLink}"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.ViewUsuarioswIndexLink}"/>
+                <br></br>
+                        <h:commandLink class="btn btn-sm btn-info" action="#{usuarioswController.prepareList}" value="Aceptar"/>
+                        <br></br>
+                        <br></br>
 
             </h:form>
+                </div>
+                </div>
         </ui:define>
     </ui:composition>
 

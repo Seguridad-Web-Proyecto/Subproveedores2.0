@@ -10,16 +10,39 @@
             <h:outputText value="#{bundle.ListUsuarioswTitle}"></h:outputText>
         </ui:define>
         <ui:define name="body">
+            <div class="main">
+                <div class="alert alert-dismissible" style="background-color: white">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <strong>!Mensajes!</strong><br></br> <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </div>
+
+                <div style="background-color: white">
+                    <br></br>
+                    <h1 align="center">Usuarios Web Services</h1>
+                    <br></br>
+                </div>
+
+                <div class="card">
+                    <div class="card-body">
+
+                        <p align="right">
+                            <button action="#{usuarioswController.prepareCreate()}" type="button" class="btn btn-sm btn-info" data-toggle="modal" data-target="#modalCreate">
+                                Crear
+                            </button>
+                            <button action="#{usuarioswController.prepareList()}" type="button" class="btn btn-sm btn-dark"><i class="fas fa-redo"></i>
+
+                            </button>
+                        </p>
+                    </div>
+                </div>
+                <br></br>
             <h:form styleClass="jsfcrud_list_form">
-                <h:panelGroup id="messagePanel" layout="block">
-                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
-                </h:panelGroup>
                 <h:outputText escape="false" value="#{bundle.ListUsuarioswEmpty}" rendered="#{usuarioswController.items.rowCount == 0}"/>
                 <h:panelGroup rendered="#{usuarioswController.items.rowCount > 0}">
                     <h:outputText value="#{usuarioswController.pagination.pageFirstItem + 1}..#{usuarioswController.pagination.pageLastItem + 1}/#{usuarioswController.pagination.itemsCount}"/>&nbsp;
                     <h:commandLink action="#{usuarioswController.previous}" value="#{bundle.Previous} #{usuarioswController.pagination.pageSize}" rendered="#{usuarioswController.pagination.hasPreviousPage}"/>&nbsp;
                     <h:commandLink action="#{usuarioswController.next}" value="#{bundle.Next} #{usuarioswController.pagination.pageSize}" rendered="#{usuarioswController.pagination.hasNextPage}"/>&nbsp;
-                    <h:dataTable value="#{usuarioswController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                    <h:dataTable class="table table-sm table-light" value="#{usuarioswController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
                         <h:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListUsuarioswTitle_usuarioid}"/>
@@ -60,20 +83,58 @@
                             <f:facet name="header">
                                 <h:outputText value="&nbsp;"/>
                             </f:facet>
-                            <h:commandLink action="#{usuarioswController.prepareView}" value="#{bundle.ListUsuarioswViewLink}"/>
-                            <h:outputText value=" "/>
-                            <h:commandLink action="#{usuarioswController.prepareEdit}" value="#{bundle.ListUsuarioswEditLink}"/>
-                            <h:outputText value=" "/>
-                            <h:commandLink action="#{usuarioswController.destroy}" value="#{bundle.ListUsuarioswDestroyLink}"/>
+                            <h:commandLink class="btn btn-sm btn-outline-info fas fa-eye" action="#{usuarioswController.prepareView}"/>
+                            <h:commandLink class="btn btn-sm btn-outline-success far fa-edit" action="#{usuarioswController.prepareEdit}"/>
+                            <h:commandLink class="btn btn-sm btn-outline-danger fas fa-trash-alt" onclick="return ConfirmDelete()" action="#{usuarioswController.destroy}"/>
                         </h:column>
                     </h:dataTable>
                 </h:panelGroup>
-                <br />
-                <h:commandLink action="#{usuarioswController.prepareCreate}" value="#{bundle.ListUsuarioswCreateLink}"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.ListUsuarioswIndexLink}"/>
             </h:form>
+            </div>
+            
+            
+            <!-- The Modal -->
+            <div class="modal fade" id="modalCreate">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+
+                        <!-- Modal Header -->
+                        <div class="modal-header" align="center">
+                            <h4 class="modal-title">Registro de Cargo </h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+
+                        <!-- Modal body -->
+                        <div class="modal-body">
+                            <h:form>
+                                <div align="center" >
+                                    <h:panelGrid columns="2">
+                                        <h:outputLabel value="Usuario:" for="usuario" />
+                                        <h:inputText class="form-control" id="usuario" value="#{usuarioswController.selected.usuario}" title="#{bundle.CreateUsuarioswTitle_usuario}" required="true" requiredMessage="#{bundle.CreateUsuarioswRequiredMessage_usuario}"/>
+                                        <h:outputLabel value="Contraseña: " for="contrasenia" />
+                                        <h:inputText class="form-control" id="contrasenia" value="#{usuarioswController.selected.contrasenia}" title="#{bundle.CreateUsuarioswTitle_contrasenia}" required="true" requiredMessage="#{bundle.CreateUsuarioswRequiredMessage_contrasenia}"/>
+                                        <h:outputLabel value="Activo: " for="activo" />
+                                        <h:inputText class="form-control" id="activo" value="#{usuarioswController.selected.activo}" title="#{bundle.CreateUsuarioswTitle_activo}" required="true" requiredMessage="#{bundle.CreateUsuarioswRequiredMessage_activo}"/>
+                                        <h:outputLabel value="Empresa: " for="empresa" />
+                                        <h:inputText class="form-control" id="empresa" value="#{usuarioswController.selected.empresa}" title="#{bundle.CreateUsuarioswTitle_empresa}" required="true" requiredMessage="#{bundle.CreateUsuarioswRequiredMessage_empresa}"/>
+                                        <h:outputLabel value="Rfc: " for="rfc" />
+                                        <h:inputText class="form-control" id="rfc" value="#{usuarioswController.selected.rfc}" title="#{bundle.CreateUsuarioswTitle_rfc}" required="true" requiredMessage="#{bundle.CreateUsuarioswRequiredMessage_rfc}"/>
+                                    </h:panelGrid>
+                                    <br></br>
+                                    <h:commandLink class="btn btn-sm btn-success" value="Guardar" action="#{usuarioswController.create}" />
+                                    <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal">Cancelar</button>
+                                    <br></br>
+                                    <br></br>
+                                    <!-- Modal footer -->
+                                    <div class="modal-footer">
+                                        <h:commandLink action="#{usuarioswController.prepareList}" value="Ver Lista" immediate="true"/>
+                                    </div>
+                                </div>
+                            </h:form>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </ui:define>
     </ui:composition>
 
