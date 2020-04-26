@@ -10,46 +10,48 @@
             <h:outputText value="#{bundle.ViewProveedorTitle}"></h:outputText>
         </ui:define>
         <ui:define name="body">
-            <h:panelGroup id="messagePanel" layout="block">
-                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
-            </h:panelGroup>
-            <h:form>
-                <h:panelGrid columns="2">
-                    <h:outputText value="#{bundle.ViewProveedorLabel_proveedorid}"/>
-                    <h:outputText value="#{proveedorController.selected.proveedorid}" title="#{bundle.ViewProveedorTitle_proveedorid}"/>
-                    <h:outputText value="#{bundle.ViewProveedorLabel_empresa}"/>
-                    <h:outputText value="#{proveedorController.selected.empresa}" title="#{bundle.ViewProveedorTitle_empresa}"/>
-                    <h:outputText value="#{bundle.ViewProveedorLabel_nombreContacto}"/>
-                    <h:outputText value="#{proveedorController.selected.nombreContacto}" title="#{bundle.ViewProveedorTitle_nombreContacto}"/>
-                    <h:outputText value="#{bundle.ViewProveedorLabel_area}"/>
-                    <h:outputText value="#{proveedorController.selected.area}" title="#{bundle.ViewProveedorTitle_area}"/>
-                    <h:outputText value="#{bundle.ViewProveedorLabel_telefono}"/>
-                    <h:outputText value="#{proveedorController.selected.telefono}" title="#{bundle.ViewProveedorTitle_telefono}"/>
-                    <h:outputText value="#{bundle.ViewProveedorLabel_rfc}"/>
-                    <h:outputText value="#{proveedorController.selected.rfc}" title="#{bundle.ViewProveedorTitle_rfc}"/>
-                    <h:outputText value="#{bundle.ViewProveedorLabel_email}"/>
-                    <h:outputText value="#{proveedorController.selected.email}" title="#{bundle.ViewProveedorTitle_email}"/>
-                    <h:outputText value="#{bundle.ViewProveedorLabel_activo}"/>
-                    <h:outputText value="#{proveedorController.selected.activo}" title="#{bundle.ViewProveedorTitle_activo}"/>
-                    <h:outputText value="#{bundle.ViewProveedorLabel_paginaWeb}"/>
-                    <h:outputText value="#{proveedorController.selected.paginaWeb}" title="#{bundle.ViewProveedorTitle_paginaWeb}"/>
-                    <h:outputText value="#{bundle.ViewProveedorLabel_domicilioFiscal}"/>
-                    <h:outputText value="#{proveedorController.selected.domicilioFiscal}" title="#{bundle.ViewProveedorTitle_domicilioFiscal}"/>
-                </h:panelGrid>
-                <br />
-                <h:commandLink action="#{proveedorController.destroyAndView}" value="#{bundle.ViewProveedorDestroyLink}"/>
-                <br />
-                <br />
-                <h:link outcome="Edit" value="#{bundle.ViewProveedorEditLink}"/>
-                <br />
-                <h:commandLink action="#{proveedorController.prepareCreate}" value="#{bundle.ViewProveedorCreateLink}" />
-                <br />
-                <h:commandLink action="#{proveedorController.prepareList}" value="#{bundle.ViewProveedorShowAllLink}"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.ViewProveedorIndexLink}"/>
-
-            </h:form>
+            <div class="main">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <div style="background-color: white">
+                    <br></br>
+                    <h4 align="center">Información</h4>
+                    <br></br>
+                </div>
+                <br></br>
+                <div style="background-color: white" align="center">
+                    <br></br>
+                    <h:form>
+                        <h:panelGrid columns="2">
+                            <h:outputText value="Id de Proveedor: "/>
+                            <h:outputText class="form-control" value="#{proveedorController.selected.proveedorid}" title="#{bundle.ViewProveedorTitle_proveedorid}"/>
+                            <h:outputText value="#{bundle.ViewProveedorLabel_empresa}"/>
+                            <h:outputText class="form-control" value="#{proveedorController.selected.empresa}" title="#{bundle.ViewProveedorTitle_empresa}"/>
+                            <h:outputText value="Nombre de Contacto: "/>
+                            <h:outputText class="form-control" value="#{proveedorController.selected.nombreContacto}" title="#{bundle.ViewProveedorTitle_nombreContacto}"/>
+                            <h:outputText value="#{bundle.ViewProveedorLabel_area}"/>
+                            <h:outputText class="form-control" value="#{proveedorController.selected.area}" title="#{bundle.ViewProveedorTitle_area}"/>
+                            <h:outputText value="#{bundle.ViewProveedorLabel_telefono}"/>
+                            <h:outputText class="form-control" value="#{proveedorController.selected.telefono}" title="#{bundle.ViewProveedorTitle_telefono}"/>
+                            <h:outputText value="RFC: "/>
+                            <h:outputText class="form-control" value="#{proveedorController.selected.rfc}" title="#{bundle.ViewProveedorTitle_rfc}"/>
+                            <h:outputText value="Correo: "/>
+                            <h:outputText class="form-control" value="#{proveedorController.selected.email}" title="#{bundle.ViewProveedorTitle_email}"/>
+                            <h:outputText value="Status: "/>
+                            <h:outputText class="form-control" value="#{proveedorController.selected.activo}" title="#{bundle.ViewProveedorTitle_activo}"/>
+                            <h:outputText value="Pagina Web: "/>
+                            <h:outputText class="form-control" value="#{proveedorController.selected.paginaWeb}" title="#{bundle.ViewProveedorTitle_paginaWeb}"/>
+                            <h:outputText value="Domicilio Fiscal"/>
+                            <h:outputText class="form-control" value="#{proveedorController.selected.domicilioFiscal}" title="#{bundle.ViewProveedorTitle_domicilioFiscal}"/>
+                        </h:panelGrid>
+                        <br></br>
+                        <h:commandLink class="btn btn-sm btn-info" action="#{proveedorController.prepareList}" value="Aceptar"/>
+                        <br></br>
+                        <br></br>
+                    </h:form>
+                </div>
+            </div>
         </ui:define>
     </ui:composition>
 

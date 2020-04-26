@@ -10,94 +10,144 @@
             <h:outputText value="#{bundle.ListProveedorTitle}"></h:outputText>
         </ui:define>
         <ui:define name="body">
-            <h:form styleClass="jsfcrud_list_form">
-                <h:panelGroup id="messagePanel" layout="block">
-                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
-                </h:panelGroup>
-                <h:outputText escape="false" value="#{bundle.ListProveedorEmpty}" rendered="#{proveedorController.items.rowCount == 0}"/>
-                <h:panelGroup rendered="#{proveedorController.items.rowCount > 0}">
-                    <h:outputText value="#{proveedorController.pagination.pageFirstItem + 1}..#{proveedorController.pagination.pageLastItem + 1}/#{proveedorController.pagination.itemsCount}"/>&nbsp;
-                    <h:commandLink action="#{proveedorController.previous}" value="#{bundle.Previous} #{proveedorController.pagination.pageSize}" rendered="#{proveedorController.pagination.hasPreviousPage}"/>&nbsp;
-                    <h:commandLink action="#{proveedorController.next}" value="#{bundle.Next} #{proveedorController.pagination.pageSize}" rendered="#{proveedorController.pagination.hasNextPage}"/>&nbsp;
-                    <h:dataTable value="#{proveedorController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListProveedorTitle_proveedorid}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.proveedorid}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListProveedorTitle_empresa}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.empresa}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListProveedorTitle_nombreContacto}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.nombreContacto}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListProveedorTitle_area}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.area}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListProveedorTitle_telefono}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.telefono}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListProveedorTitle_rfc}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.rfc}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListProveedorTitle_email}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.email}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListProveedorTitle_activo}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.activo}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListProveedorTitle_paginaWeb}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.paginaWeb}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListProveedorTitle_domicilioFiscal}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.domicilioFiscal}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="&nbsp;"/>
-                            </f:facet>
-                            <h:commandLink action="#{proveedorController.prepareView}" value="#{bundle.ListProveedorViewLink}"/>
-                            <h:outputText value=" "/>
-                            <h:commandLink action="#{proveedorController.prepareEdit}" value="#{bundle.ListProveedorEditLink}"/>
-                            <h:outputText value=" "/>
-                            <h:commandLink action="#{proveedorController.destroy}" value="#{bundle.ListProveedorDestroyLink}"/>
-                        </h:column>
-                    </h:dataTable>
-                </h:panelGroup>
-                <br />
-                <h:commandLink action="#{proveedorController.prepareCreate}" value="#{bundle.ListProveedorCreateLink}"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.ListProveedorIndexLink}"/>
-            </h:form>
+            <div class="main">
+                <div class="alert alert-dismissible" style="background-color: white">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <strong>!Mensajes!</strong><br></br> <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </div>
+
+                <div style="background-color: white">
+                    <br></br>
+                    <h1 align="center">Proveedores</h1>
+                    <br></br>
+                </div>
+
+                <div class="card">
+                    <div class="card-body">
+
+                        <p align="right">
+                            <button action="#{proveedorController.prepareCreate()}" type="button" class="btn btn-sm btn-info" data-toggle="modal" data-target="#modalCreate">
+                                Crear
+                            </button>
+                            <button action="#{proveedorController.prepareList()}" type="button" class="btn btn-sm btn-dark"><i class="fas fa-redo"></i>
+
+                            </button>
+                        </p>
+                    </div>
+                </div>
+                <br></br>
+                <h:form styleClass="jsfcrud_list_form">
+                    <h:outputText escape="false" value="#{bundle.ListProveedorEmpty}" rendered="#{proveedorController.items.rowCount == 0}"/>
+                    <h:panelGroup rendered="#{proveedorController.items.rowCount > 0}">
+                        <h:outputText value="#{proveedorController.pagination.pageFirstItem + 1}..#{proveedorController.pagination.pageLastItem + 1}/#{proveedorController.pagination.itemsCount}"/>&nbsp;
+                        <h:commandLink action="#{proveedorController.previous}" value="#{bundle.Previous} #{proveedorController.pagination.pageSize}" rendered="#{proveedorController.pagination.hasPreviousPage}"/>&nbsp;
+                        <h:commandLink action="#{proveedorController.next}" value="#{bundle.Next} #{proveedorController.pagination.pageSize}" rendered="#{proveedorController.pagination.hasNextPage}"/>&nbsp;
+                        <h:dataTable class="table table-sm table-light" value="#{proveedorController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#"/>
+                                </f:facet>
+                                <h:outputText value="#{item.proveedorid}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Empresa"/>
+                                </f:facet>
+                                <h:outputText value="#{item.empresa}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Nombre de Contacto"/>
+                                </f:facet>
+                                <h:outputText value="#{item.nombreContacto}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Area"/>
+                                </f:facet>
+                                <h:outputText value="#{item.area}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Telefono"/>
+                                </f:facet>
+                                <h:outputText value="#{item.telefono}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="RFC"/>
+                                </f:facet>
+                                <h:outputText value="#{item.rfc}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Correo"/>
+                                </f:facet>
+                                <h:outputText value="#{item.email}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Acciones"/>
+                                </f:facet>
+                                <h:commandLink class="btn btn-sm btn-outline-info fas fa-eye" action="#{proveedorController.prepareView}"  />
+                                <h:commandLink class="btn btn-sm btn-outline-success far fa-edit" action="#{proveedorController.prepareEdit}" />
+                                <h:commandLink class="btn btn-sm btn-outline-danger fas fa-trash-alt" onclick="return ConfirmDelete()" action="#{proveedorController.destroy}" />
+                            </h:column>
+                        </h:dataTable>
+                    </h:panelGroup>
+                </h:form>
+            </div>
+
+            <!-- The Modal -->
+            <div class="modal fade" id="modalCreate">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+
+                        <!-- Modal Header -->
+                        <div class="modal-header" align="center">
+                            <h4 class="modal-title">Registro de Proveedores </h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+
+                        <!-- Modal body -->
+                        <div class="modal-body">
+                            <h:form>
+                                <div align="center" >
+                                    <h:panelGrid columns="2">
+                                        <h:outputLabel value="#{bundle.CreateProveedorLabel_empresa}" for="empresa" />
+                                        <h:inputText class="form-control" id="empresa" value="#{proveedorController.selected.empresa}" title="#{bundle.CreateProveedorTitle_empresa}" required="true" requiredMessage="#{bundle.CreateProveedorRequiredMessage_empresa}"/>
+                                        <h:outputLabel value="Nombre de Contacto: " for="nombreContacto" />
+                                        <h:inputText class="form-control" id="nombreContacto" value="#{proveedorController.selected.nombreContacto}" title="#{bundle.CreateProveedorTitle_nombreContacto}" required="true" requiredMessage="#{bundle.CreateProveedorRequiredMessage_nombreContacto}"/>
+                                        <h:outputLabel value="#{bundle.CreateProveedorLabel_area}" for="area" />
+                                        <h:inputText class="form-control" id="area" value="#{proveedorController.selected.area}" title="#{bundle.CreateProveedorTitle_area}" required="true" requiredMessage="#{bundle.CreateProveedorRequiredMessage_area}"/>
+                                        <h:outputLabel value="#{bundle.CreateProveedorLabel_telefono}" for="telefono" />
+                                        <h:inputText class="form-control" id="telefono" value="#{proveedorController.selected.telefono}" title="#{bundle.CreateProveedorTitle_telefono}" required="true" requiredMessage="#{bundle.CreateProveedorRequiredMessage_telefono}"/>
+                                        <h:outputLabel value="RFC: " for="rfc" />
+                                        <h:inputText class="form-control" id="rfc" value="#{proveedorController.selected.rfc}" title="#{bundle.CreateProveedorTitle_rfc}" required="true" requiredMessage="#{bundle.CreateProveedorRequiredMessage_rfc}"/>
+                                        <h:outputLabel value="#{bundle.CreateProveedorLabel_email}" for="email" />
+                                        <h:inputText class="form-control" id="email" value="#{proveedorController.selected.email}" title="#{bundle.CreateProveedorTitle_email}" required="true" requiredMessage="#{bundle.CreateProveedorRequiredMessage_email}"/>
+                                        <h:outputLabel value="Status: " for="activo" />
+                                        <h:inputText class="form-control" id="activo" value="#{proveedorController.selected.activo}" title="#{bundle.CreateProveedorTitle_activo}" required="true" requiredMessage="#{bundle.CreateProveedorRequiredMessage_activo}"/>
+                                        <h:outputLabel value="Pagina Web: " for="paginaWeb" />
+                                        <h:inputText class="form-control" id="paginaWeb" value="#{proveedorController.selected.paginaWeb}" title="#{bundle.CreateProveedorTitle_paginaWeb}" required="true" requiredMessage="#{bundle.CreateProveedorRequiredMessage_paginaWeb}"/>
+                                        <h:outputLabel value="Domicilio Fiscal: " for="domicilioFiscal" />
+                                        <h:inputText class="form-control" id="domicilioFiscal" value="#{proveedorController.selected.domicilioFiscal}" title="#{bundle.CreateProveedorTitle_domicilioFiscal}" required="true" requiredMessage="#{bundle.CreateProveedorRequiredMessage_domicilioFiscal}"/>
+                                    </h:panelGrid>
+                                    <br></br>
+                                    <h:commandLink class="btn btn-sm btn-success" value="Guardar" action="#{proveedorController.create()}" />
+                                    <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal">Cancelar</button>
+                                    <br></br>
+                                    <br></br>
+                                    <!-- Modal footer -->
+                                    <div class="modal-footer">
+                                        <h:commandLink action="#{proveedorController.prepareList}" value="Ver Lista" immediate="true"/>
+                                    </div>
+                                </div>
+                            </h:form>
+                        </div>
+                    </div>
+                </div>
+            </div>     
         </ui:define>
     </ui:composition>
 

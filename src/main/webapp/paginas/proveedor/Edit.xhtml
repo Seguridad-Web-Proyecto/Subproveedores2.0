@@ -10,42 +10,49 @@
             <h:outputText value="#{bundle.EditProveedorTitle}"></h:outputText>
         </ui:define>
         <ui:define name="body">
-            <h:panelGroup id="messagePanel" layout="block">
-                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
-            </h:panelGroup>
-            <h:form>
-                <h:panelGrid columns="2">
-                    <h:outputLabel value="#{bundle.EditProveedorLabel_proveedorid}" for="proveedorid" />
-                    <h:inputText id="proveedorid" value="#{proveedorController.selected.proveedorid}" title="#{bundle.EditProveedorTitle_proveedorid}" required="true" requiredMessage="#{bundle.EditProveedorRequiredMessage_proveedorid}"/>
-                    <h:outputLabel value="#{bundle.EditProveedorLabel_empresa}" for="empresa" />
-                    <h:inputText id="empresa" value="#{proveedorController.selected.empresa}" title="#{bundle.EditProveedorTitle_empresa}" required="true" requiredMessage="#{bundle.EditProveedorRequiredMessage_empresa}"/>
-                    <h:outputLabel value="#{bundle.EditProveedorLabel_nombreContacto}" for="nombreContacto" />
-                    <h:inputText id="nombreContacto" value="#{proveedorController.selected.nombreContacto}" title="#{bundle.EditProveedorTitle_nombreContacto}" required="true" requiredMessage="#{bundle.EditProveedorRequiredMessage_nombreContacto}"/>
-                    <h:outputLabel value="#{bundle.EditProveedorLabel_area}" for="area" />
-                    <h:inputText id="area" value="#{proveedorController.selected.area}" title="#{bundle.EditProveedorTitle_area}" required="true" requiredMessage="#{bundle.EditProveedorRequiredMessage_area}"/>
-                    <h:outputLabel value="#{bundle.EditProveedorLabel_telefono}" for="telefono" />
-                    <h:inputText id="telefono" value="#{proveedorController.selected.telefono}" title="#{bundle.EditProveedorTitle_telefono}" required="true" requiredMessage="#{bundle.EditProveedorRequiredMessage_telefono}"/>
-                    <h:outputLabel value="#{bundle.EditProveedorLabel_rfc}" for="rfc" />
-                    <h:inputText id="rfc" value="#{proveedorController.selected.rfc}" title="#{bundle.EditProveedorTitle_rfc}" required="true" requiredMessage="#{bundle.EditProveedorRequiredMessage_rfc}"/>
-                    <h:outputLabel value="#{bundle.EditProveedorLabel_email}" for="email" />
-                    <h:inputText id="email" value="#{proveedorController.selected.email}" title="#{bundle.EditProveedorTitle_email}" required="true" requiredMessage="#{bundle.EditProveedorRequiredMessage_email}"/>
-                    <h:outputLabel value="#{bundle.EditProveedorLabel_activo}" for="activo" />
-                    <h:inputText id="activo" value="#{proveedorController.selected.activo}" title="#{bundle.EditProveedorTitle_activo}" required="true" requiredMessage="#{bundle.EditProveedorRequiredMessage_activo}"/>
-                    <h:outputLabel value="#{bundle.EditProveedorLabel_paginaWeb}" for="paginaWeb" />
-                    <h:inputText id="paginaWeb" value="#{proveedorController.selected.paginaWeb}" title="#{bundle.EditProveedorTitle_paginaWeb}" required="true" requiredMessage="#{bundle.EditProveedorRequiredMessage_paginaWeb}"/>
-                    <h:outputLabel value="#{bundle.EditProveedorLabel_domicilioFiscal}" for="domicilioFiscal" />
-                    <h:inputText id="domicilioFiscal" value="#{proveedorController.selected.domicilioFiscal}" title="#{bundle.EditProveedorTitle_domicilioFiscal}" required="true" requiredMessage="#{bundle.EditProveedorRequiredMessage_domicilioFiscal}"/>
-                </h:panelGrid>
-                <h:commandLink action="#{proveedorController.update}" value="#{bundle.EditProveedorSaveLink}"/>
-                <br />
-                <br />
-                <h:link outcome="View" value="#{bundle.EditProveedorViewLink}"/>
-                <br />
-                <h:commandLink action="#{proveedorController.prepareList}" value="#{bundle.EditProveedorShowAllLink}" immediate="true"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.EditProveedorIndexLink}" />
-            </h:form>
+            <div class="main">
+                <div class="alert alert-dismissible" style="background-color: white">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <strong>!Mensajes!</strong><br></br> <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </div>
+                <div style="background-color: white">
+                    <br></br>
+                    <h4 align="center">Editar Información</h4>
+                    <br></br>
+                </div>
+                <br></br>
+                <div style="background-color: white" align="center">
+                    <br></br>
+                    <h:form>
+                        <h:panelGrid columns="2">
+                            <h:outputLabel value="#{bundle.EditProveedorLabel_empresa}" for="empresa" />
+                            <h:inputText class="form-control" id="empresa" value="#{proveedorController.selected.empresa}" title="#{bundle.EditProveedorTitle_empresa}" required="true" requiredMessage="#{bundle.EditProveedorRequiredMessage_empresa}"/>
+                            <h:outputLabel value="Nombre de Contacto: " for="nombreContacto" />
+                            <h:inputText class="form-control"  id="nombreContacto" value="#{proveedorController.selected.nombreContacto}" title="#{bundle.EditProveedorTitle_nombreContacto}" required="true" requiredMessage="#{bundle.EditProveedorRequiredMessage_nombreContacto}"/>
+                            <h:outputLabel value="#{bundle.EditProveedorLabel_area}" for="area" />
+                            <h:inputText class="form-control"  id="area" value="#{proveedorController.selected.area}" title="#{bundle.EditProveedorTitle_area}" required="true" requiredMessage="#{bundle.EditProveedorRequiredMessage_area}"/>
+                            <h:outputLabel value="#{bundle.EditProveedorLabel_telefono}" for="telefono" />
+                            <h:inputText class="form-control"  id="telefono" value="#{proveedorController.selected.telefono}" title="#{bundle.EditProveedorTitle_telefono}" required="true" requiredMessage="#{bundle.EditProveedorRequiredMessage_telefono}"/>
+                            <h:outputLabel value="RFC: " for="rfc" />
+                            <h:inputText class="form-control"  id="rfc" value="#{proveedorController.selected.rfc}" title="#{bundle.EditProveedorTitle_rfc}" required="true" requiredMessage="#{bundle.EditProveedorRequiredMessage_rfc}"/>
+                            <h:outputLabel value="Correo: " for="email" />
+                            <h:inputText class="form-control"  id="email" value="#{proveedorController.selected.email}" title="#{bundle.EditProveedorTitle_email}" required="true" requiredMessage="#{bundle.EditProveedorRequiredMessage_email}"/>
+                            <h:outputLabel value="Status: " for="activo" />
+                            <h:inputText class="form-control"  id="activo" value="#{proveedorController.selected.activo}" title="#{bundle.EditProveedorTitle_activo}" required="true" requiredMessage="#{bundle.EditProveedorRequiredMessage_activo}"/>
+                            <h:outputLabel value="Pagina Web: " for="paginaWeb" />
+                            <h:inputText class="form-control"  id="paginaWeb" value="#{proveedorController.selected.paginaWeb}" title="#{bundle.EditProveedorTitle_paginaWeb}" required="true" requiredMessage="#{bundle.EditProveedorRequiredMessage_paginaWeb}"/>
+                            <h:outputLabel value="Domicilio Fiscal: " for="domicilioFiscal" />
+                            <h:inputText  class="form-control" id="domicilioFiscal" value="#{proveedorController.selected.domicilioFiscal}" title="#{bundle.EditProveedorTitle_domicilioFiscal}" required="true" requiredMessage="#{bundle.EditProveedorRequiredMessage_domicilioFiscal}"/>
+                        </h:panelGrid>
+                        <br />
+                        <h:commandLink class="btn btn-sm btn-info" action="#{proveedorController.update}" value="Aceptar"/>
+                        &nbsp; 
+                        <h:commandLink class="btn btn-sm btn-danger" action="#{proveedorController.prepareList()}" value="Cancelar"/>
+                        <br />
+                        <br />
+                    </h:form>
+                </div>
+            </div>
         </ui:define>
     </ui:composition>
 
