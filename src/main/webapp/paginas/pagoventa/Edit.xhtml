@@ -10,36 +10,43 @@
             <h:outputText value="#{bundle.EditPagoventaTitle}"></h:outputText>
         </ui:define>
         <ui:define name="body">
-            <h:panelGroup id="messagePanel" layout="block">
-                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
-            </h:panelGroup>
-            <h:form>
-                <h:panelGrid columns="2">
-                    <h:outputLabel value="#{bundle.EditPagoventaLabel_pagoventaid}" for="pagoventaid" />
-                    <h:inputText id="pagoventaid" value="#{pagoventaController.selected.pagoventaid}" title="#{bundle.EditPagoventaTitle_pagoventaid}" required="true" requiredMessage="#{bundle.EditPagoventaRequiredMessage_pagoventaid}"/>
-                    <h:outputLabel value="#{bundle.EditPagoventaLabel_fechaPago}" for="fechaPago" />
-                    <h:inputText id="fechaPago" value="#{pagoventaController.selected.fechaPago}" title="#{bundle.EditPagoventaTitle_fechaPago}" required="true" requiredMessage="#{bundle.EditPagoventaRequiredMessage_fechaPago}">
-                        <f:convertDateTime pattern="MM/dd/yyyy" />
-                    </h:inputText>
-                    <h:outputLabel value="#{bundle.EditPagoventaLabel_monto}" for="monto" />
-                    <h:inputText id="monto" value="#{pagoventaController.selected.monto}" title="#{bundle.EditPagoventaTitle_monto}" required="true" requiredMessage="#{bundle.EditPagoventaRequiredMessage_monto}"/>
-                    <h:outputLabel value="#{bundle.EditPagoventaLabel_estado}" for="estado" />
-                    <h:inputText id="estado" value="#{pagoventaController.selected.estado}" title="#{bundle.EditPagoventaTitle_estado}" required="true" requiredMessage="#{bundle.EditPagoventaRequiredMessage_estado}"/>
-                    <h:outputLabel value="#{bundle.EditPagoventaLabel_tarjetacreditoid}" for="tarjetacreditoid" />
-                    <h:selectOneMenu id="tarjetacreditoid" value="#{pagoventaController.selected.tarjetacreditoid}" title="#{bundle.EditPagoventaTitle_tarjetacreditoid}" required="true" requiredMessage="#{bundle.EditPagoventaRequiredMessage_tarjetacreditoid}">
-                        <f:selectItems value="#{tarjetacreditoventaController.itemsAvailableSelectOne}"/>
-                    </h:selectOneMenu>
-                </h:panelGrid>
-                <h:commandLink action="#{pagoventaController.update}" value="#{bundle.EditPagoventaSaveLink}"/>
-                <br />
-                <br />
-                <h:link outcome="View" value="#{bundle.EditPagoventaViewLink}"/>
-                <br />
-                <h:commandLink action="#{pagoventaController.prepareList}" value="#{bundle.EditPagoventaShowAllLink}" immediate="true"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.EditPagoventaIndexLink}" />
-            </h:form>
+            <div class="main">
+                <div class="alert alert-dismissible" style="background-color: white">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <strong>!Mensajes!</strong><br></br> <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </div>
+                <div style="background-color: white">
+                    <br></br>
+                    <h4 align="center">Editar Información</h4>
+                    <br></br>
+                </div>
+                <br></br>
+                <div style="background-color: white" align="center">
+                    <br></br>
+                    <h:form>
+                        <h:panelGrid columns="2">
+                            <h:outputLabel value="Fecha de Pago: " for="fechaPago" />
+                            <h:inputText class="form-control" id="fechaPago" value="#{pagoventaController.selected.fechaPago}" title="#{bundle.EditPagoventaTitle_fechaPago}" required="true" requiredMessage="#{bundle.EditPagoventaRequiredMessage_fechaPago}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:inputText>
+                            <h:outputLabel value="Monto: " for="monto" />
+                            <h:inputText class="form-control" id="monto" value="#{pagoventaController.selected.monto}" title="#{bundle.EditPagoventaTitle_monto}" required="true" requiredMessage="#{bundle.EditPagoventaRequiredMessage_monto}"/>
+                            <h:outputLabel value="Status: " for="estado" />
+                            <h:inputText class="form-control" id="estado" value="#{pagoventaController.selected.estado}" title="#{bundle.EditPagoventaTitle_estado}" required="true" requiredMessage="#{bundle.EditPagoventaRequiredMessage_estado}"/>
+                            <h:outputLabel value="Id de Tarjeta:" for="tarjetacreditoid" />
+                            <h:selectOneMenu class="form-control" id="tarjetacreditoid" value="#{pagoventaController.selected.tarjetacreditoid}" title="#{bundle.EditPagoventaTitle_tarjetacreditoid}" required="true" requiredMessage="#{bundle.EditPagoventaRequiredMessage_tarjetacreditoid}">
+                                <f:selectItems value="#{tarjetacreditoventaController.itemsAvailableSelectOne}"/>
+                            </h:selectOneMenu>
+                        </h:panelGrid>
+                        <br />
+                        <h:commandLink class="btn btn-sm btn-info" action="#{pagoventaController.update}" value="Aceptar"/>
+                        &nbsp; 
+                        <h:commandLink class="btn btn-sm btn-danger" action="#{pagoventaController.prepareList()}" value="Cancelar"/>
+                        <br />
+                        <br />
+                    </h:form>
+                </div>
+            </div>
         </ui:define>
     </ui:composition>
 
