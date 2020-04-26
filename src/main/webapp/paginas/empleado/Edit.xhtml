@@ -23,32 +23,36 @@
                 <br></br>
                 <div style="background-color: white" align="center">
                     <br></br>
-            <h:form>
-                <h:panelGrid columns="2">
-                    <h:outputLabel value="Fecha de Vinculo: " for="fechaVinculo" />
-                    <h:inputText class="form-control" id="fechaVinculo" value="#{empleadoController.selected.fechaVinculo}" title="#{bundle.EditEmpleadoTitle_fechaVinculo}" required="true" requiredMessage="#{bundle.EditEmpleadoRequiredMessage_fechaVinculo}">
-                        <f:convertDateTime pattern="MM/dd/yyyy" />
-                    </h:inputText>
-                    <h:outputLabel value="Fecha de retiro: " for="fechaRetiro" />
-                    <h:inputText class="form-control" id="fechaRetiro" value="#{empleadoController.selected.fechaRetiro}" title="#{bundle.EditEmpleadoTitle_fechaRetiro}" >
-                        <f:convertDateTime pattern="MM/dd/yyyy" />
-                    </h:inputText>
-                    <h:outputLabel value="Id Persona: " for="persona" />
-                    <h:selectOneMenu class="form-control" id="persona" value="#{empleadoController.selected.persona}" title="#{bundle.EditEmpleadoTitle_persona}" required="true" requiredMessage="#{bundle.EditEmpleadoRequiredMessage_persona}">
-                        <f:selectItems value="#{personaController.itemsAvailableSelectOne}"/>
-                    </h:selectOneMenu>
-                    <h:outputLabel value="Id Usuario" for="usuarioid" />
-                    <h:selectOneMenu class="form-control" id="usuarioid" value="#{empleadoController.selected.usuarioid}" title="#{bundle.EditEmpleadoTitle_usuarioid}" required="true" requiredMessage="#{bundle.EditEmpleadoRequiredMessage_usuarioid}">
-                        <f:selectItems value="#{usuarioController.itemsAvailableSelectOne}"/>
-                    </h:selectOneMenu>
-                </h:panelGrid>
-                <br />
+                    <h:form>
+                        <h:panelGrid columns="2">
+                            <h:outputLabel value="Fecha de Vinculo: " for="fechaVinculo" />
+                            <h:inputText class="form-control" id="fechaVinculo" value="#{empleadoController.selected.fechaVinculo}" title="#{bundle.EditEmpleadoTitle_fechaVinculo}" required="true" requiredMessage="#{bundle.EditEmpleadoRequiredMessage_fechaVinculo}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                                <f:validator validatorId="fechaValidator" />
+
+                            </h:inputText>
+                            <h:outputLabel value="Fecha de retiro: " for="fechaRetiro" />
+                            <h:inputText class="form-control" id="fechaRetiro" value="#{empleadoController.selected.fechaRetiro}" title="#{bundle.EditEmpleadoTitle_fechaRetiro}" >
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                                <f:validator validatorId="fechaValidator" />
+
+                            </h:inputText>
+                            <h:outputLabel value="Id Persona: " for="persona" />
+                            <h:selectOneMenu class="form-control" id="persona" value="#{empleadoController.selected.persona}" title="#{bundle.EditEmpleadoTitle_persona}" required="true" requiredMessage="#{bundle.EditEmpleadoRequiredMessage_persona}">
+                                <f:selectItems value="#{personaController.itemsAvailableSelectOne}"/>
+                            </h:selectOneMenu>
+                            <h:outputLabel value="Id Usuario" for="usuarioid" />
+                            <h:selectOneMenu class="form-control" id="usuarioid" value="#{empleadoController.selected.usuarioid}" title="#{bundle.EditEmpleadoTitle_usuarioid}" required="true" requiredMessage="#{bundle.EditEmpleadoRequiredMessage_usuarioid}">
+                                <f:selectItems value="#{usuarioController.itemsAvailableSelectOne}"/>
+                            </h:selectOneMenu>
+                        </h:panelGrid>
+                        <br />
                         <h:commandLink class="btn btn-sm btn-info" action="#{empleadoController.update}" value="Aceptar"/>
                         &nbsp; 
                         <h:commandLink class="btn btn-sm btn-danger" action="#{empleadoController.prepareList()}" value="Cancelar"/>
                         <br />
                         <br />
-            </h:form>
+                    </h:form>
                 </div>
             </div>
         </ui:define>

@@ -106,14 +106,18 @@
                             <h:form>
                                 <div align="center" >
                                     <h:panelGrid columns="2">
-                                        
+
                                         <h:outputLabel value="Fecha de vinculo: " for="fechaVinculo" />
                                         <h:inputText class="form-control" id="fechaVinculo" value="#{empleadoController.selected.fechaVinculo}" title="#{bundle.CreateEmpleadoTitle_fechaVinculo}" required="true" requiredMessage="#{bundle.CreateEmpleadoRequiredMessage_fechaVinculo}">
                                             <f:convertDateTime pattern="MM/dd/yyyy" />
+                                            <f:validator validatorId="fechaValidator" />
+
                                         </h:inputText>
                                         <h:outputLabel value="Fecha de retiro: " for="fechaRetiro" />
                                         <h:inputText class="form-control" id="fechaRetiro" value="#{empleadoController.selected.fechaRetiro}" title="#{bundle.CreateEmpleadoTitle_fechaRetiro}" >
                                             <f:convertDateTime pattern="MM/dd/yyyy" />
+                                            <f:validator validatorId="fechaValidator" />
+
                                         </h:inputText>
                                         <h:outputLabel value="Id persona: " for="persona" />
                                         <h:selectOneMenu class="form-control" id="persona" value="#{empleadoController.selected.persona}" title="#{bundle.CreateEmpleadoTitle_persona}" required="true" requiredMessage="#{bundle.CreateEmpleadoRequiredMessage_persona}">
