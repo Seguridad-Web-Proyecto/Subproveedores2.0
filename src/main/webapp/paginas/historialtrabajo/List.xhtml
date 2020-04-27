@@ -107,11 +107,12 @@
                                     <h:panelGrid columns="2">
                                         <h:outputLabel value="Fecha de Inicio: " for="fechaInicio" />
                                         <h:inputText class="form-control" id="fechaInicio" value="#{historialtrabajoController.selected.fechaInicio}" title="#{bundle.CreateHistorialtrabajoTitle_fechaInicio}" required="true" requiredMessage="#{bundle.CreateHistorialtrabajoRequiredMessage_fechaInicio}">
-                                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                                            <f:converter converterId="dateConverter"/>
+                                            <f:validator validatorId="fechaValidator" />
                                         </h:inputText>
                                         <h:outputLabel value="Fecha de Terminación: " for="fechaFin" />
                                         <h:inputText class="form-control" id="fechaFin" value="#{historialtrabajoController.selected.fechaFin}" title="#{bundle.CreateHistorialtrabajoTitle_fechaFin}" >
-                                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                                            <f:convertDateTime pattern="dd/MM/yyyy" />
                                         </h:inputText>
                                         <h:outputLabel value="Id de Cargo:" for="cargoid" />
                                         <h:selectOneMenu class="form-control" id="cargoid" value="#{historialtrabajoController.selected.cargoid}" title="#{bundle.CreateHistorialtrabajoTitle_cargoid}" required="true" requiredMessage="#{bundle.CreateHistorialtrabajoRequiredMessage_cargoid}">
