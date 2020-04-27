@@ -103,23 +103,37 @@
                                 <div align="center" >
                                     <h:panelGrid columns="2">
                                         <h:outputLabel value="#{bundle.CreatePersonaLabel_nombres}" for="nombres" />
-                                        <h:inputText id="nombres" value="#{personaController.selected.nombres}" title="#{bundle.CreatePersonaTitle_nombres}" required="true" requiredMessage="#{bundle.CreatePersonaRequiredMessage_nombres}"/>
+                                        <h:inputText id="nombres" value="#{personaController.selected.nombres}" title="#{bundle.CreatePersonaTitle_nombres}" required="true" requiredMessage="#{bundle.CreatePersonaRequiredMessage_nombres}">
+                                            <f:validator validatorId="letrasValidator"/>
+                                        </h:inputText>
                                         <h:outputLabel value="#{bundle.CreatePersonaLabel_apellidos}" for="apellidos" />
-                                        <h:inputText id="apellidos" value="#{personaController.selected.apellidos}" title="#{bundle.CreatePersonaTitle_apellidos}" required="true" requiredMessage="#{bundle.CreatePersonaRequiredMessage_apellidos}"/>
+                                        <h:inputText id="apellidos" value="#{personaController.selected.apellidos}" title="#{bundle.CreatePersonaTitle_apellidos}" required="true" requiredMessage="#{bundle.CreatePersonaRequiredMessage_apellidos}">
+                                            <f:validator validatorId="letrasValidator"/>
+                                        </h:inputText>
                                         <h:outputLabel value="Fecha de Nacimiento" for="fechaNacimiento" />
                                         <h:inputText id="fechaNacimiento" value="#{personaController.selected.fechaNacimiento}" title="#{bundle.CreatePersonaTitle_fechaNacimiento}" required="true" requiredMessage="#{bundle.CreatePersonaRequiredMessage_fechaNacimiento}">
-                                            <f:convertDateTime pattern="dd/mm/yyyy" />
+                                            <f:convertDateTime pattern="dd/MM/yyyy" />
                                         </h:inputText>
                                         <h:outputLabel value="#{bundle.CreatePersonaLabel_telefono}" for="telefono" />
-                                        <h:inputText id="telefono" value="#{personaController.selected.telefono}" title="#{bundle.CreatePersonaTitle_telefono}" required="true" requiredMessage="#{bundle.CreatePersonaRequiredMessage_telefono}"/>
+                                        <h:inputText id="telefono" value="#{personaController.selected.telefono}" title="#{bundle.CreatePersonaTitle_telefono}" required="true" requiredMessage="#{bundle.CreatePersonaRequiredMessage_telefono}">
+                                            <f:validator validatorId="telefonoValidator" />
+                                        </h:inputText>
                                         <h:outputLabel value="#{bundle.CreatePersonaLabel_correo}" for="correo" />
-                                        <h:inputText id="correo" value="#{personaController.selected.correo}" title="#{bundle.CreatePersonaTitle_correo}" required="true" requiredMessage="#{bundle.CreatePersonaRequiredMessage_correo}"/>
+                                        <h:inputText id="correo" value="#{personaController.selected.correo}" title="#{bundle.CreatePersonaTitle_correo}" required="true" requiredMessage="#{bundle.CreatePersonaRequiredMessage_correo}">
+                                            <f:validator validatorId="emailValidator" />
+                                        </h:inputText>
                                         <h:outputLabel value="#{bundle.CreatePersonaLabel_curp}" for="curp" />
-                                        <h:inputText id="curp" value="#{personaController.selected.curp}" title="#{bundle.CreatePersonaTitle_curp}" required="true" requiredMessage="#{bundle.CreatePersonaRequiredMessage_curp}"/>
+                                        <h:inputText id="curp" value="#{personaController.selected.curp}" title="#{bundle.CreatePersonaTitle_curp}" required="true" requiredMessage="#{bundle.CreatePersonaRequiredMessage_curp}">
+                                            <f:validator validatorId="curpValidator" />
+                                        </h:inputText>
                                         <h:outputLabel value="#{bundle.CreatePersonaLabel_rfc}" for="rfc" />
-                                        <h:inputText id="rfc" value="#{personaController.selected.rfc}" title="#{bundle.CreatePersonaTitle_rfc}" required="true" requiredMessage="#{bundle.CreatePersonaRequiredMessage_rfc}"/>
+                                        <h:inputText id="rfc" value="#{personaController.selected.rfc}" title="#{bundle.CreatePersonaTitle_rfc}" required="true" requiredMessage="#{bundle.CreatePersonaRequiredMessage_rfc}">
+                                            <f:validator validatorId="rfcValidator" />
+                                        </h:inputText>
                                         <h:outputLabel value="#{bundle.CreatePersonaLabel_sexo}" for="sexo" />
-                                        <h:inputText id="sexo" value="#{personaController.selected.sexo}" title="#{bundle.CreatePersonaTitle_sexo}" required="true" requiredMessage="#{bundle.CreatePersonaRequiredMessage_sexo}"/>
+                                        <h:inputText id="sexo" value="#{personaController.selected.sexo}" title="#{bundle.CreatePersonaTitle_sexo}" required="true" requiredMessage="#{bundle.CreatePersonaRequiredMessage_sexo}">
+                                            <f:validator validatorId="sexoValidator" />
+                                        </h:inputText>
                                         <h:outputLabel value="#{bundle.CreatePersonaLabel_residencia}" for="residencia" />
                                         <h:inputText id="residencia" value="#{personaController.selected.residencia}" title="#{bundle.CreatePersonaTitle_residencia}" required="true" requiredMessage="#{bundle.CreatePersonaRequiredMessage_residencia}"/>
                                     </h:panelGrid>

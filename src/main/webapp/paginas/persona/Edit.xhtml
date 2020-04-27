@@ -26,23 +26,37 @@
                     <h:form>
                         <h:panelGrid columns="2">
                             <h:outputLabel value="#{bundle.EditPersonaLabel_nombres}" for="nombres" />
-                            <h:inputText id="nombres" value="#{personaController.selected.nombres}" title="#{bundle.EditPersonaTitle_nombres}" required="true" requiredMessage="#{bundle.EditPersonaRequiredMessage_nombres}"/>
+                            <h:inputText id="nombres" value="#{personaController.selected.nombres}" title="#{bundle.EditPersonaTitle_nombres}" required="true" requiredMessage="#{bundle.EditPersonaRequiredMessage_nombres}">
+                                <f:validator validatorId="letrasValidator"/>
+                            </h:inputText>
                             <h:outputLabel value="#{bundle.EditPersonaLabel_apellidos}" for="apellidos" />
-                            <h:inputText id="apellidos" value="#{personaController.selected.apellidos}" title="#{bundle.EditPersonaTitle_apellidos}" required="true" requiredMessage="#{bundle.EditPersonaRequiredMessage_apellidos}"/>
+                            <h:inputText id="apellidos" value="#{personaController.selected.apellidos}" title="#{bundle.EditPersonaTitle_apellidos}" required="true" requiredMessage="#{bundle.EditPersonaRequiredMessage_apellidos}">
+                                <f:validator validatorId="letrasValidator"/>
+                            </h:inputText>
                             <h:outputLabel value="Fecha de Nacimiento" for="fechaNacimiento: " />
                             <h:inputText id="fechaNacimiento" value="#{personaController.selected.fechaNacimiento}" title="#{bundle.EditPersonaTitle_fechaNacimiento}" required="true" requiredMessage="#{bundle.EditPersonaRequiredMessage_fechaNacimiento}">
-                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                                <f:convertDateTime pattern="dd/MM/yyyy" />
                             </h:inputText>
                             <h:outputLabel value="#{bundle.EditPersonaLabel_telefono}" for="telefono" />
-                            <h:inputText id="telefono" value="#{personaController.selected.telefono}" title="#{bundle.EditPersonaTitle_telefono}" required="true" requiredMessage="#{bundle.EditPersonaRequiredMessage_telefono}"/>
+                            <h:inputText id="telefono" value="#{personaController.selected.telefono}" title="#{bundle.EditPersonaTitle_telefono}" required="true" requiredMessage="#{bundle.EditPersonaRequiredMessage_telefono}">
+                                <f:validator validatorId="telefonoValidator" />
+                            </h:inputText>
                             <h:outputLabel value="#{bundle.EditPersonaLabel_correo}" for="correo" />
-                            <h:inputText id="correo" value="#{personaController.selected.correo}" title="#{bundle.EditPersonaTitle_correo}" required="true" requiredMessage="#{bundle.EditPersonaRequiredMessage_correo}"/>
+                            <h:inputText id="correo" value="#{personaController.selected.correo}" title="#{bundle.EditPersonaTitle_correo}" required="true" requiredMessage="#{bundle.EditPersonaRequiredMessage_correo}">
+                                <f:validator validatorId="emailValidator" />
+                            </h:inputText>
                             <h:outputLabel value="#{bundle.EditPersonaLabel_curp}" for="curp" />
-                            <h:inputText id="curp" value="#{personaController.selected.curp}" title="#{bundle.EditPersonaTitle_curp}" required="true" requiredMessage="#{bundle.EditPersonaRequiredMessage_curp}"/>
+                            <h:inputText id="curp" value="#{personaController.selected.curp}" title="#{bundle.EditPersonaTitle_curp}" required="true" requiredMessage="#{bundle.EditPersonaRequiredMessage_curp}">
+                                <f:validator validatorId="curpValidator" />
+                            </h:inputText>
                             <h:outputLabel value="RFC: " for="rfc" />
-                            <h:inputText id="rfc" value="#{personaController.selected.rfc}" title="#{bundle.EditPersonaTitle_rfc}" required="true" requiredMessage="#{bundle.EditPersonaRequiredMessage_rfc}"/>
+                            <h:inputText id="rfc" value="#{personaController.selected.rfc}" title="#{bundle.EditPersonaTitle_rfc}" required="true" requiredMessage="#{bundle.EditPersonaRequiredMessage_rfc}">
+                                <f:validator validatorId="rfcValidator" />
+                            </h:inputText>
                             <h:outputLabel value="#{bundle.EditPersonaLabel_sexo}" for="sexo" />
-                            <h:inputText id="sexo" value="#{personaController.selected.sexo}" title="#{bundle.EditPersonaTitle_sexo}" required="true" requiredMessage="#{bundle.EditPersonaRequiredMessage_sexo}"/>
+                            <h:inputText id="sexo" value="#{personaController.selected.sexo}" title="#{bundle.EditPersonaTitle_sexo}" required="true" requiredMessage="#{bundle.EditPersonaRequiredMessage_sexo}">
+                                <f:validator validatorId="sexoValidator" />
+                            </h:inputText>
                             <h:outputLabel value="#{bundle.EditPersonaLabel_residencia}" for="residencia" />
                             <h:inputText id="residencia" value="#{personaController.selected.residencia}" title="#{bundle.EditPersonaTitle_residencia}" required="true" requiredMessage="#{bundle.EditPersonaRequiredMessage_residencia}"/>
                         </h:panelGrid>
