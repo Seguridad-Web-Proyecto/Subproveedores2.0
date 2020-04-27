@@ -162,8 +162,6 @@ public class Ordenventa implements Serializable {
         this.descripcion = descripcion;
     }
 
-    @XmlTransient
-    @JsonbTransient
     public Collection<Ventadetalle> getVentadetalleCollection() {
         return ventadetalleCollection;
     }
