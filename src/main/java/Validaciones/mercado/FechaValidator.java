@@ -56,7 +56,7 @@ public class FechaValidator implements Validator
             Logger.getLogger(FechaValidator.class.getName()).log(Level.SEVERE, null, ex);
         }
         Date d2 = new Date(System.currentTimeMillis());
-        if (d1.compareTo(d2) > 0)
+        if (d1.compareTo(d2) < 0)
         {
             FacesMessage msg = new FacesMessage("Error... La fecha no debe ser menor a la actual", "Invalid date...");
             msg.setSeverity(FacesMessage.SEVERITY_ERROR);
