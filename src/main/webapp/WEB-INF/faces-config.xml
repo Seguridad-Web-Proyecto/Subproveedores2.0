@@ -55,6 +55,11 @@
     </validator>
     
     <validator>
+        <validator-id>fechaValidator2</validator-id>
+        <validator-class>Validaciones.mercado.FechaValidator2</validator-class>
+    </validator>
+    
+    <validator>
         <validator-id>urlValidator</validator-id>
         <validator-class>Validaciones.mercado.URLValidator</validator-class>
     </validator>

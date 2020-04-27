@@ -112,7 +112,8 @@
                                         </h:inputText>
                                         <h:outputLabel value="Fecha de Nacimiento" for="fechaNacimiento" />
                                         <h:inputText id="fechaNacimiento" value="#{personaController.selected.fechaNacimiento}" title="#{bundle.CreatePersonaTitle_fechaNacimiento}" required="true" requiredMessage="#{bundle.CreatePersonaRequiredMessage_fechaNacimiento}">
-                                            <f:convertDateTime pattern="dd/MM/yyyy" />
+                                            <f:converter converterId="dateConverter"/>
+                                            <f:validator validatorId="fechaValidator2" />
                                         </h:inputText>
                                         <h:outputLabel value="#{bundle.CreatePersonaLabel_telefono}" for="telefono" />
                                         <h:inputText id="telefono" value="#{personaController.selected.telefono}" title="#{bundle.CreatePersonaTitle_telefono}" required="true" requiredMessage="#{bundle.CreatePersonaRequiredMessage_telefono}">
