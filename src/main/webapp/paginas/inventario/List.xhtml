@@ -93,7 +93,9 @@
                                 <div align="center" >
                                     <h:panelGrid columns="2">
                                         <h:outputLabel value="#{bundle.CreateInventarioLabel_existencias}" for="existencias" />
-                                        <h:inputText class="form-control" id="existencias" value="#{inventarioController.selected.existencias}" title="#{bundle.CreateInventarioTitle_existencias}" required="true" requiredMessage="#{bundle.CreateInvenatrioRequiredMessage_existencias}"/>
+                                        <h:inputText class="form-control" id="existencias" value="#{inventarioController.selected.existencias}" title="#{bundle.CreateInventarioTitle_existencias}" required="true" requiredMessage="#{bundle.CreateInvenatrioRequiredMessage_existencias}">
+                                            <f:validator validatorId="numerosValidator" />
+                                        </h:inputText>
                                         <h:outputLabel value="#{bundle.CreateInventarioLabel_productoid}" for="productoid" />
                                         <h:selectOneMenu class="form-control" id="rolid" value="#{inventarioController.selected.productoid}" title="#{bundle.CreateInvenatarioTitle_productoid}" required="true" requiredMessage="#{bundle.CreateInventarioRequiredMessage_productoid}">
                                             <f:selectItems value="#{productoController.itemsAvailableSelectOne}"/>

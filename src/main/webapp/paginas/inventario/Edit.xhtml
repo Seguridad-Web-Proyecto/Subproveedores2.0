@@ -26,7 +26,9 @@
             <h:form>
                 <h:panelGrid columns="2">
                     <h:outputLabel value="#{bundle.EditInventarioLabel_existencias}" for="existencias" />
-                    <h:inputText class="form-control" id="existencias" value="#{inventarioController.selected.existencias}" title="#{bundle.EditInventarioTitle_existencias}" required="true" requiredMessage="#{bundle.EditInventarioRequiredMessage_existencias}"/>
+                    <h:inputText class="form-control" id="existencias" value="#{inventarioController.selected.existencias}" title="#{bundle.EditInventarioTitle_existencias}" required="true" requiredMessage="#{bundle.EditInventarioRequiredMessage_existencias}">
+                        <f:validator validatorId="numerosValidator" />
+                                        </h:inputText>
                     <h:outputLabel value="#{bundle.EditInventarioLabel_productoid}" for="productoid" />
                     <h:selectOneMenu class="form-control" id="productoid" value="#{inventarioController.selected.productoid}" title="#{bundle.EditInventarioTitle_productoid}" required="true" requiredMessage="#{bundle.EditInventarioRequiredMessage_productoid}">
                         <f:selectItems value="#{productoController.itemsAvailableSelectOne}"/>
