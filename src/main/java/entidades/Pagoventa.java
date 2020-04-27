@@ -8,6 +8,7 @@ package entidades;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
+import javax.json.bind.annotation.JsonbTransient;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -25,6 +26,8 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -38,6 +41,7 @@ import javax.validation.constraints.Size;
     @NamedQuery(name = "Pagoventa.findByFechaPago", query = "SELECT p FROM Pagoventa p WHERE p.fechaPago = :fechaPago"),
     @NamedQuery(name = "Pagoventa.findByMonto", query = "SELECT p FROM Pagoventa p WHERE p.monto = :monto"),
     @NamedQuery(name = "Pagoventa.findByEstado", query = "SELECT p FROM Pagoventa p WHERE p.estado = :estado")})
+@XmlRootElement
 public class Pagoventa implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -112,6 +116,8 @@ public class Pagoventa implements Serializable {
         this.estado = estado;
     }
 
+    @XmlTransient
+    @JsonbTransient
     public Collection<Facturaventa> getFacturaventaCollection() {
         return facturaventaCollection;
     }

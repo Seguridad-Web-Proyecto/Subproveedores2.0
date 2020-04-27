@@ -8,6 +8,7 @@ package entidades;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
+import javax.json.bind.annotation.JsonbTransient;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -25,6 +26,8 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -41,6 +44,7 @@ import javax.validation.constraints.Size;
     @NamedQuery(name = "Ordenventa.findBySubtotal", query = "SELECT o FROM Ordenventa o WHERE o.subtotal = :subtotal"),
     @NamedQuery(name = "Ordenventa.findByTotal", query = "SELECT o FROM Ordenventa o WHERE o.total = :total"),
     @NamedQuery(name = "Ordenventa.findByDescripcion", query = "SELECT o FROM Ordenventa o WHERE o.descripcion = :descripcion")})
+@XmlRootElement
 public class Ordenventa implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -158,6 +162,8 @@ public class Ordenventa implements Serializable {
         this.descripcion = descripcion;
     }
 
+    @XmlTransient
+    @JsonbTransient
     public Collection<Ventadetalle> getVentadetalleCollection() {
         return ventadetalleCollection;
     }

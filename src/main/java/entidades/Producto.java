@@ -7,6 +7,7 @@ package entidades;
 
 import java.io.Serializable;
 import java.util.Collection;
+import javax.json.bind.annotation.JsonbTransient;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -23,6 +24,8 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -37,6 +40,7 @@ import javax.validation.constraints.Size;
     @NamedQuery(name = "Producto.findByDescripcion", query = "SELECT p FROM Producto p WHERE p.descripcion = :descripcion"),
     @NamedQuery(name = "Producto.findByUnidadMedida", query = "SELECT p FROM Producto p WHERE p.unidadMedida = :unidadMedida"),
     @NamedQuery(name = "Producto.findByPrecioUnitario", query = "SELECT p FROM Producto p WHERE p.precioUnitario = :precioUnitario")})
+@XmlRootElement
 public class Producto implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -131,6 +135,8 @@ public class Producto implements Serializable {
         this.precioUnitario = precioUnitario;
     }
 
+    @XmlTransient
+    @JsonbTransient
     public Collection<Compradetalle> getCompradetalleCollection() {
         return compradetalleCollection;
     }
@@ -155,6 +161,8 @@ public class Producto implements Serializable {
         this.ganancia = ganancia;
     }
 
+    @XmlTransient
+    @JsonbTransient
     public Collection<Ventadetalle> getVentadetalleCollection() {
         return ventadetalleCollection;
     }
@@ -163,6 +171,8 @@ public class Producto implements Serializable {
         this.ventadetalleCollection = ventadetalleCollection;
     }
 
+    @XmlTransient
+    @JsonbTransient
     public Collection<Inventario> getInventarioCollection() {
         return inventarioCollection;
     }

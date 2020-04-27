@@ -18,6 +18,7 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
@@ -29,6 +30,7 @@ import javax.validation.constraints.NotNull;
     @NamedQuery(name = "Ganancia.findAll", query = "SELECT g FROM Ganancia g"),
     @NamedQuery(name = "Ganancia.findByGananciaid", query = "SELECT g FROM Ganancia g WHERE g.gananciaid = :gananciaid"),
     @NamedQuery(name = "Ganancia.findByPorcentaje", query = "SELECT g FROM Ganancia g WHERE g.porcentaje = :porcentaje")})
+@XmlRootElement
 public class Ganancia implements Serializable {
 
     private static final long serialVersionUID = 1L;
