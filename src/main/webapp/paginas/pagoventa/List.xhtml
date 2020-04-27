@@ -106,12 +106,16 @@
                                     <h:panelGrid columns="2">
                                         <h:outputLabel value="Fecha de Pago: " for="fechaPago" />
                                         <h:inputText class="form-control" id="fechaPago" value="#{pagoventaController.selected.fechaPago}" title="#{bundle.CreatePagoventaTitle_fechaPago}" required="true" requiredMessage="#{bundle.CreatePagoventaRequiredMessage_fechaPago}">
-                                            <f:convertDateTime pattern="dd/mm/yyyy" />
+                                            <f:convertDateTime pattern="dd/MM/yyyy" />
                                         </h:inputText>
                                         <h:outputLabel value="Monto: " for="monto" />
-                                        <h:inputText class="form-control" id="monto" value="#{pagoventaController.selected.monto}" title="#{bundle.CreatePagoventaTitle_monto}" required="true" requiredMessage="#{bundle.CreatePagoventaRequiredMessage_monto}"/>
+                                        <h:inputText class="form-control" id="monto" value="#{pagoventaController.selected.monto}" title="#{bundle.CreatePagoventaTitle_monto}" required="true" requiredMessage="#{bundle.CreatePagoventaRequiredMessage_monto}">
+                                            <f:validator validatorId="numerosValidator" />
+                                        </h:inputText>
                                         <h:outputLabel value="Status: " for="estado" />
-                                        <h:inputText class="form-control" id="estado" value="#{pagoventaController.selected.estado}" title="#{bundle.CreatePagoventaTitle_estado}" required="true" requiredMessage="#{bundle.CreatePagoventaRequiredMessage_estado}"/>
+                                        <h:inputText class="form-control" id="estado" value="#{pagoventaController.selected.estado}" title="#{bundle.CreatePagoventaTitle_estado}" required="true" requiredMessage="#{bundle.CreatePagoventaRequiredMessage_estado}">
+                                            <f:validator validatorId="letrasValidator" />
+                                        </h:inputText>
                                         <h:outputLabel value="Id de Tarjeta: " for="tarjetacreditoid" />
                                         <h:selectOneMenu class="form-control" id="tarjetacreditoid" value="#{pagoventaController.selected.tarjetacreditoid}" title="#{bundle.CreatePagoventaTitle_tarjetacreditoid}" required="true" requiredMessage="#{bundle.CreatePagoventaRequiredMessage_tarjetacreditoid}">
                                             <f:selectItems value="#{tarjetacreditoventaController.itemsAvailableSelectOne}"/>
