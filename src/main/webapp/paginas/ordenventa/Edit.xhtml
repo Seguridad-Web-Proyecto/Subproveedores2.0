@@ -27,18 +27,28 @@
                         <h:panelGrid columns="2">
                             <h:outputLabel value="Fecha de Venta:" for="fechaVenta" />
                             <h:inputText class="form-control" id="fechaVenta" value="#{ordenventaController.selected.fechaVenta}" title="#{bundle.EditOrdenventaTitle_fechaVenta}" required="true" requiredMessage="#{bundle.EditOrdenventaRequiredMessage_fechaVenta}">
-                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                                <f:convertDateTime pattern="dd/MM/yyyy" />
                             </h:inputText>
                             <h:outputLabel value="#{bundle.EditOrdenventaLabel_status}" for="status" />
-                            <h:inputText class="form-control" id="status" value="#{ordenventaController.selected.status}" title="#{bundle.EditOrdenventaTitle_status}" required="true" requiredMessage="#{bundle.EditOrdenventaRequiredMessage_status}"/>
+                            <h:inputText class="form-control" id="status" value="#{ordenventaController.selected.status}" title="#{bundle.EditOrdenventaTitle_status}" required="true" requiredMessage="#{bundle.EditOrdenventaRequiredMessage_status}">
+                                <f:validator validatorId="letrasValidator" />
+                            </h:inputText>
                             <h:outputLabel value="#{bundle.EditOrdenventaLabel_iva}" for="iva" />
-                            <h:inputText class="form-control" id="iva" value="#{ordenventaController.selected.iva}" title="#{bundle.EditOrdenventaTitle_iva}" required="true" requiredMessage="#{bundle.EditOrdenventaRequiredMessage_iva}"/>
+                            <h:inputText class="form-control" id="iva" value="#{ordenventaController.selected.iva}" title="#{bundle.EditOrdenventaTitle_iva}" required="true" requiredMessage="#{bundle.EditOrdenventaRequiredMessage_iva}">
+                                <f:validator validatorId="numerosValidator" />
+                            </h:inputText>
                             <h:outputLabel value="#{bundle.EditOrdenventaLabel_subtotal}" for="subtotal" />
-                            <h:inputText class="form-control" id="subtotal" value="#{ordenventaController.selected.subtotal}" title="#{bundle.EditOrdenventaTitle_subtotal}" required="true" requiredMessage="#{bundle.EditOrdenventaRequiredMessage_subtotal}"/>
+                            <h:inputText class="form-control" id="subtotal" value="#{ordenventaController.selected.subtotal}" title="#{bundle.EditOrdenventaTitle_subtotal}" required="true" requiredMessage="#{bundle.EditOrdenventaRequiredMessage_subtotal}">
+                                <f:validator validatorId="numerosValidator" />
+                            </h:inputText>
                             <h:outputLabel value="#{bundle.EditOrdenventaLabel_total}" for="total" />
-                            <h:inputText class="form-control" id="total" value="#{ordenventaController.selected.total}" title="#{bundle.EditOrdenventaTitle_total}" required="true" requiredMessage="#{bundle.EditOrdenventaRequiredMessage_total}"/>
+                            <h:inputText class="form-control" id="total" value="#{ordenventaController.selected.total}" title="#{bundle.EditOrdenventaTitle_total}" required="true" requiredMessage="#{bundle.EditOrdenventaRequiredMessage_total}">
+                                <f:validator validatorId="numerosValidator" />
+                            </h:inputText>
                             <h:outputLabel value="#{bundle.EditOrdenventaLabel_descripcion}" for="descripcion" />
-                            <h:inputText class="form-control" id="descripcion" value="#{ordenventaController.selected.descripcion}" title="#{bundle.EditOrdenventaTitle_descripcion}" required="true" requiredMessage="#{bundle.EditOrdenventaRequiredMessage_descripcion}"/>
+                            <h:inputText class="form-control" id="descripcion" value="#{ordenventaController.selected.descripcion}" title="#{bundle.EditOrdenventaTitle_descripcion}" required="true" requiredMessage="#{bundle.EditOrdenventaRequiredMessage_descripcion}">
+                                <f:validator validatorId="letrasValidator" />
+                            </h:inputText>
                             <h:outputLabel value="Id de Cliente: " for="clienteid" />
                             <h:selectOneMenu class="form-control" id="clienteid" value="#{ordenventaController.selected.clienteid}" title="#{bundle.EditOrdenventaTitle_clienteid}" required="true" requiredMessage="#{bundle.EditOrdenventaRequiredMessage_clienteid}">
                                 <f:selectItems value="#{clienteController.itemsAvailableSelectOne}"/>
