@@ -8,6 +8,7 @@ package entidades;
 import java.io.Serializable;
 import java.math.BigInteger;
 import java.util.Collection;
+import javax.json.bind.annotation.JsonbTransient;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -138,6 +139,7 @@ public class Tarjetacreditoventa implements Serializable {
     }
 
     @XmlTransient
+    @JsonbTransient
     public Collection<Pagoventa> getPagoventaCollection() {
         return pagoventaCollection;
     }
