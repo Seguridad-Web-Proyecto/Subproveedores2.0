@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+
+    <ui:composition template="/template_login.xhtml">
+        <ui:define name="body">
+
+            <div class="wrapper fadeInDown">
+                <div id="formContent">
+                    <!-- Tabs Titles -->
+
+                    <!-- Icon -->
+                    <div class="fadeIn first">
+                        <center>
+                            <center><h1><span>ERP Subproveedores</span></h1></center>
+                        </center>
+                        <br></br>
+                        <h:graphicImage value = "/resources/images/user.png" id="icon" alt="User Icon" height="250px" width="100px"/> 
+                    </div>
+                   
+                    <h:panelGroup id="messagePanel" layout="block">
+                        <center> <h:messages errorStyle="color: red" infoStyle="color: red" layout="table"/></center>
+                    </h:panelGroup>
+                     <br></br>
+                    <!-- Login Form -->
+                    <h:form> 
+                        <h:inputText id="usuario" class="fadeIn second" value="#{login.usuario}" required="true"  requiredMessage="Ingresa un usuario valido" a:placeholder="Usuario"/>
+                        <h:messages class="alert alert-danger" for="usuario"/>
+
+
+                        <h:inputSecret class="fadeIn third" id="contrasenia" value="#{login.contrasenia}" required="true"  requiredMessage="Ingresa una contraseña" a:placeholder="Contraseña"/>
+
+                        <h:messages class="alert alert-danger" for="contrasenia"/>
+
+                        <h:commandButton value="Ingresar" action="#{login.entrar()}"/>
+                    </h:form>
+
+                    <!-- Remind Passowrd -->
+                    <div id="formFooter">
+                        <a class="underlineHover" href="#">¿Olvidaste tu contraseña?</a>
+                    </div>
+
+                </div>
+            </div>
+        </ui:define>
+    </ui:composition>
+</html>
