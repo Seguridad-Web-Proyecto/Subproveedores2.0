@@ -8,7 +8,7 @@ package jsf.clases;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
-import jsf.clas.util.JsfUtil;
+import jsf.clases.util.JsfUtil;
 
 /**
  *
