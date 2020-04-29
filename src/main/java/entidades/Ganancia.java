@@ -6,6 +6,7 @@
 package entidades;
 
 import java.io.Serializable;
+import javax.json.bind.annotation.JsonbTransient;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -19,6 +20,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -74,7 +76,7 @@ public class Ganancia implements Serializable {
     public void setPorcentaje(short porcentaje) {
         this.porcentaje = porcentaje;
     }
-
+    
     public Producto getProductoid() {
         return productoid;
     }

@@ -153,6 +153,8 @@ public class Producto implements Serializable {
         this.categoriaid = categoriaid;
     }
 
+    @XmlTransient
+    @JsonbTransient
     public Ganancia getGanancia() {
         return ganancia;
     }

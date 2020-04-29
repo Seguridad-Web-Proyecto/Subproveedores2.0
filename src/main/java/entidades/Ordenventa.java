@@ -48,45 +48,55 @@ import javax.xml.bind.annotation.XmlTransient;
 public class Ordenventa implements Serializable {
 
     private static final long serialVersionUID = 1L;
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "ordenventaid")
     private Long ordenventaid;
+    
     @Basic(optional = false)
     @NotNull
     @Column(name = "fecha_venta")
     @Temporal(TemporalType.DATE)
     private Date fechaVenta;
+    
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 45)
     @Column(name = "status")
     private String status;
+    
     @Basic(optional = false)
     @NotNull
     @Column(name = "iva")
     private short iva;
+    
     @Basic(optional = false)
     @NotNull
     @Column(name = "subtotal")
     private long subtotal;
+    
     @Basic(optional = false)
     @NotNull
     @Column(name = "total")
     private long total;
+    
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 100)
     @Column(name = "descripcion")
     private String descripcion;
+    
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "ordenventa")
     private Collection<Ventadetalle> ventadetalleCollection;
+    
     @JoinColumn(name = "clienteid", referencedColumnName = "clienteid")
     @ManyToOne(optional = false)
     private Cliente clienteid;
+    
     @JoinColumn(name = "facturaid", referencedColumnName = "facturaventaid")
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = true)
     private Facturaventa facturaid;
 
     public Ordenventa() {

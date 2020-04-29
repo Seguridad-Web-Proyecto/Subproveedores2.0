@@ -19,6 +19,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 /**
  *
@@ -38,21 +39,21 @@ public class FacturaventaFacadeREST extends AbstractFacade<Facturaventa> {
     @POST
     @Override
     @Consumes(MediaType.APPLICATION_JSON)
-    public void create(Facturaventa entity) {
-        super.create(entity);
+    public Response create(Facturaventa entity) {
+        return super.create(entity);
     }
 
     @PUT
     @Path("{id}")
     @Consumes(MediaType.APPLICATION_JSON)
-    public void edit(@PathParam("id") Long id, Facturaventa entity) {
-        super.edit(entity);
+    public Response edit(@PathParam("id") Long id, Facturaventa entity) {
+        return super.edit(entity);
     }
 
     @DELETE
     @Path("{id}")
-    public void remove(@PathParam("id") Long id) {
-        super.remove(super.find(id));
+    public Response remove(@PathParam("id") Long id) {
+        return super.remove(super.find(id));
     }
 
     @GET

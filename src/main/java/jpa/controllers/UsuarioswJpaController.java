@@ -3,29 +3,28 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package dao;
+package jpa.controllers;
 
 import dao.exceptions.NonexistentEntityException;
 import dao.exceptions.RollbackFailureException;
-import entidades.Inventario;
+import entidades.Usuariosw;
 import java.io.Serializable;
+import java.util.List;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
 import javax.persistence.Query;
 import javax.persistence.EntityNotFoundException;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
-import entidades.Producto;
-import java.util.List;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
 import javax.transaction.UserTransaction;
 
 /**
  *
  * @author jaker
  */
-public class InventarioJpaController implements Serializable {
+public class UsuarioswJpaController implements Serializable {
 
-    public InventarioJpaController(UserTransaction utx, EntityManagerFactory emf) {
+    public UsuarioswJpaController(UserTransaction utx, EntityManagerFactory emf) {
         this.utx = utx;
         this.emf = emf;
     }
@@ -36,21 +35,12 @@ public class InventarioJpaController implements Serializable {
         return emf.createEntityManager();
     }
 
-    public void create(Inventario inventario) throws RollbackFailureException, Exception {
+    public void create(Usuariosw usuariosw) throws RollbackFailureException, Exception {
         EntityManager em = null;
         try {
             utx.begin();
             em = getEntityManager();
-            Producto productoid = inventario.getProductoid();
-            if (productoid != null) {
-                productoid = em.getReference(productoid.getClass(), productoid.getProductoid());
-                inventario.setProductoid(productoid);
-            }
-            em.persist(inventario);
-            if (productoid != null) {
-                productoid.getInventarioCollection().add(inventario);
-                productoid = em.merge(productoid);
-            }
+            em.persist(usuariosw);
             utx.commit();
         } catch (Exception ex) {
             try {
@@ -66,27 +56,12 @@ public class InventarioJpaController implements Serializable {
         }
     }
 
-    public void edit(Inventario inventario) throws NonexistentEntityException, RollbackFailureException, Exception {
+    public void edit(Usuariosw usuariosw) throws NonexistentEntityException, RollbackFailureException, Exception {
         EntityManager em = null;
         try {
             utx.begin();
             em = getEntityManager();
-            Inventario persistentInventario = em.find(Inventario.class, inventario.getInventarioid());
-            Producto productoidOld = persistentInventario.getProductoid();
-            Producto productoidNew = inventario.getProductoid();
-            if (productoidNew != null) {
-                productoidNew = em.getReference(productoidNew.getClass(), productoidNew.getProductoid());
-                inventario.setProductoid(productoidNew);
-            }
-            inventario = em.merge(inventario);
-            if (productoidOld != null && !productoidOld.equals(productoidNew)) {
-                productoidOld.getInventarioCollection().remove(inventario);
-                productoidOld = em.merge(productoidOld);
-            }
-            if (productoidNew != null && !productoidNew.equals(productoidOld)) {
-                productoidNew.getInventarioCollection().add(inventario);
-                productoidNew = em.merge(productoidNew);
-            }
+            usuariosw = em.merge(usuariosw);
             utx.commit();
         } catch (Exception ex) {
             try {
@@ -96,9 +71,9 @@ public class InventarioJpaController implements Serializable {
             }
             String msg = ex.getLocalizedMessage();
             if (msg == null || msg.length() == 0) {
-                Long id = inventario.getInventarioid();
-                if (findInventario(id) == null) {
-                    throw new NonexistentEntityException("The inventario with id " + id + " no longer exists.");
+                Long id = usuariosw.getUsuarioid();
+                if (findUsuariosw(id) == null) {
+                    throw new NonexistentEntityException("The usuariosw with id " + id + " no longer exists.");
                 }
             }
             throw ex;
@@ -114,19 +89,14 @@ public class InventarioJpaController implements Serializable {
         try {
             utx.begin();
             em = getEntityManager();
-            Inventario inventario;
+            Usuariosw usuariosw;
             try {
-                inventario = em.getReference(Inventario.class, id);
-                inventario.getInventarioid();
+                usuariosw = em.getReference(Usuariosw.class, id);
+                usuariosw.getUsuarioid();
             } catch (EntityNotFoundException enfe) {
-                throw new NonexistentEntityException("The inventario with id " + id + " no longer exists.", enfe);
+                throw new NonexistentEntityException("The usuariosw with id " + id + " no longer exists.", enfe);
             }
-            Producto productoid = inventario.getProductoid();
-            if (productoid != null) {
-                productoid.getInventarioCollection().remove(inventario);
-                productoid = em.merge(productoid);
-            }
-            em.remove(inventario);
+            em.remove(usuariosw);
             utx.commit();
         } catch (Exception ex) {
             try {
@@ -142,19 +112,19 @@ public class InventarioJpaController implements Serializable {
         }
     }
 
-    public List<Inventario> findInventarioEntities() {
-        return findInventarioEntities(true, -1, -1);
+    public List<Usuariosw> findUsuarioswEntities() {
+        return findUsuarioswEntities(true, -1, -1);
     }
 
-    public List<Inventario> findInventarioEntities(int maxResults, int firstResult) {
-        return findInventarioEntities(false, maxResults, firstResult);
+    public List<Usuariosw> findUsuarioswEntities(int maxResults, int firstResult) {
+        return findUsuarioswEntities(false, maxResults, firstResult);
     }
 
-    private List<Inventario> findInventarioEntities(boolean all, int maxResults, int firstResult) {
+    private List<Usuariosw> findUsuarioswEntities(boolean all, int maxResults, int firstResult) {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            cq.select(cq.from(Inventario.class));
+            cq.select(cq.from(Usuariosw.class));
             Query q = em.createQuery(cq);
             if (!all) {
                 q.setMaxResults(maxResults);
@@ -166,20 +136,20 @@ public class InventarioJpaController implements Serializable {
         }
     }
 
-    public Inventario findInventario(Long id) {
+    public Usuariosw findUsuariosw(Long id) {
         EntityManager em = getEntityManager();
         try {
-            return em.find(Inventario.class, id);
+            return em.find(Usuariosw.class, id);
         } finally {
             em.close();
         }
     }
 
-    public int getInventarioCount() {
+    public int getUsuarioswCount() {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            Root<Inventario> rt = cq.from(Inventario.class);
+            Root<Usuariosw> rt = cq.from(Usuariosw.class);
             cq.select(em.getCriteriaBuilder().count(rt));
             Query q = em.createQuery(cq);
             return ((Long) q.getSingleResult()).intValue();

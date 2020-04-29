@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package dao;
+package jpa.controllers;
 
 import dao.exceptions.IllegalOrphanException;
 import dao.exceptions.NonexistentEntityException;
@@ -41,13 +41,12 @@ public class OrdenventaJpaController implements Serializable {
         return emf.createEntityManager();
     }
 
-    public void create(Ordenventa ordenventa) throws RollbackFailureException, Exception {
+    public Ordenventa create(Ordenventa ordenventa) throws RollbackFailureException, Exception {
         if (ordenventa.getVentadetalleCollection() == null) {
             ordenventa.setVentadetalleCollection(new ArrayList<Ventadetalle>());
         }
         EntityManager em = null;
         try {
-            utx.begin();
             em = getEntityManager();
             Cliente clienteid = ordenventa.getClienteid();
             if (clienteid != null) {
@@ -65,6 +64,7 @@ public class OrdenventaJpaController implements Serializable {
                 attachedVentadetalleCollection.add(ventadetalleCollectionVentadetalleToAttach);
             }
             ordenventa.setVentadetalleCollection(attachedVentadetalleCollection);
+            
             em.persist(ordenventa);
             if (clienteid != null) {
                 clienteid.getOrdenventaCollection().add(ordenventa);
@@ -83,10 +83,11 @@ public class OrdenventaJpaController implements Serializable {
                     oldOrdenventaOfVentadetalleCollectionVentadetalle = em.merge(oldOrdenventaOfVentadetalleCollectionVentadetalle);
                 }
             }
-            utx.commit();
+            em.flush();
         } catch (Exception ex) {
             try {
-                utx.rollback();
+                ex.printStackTrace();
+                //utx.rollback();
             } catch (Exception re) {
                 throw new RollbackFailureException("An error occurred attempting to roll back the transaction.", re);
             }
@@ -96,6 +97,7 @@ public class OrdenventaJpaController implements Serializable {
                 em.close();
             }
         }
+        return ordenventa;
     }
 
     public void edit(Ordenventa ordenventa) throws IllegalOrphanException, NonexistentEntityException, RollbackFailureException, Exception {

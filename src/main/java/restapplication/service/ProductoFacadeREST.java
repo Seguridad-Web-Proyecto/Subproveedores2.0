@@ -19,6 +19,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import jpa.controllers.GananciaJpaController;
 
 /**
  *
@@ -28,6 +29,9 @@ import javax.ws.rs.core.MediaType;
 @Path("productos")
 public class ProductoFacadeREST extends AbstractFacade<Producto> {
 
+    private final GananciaJpaController gananciaJpaController = 
+            new GananciaJpaController(super.getUserTransaction(), super.getEntityManagerFactory());
+    
     @PersistenceContext(unitName = "com.mycompany_Subproveedores_war_1.0-SNAPSHOTPU")
     private EntityManager em;
 
@@ -39,14 +43,25 @@ public class ProductoFacadeREST extends AbstractFacade<Producto> {
     @Path("{id}")
     @Produces(MediaType.APPLICATION_JSON)
     public Producto find(@PathParam("id") Long id) {
-        return super.find(id);
+        Producto producto =super.find(id);
+        int gananciaxproducto = ((int)producto.getGanancia().getPorcentaje())*(int)producto.getPrecioUnitario();
+        gananciaxproducto /= 100;
+        gananciaxproducto += (int)producto.getPrecioUnitario();
+        return producto;
     }
 
     @GET
     @Override
     @Produces(MediaType.APPLICATION_JSON)
     public List<Producto> findAll() {
-        return super.findAll();
+        List<Producto> productoList = super.findAll();
+        for(Producto producto: productoList){
+            int gananciaxproducto = ((int)producto.getGanancia().getPorcentaje())*(int)producto.getPrecioUnitario();
+            gananciaxproducto /= 100;
+            gananciaxproducto += (int)producto.getPrecioUnitario();
+            producto.setPrecioUnitario(gananciaxproducto);
+        }
+        return productoList;
     }
 
     @GET

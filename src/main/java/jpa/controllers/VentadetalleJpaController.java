@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package dao;
+package jpa.controllers;
 
 import dao.exceptions.NonexistentEntityException;
 import dao.exceptions.PreexistingEntityException;
@@ -47,7 +47,7 @@ public class VentadetalleJpaController implements Serializable {
         ventadetalle.getVentadetallePK().setVentaid(ventadetalle.getOrdenventa().getOrdenventaid());
         EntityManager em = null;
         try {
-            utx.begin();
+            //utx.begin();
             em = getEntityManager();
             Ordenventa ordenventa = ventadetalle.getOrdenventa();
             if (ordenventa != null) {
@@ -68,10 +68,10 @@ public class VentadetalleJpaController implements Serializable {
                 producto.getVentadetalleCollection().add(ventadetalle);
                 producto = em.merge(producto);
             }
-            utx.commit();
+            //utx.commit();
         } catch (Exception ex) {
             try {
-                utx.rollback();
+                //utx.rollback();
             } catch (Exception re) {
                 throw new RollbackFailureException("An error occurred attempting to roll back the transaction.", re);
             }

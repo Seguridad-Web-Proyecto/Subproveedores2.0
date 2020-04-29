@@ -3,19 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package dao;
+package jpa.controllers;
 
-import dao.exceptions.IllegalOrphanException;
 import dao.exceptions.NonexistentEntityException;
 import dao.exceptions.RollbackFailureException;
-import entidades.Ganancia;
+import entidades.Inventario;
 import java.io.Serializable;
 import javax.persistence.Query;
 import javax.persistence.EntityNotFoundException;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import entidades.Producto;
-import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -25,9 +23,9 @@ import javax.transaction.UserTransaction;
  *
  * @author jaker
  */
-public class GananciaJpaController implements Serializable {
+public class InventarioJpaController implements Serializable {
 
-    public GananciaJpaController(UserTransaction utx, EntityManagerFactory emf) {
+    public InventarioJpaController(UserTransaction utx, EntityManagerFactory emf) {
         this.utx = utx;
         this.emf = emf;
     }
@@ -38,33 +36,19 @@ public class GananciaJpaController implements Serializable {
         return emf.createEntityManager();
     }
 
-    public void create(Ganancia ganancia) throws IllegalOrphanException, RollbackFailureException, Exception {
-        List<String> illegalOrphanMessages = null;
-        Producto productoidOrphanCheck = ganancia.getProductoid();
-        if (productoidOrphanCheck != null) {
-            Ganancia oldGananciaOfProductoid = productoidOrphanCheck.getGanancia();
-            if (oldGananciaOfProductoid != null) {
-                if (illegalOrphanMessages == null) {
-                    illegalOrphanMessages = new ArrayList<String>();
-                }
-                illegalOrphanMessages.add("The Producto " + productoidOrphanCheck + " already has an item of type Ganancia whose productoid column cannot be null. Please make another selection for the productoid field.");
-            }
-        }
-        if (illegalOrphanMessages != null) {
-            throw new IllegalOrphanException(illegalOrphanMessages);
-        }
+    public void create(Inventario inventario) throws RollbackFailureException, Exception {
         EntityManager em = null;
         try {
             utx.begin();
             em = getEntityManager();
-            Producto productoid = ganancia.getProductoid();
+            Producto productoid = inventario.getProductoid();
             if (productoid != null) {
                 productoid = em.getReference(productoid.getClass(), productoid.getProductoid());
-                ganancia.setProductoid(productoid);
+                inventario.setProductoid(productoid);
             }
-            em.persist(ganancia);
+            em.persist(inventario);
             if (productoid != null) {
-                productoid.setGanancia(ganancia);
+                productoid.getInventarioCollection().add(inventario);
                 productoid = em.merge(productoid);
             }
             utx.commit();
@@ -82,38 +66,25 @@ public class GananciaJpaController implements Serializable {
         }
     }
 
-    public void edit(Ganancia ganancia) throws IllegalOrphanException, NonexistentEntityException, RollbackFailureException, Exception {
+    public void edit(Inventario inventario) throws NonexistentEntityException, RollbackFailureException, Exception {
         EntityManager em = null;
         try {
             utx.begin();
             em = getEntityManager();
-            Ganancia persistentGanancia = em.find(Ganancia.class, ganancia.getGananciaid());
-            Producto productoidOld = persistentGanancia.getProductoid();
-            Producto productoidNew = ganancia.getProductoid();
-            List<String> illegalOrphanMessages = null;
-            if (productoidNew != null && !productoidNew.equals(productoidOld)) {
-                Ganancia oldGananciaOfProductoid = productoidNew.getGanancia();
-                if (oldGananciaOfProductoid != null) {
-                    if (illegalOrphanMessages == null) {
-                        illegalOrphanMessages = new ArrayList<String>();
-                    }
-                    illegalOrphanMessages.add("The Producto " + productoidNew + " already has an item of type Ganancia whose productoid column cannot be null. Please make another selection for the productoid field.");
-                }
-            }
-            if (illegalOrphanMessages != null) {
-                throw new IllegalOrphanException(illegalOrphanMessages);
-            }
+            Inventario persistentInventario = em.find(Inventario.class, inventario.getInventarioid());
+            Producto productoidOld = persistentInventario.getProductoid();
+            Producto productoidNew = inventario.getProductoid();
             if (productoidNew != null) {
                 productoidNew = em.getReference(productoidNew.getClass(), productoidNew.getProductoid());
-                ganancia.setProductoid(productoidNew);
+                inventario.setProductoid(productoidNew);
             }
-            ganancia = em.merge(ganancia);
+            inventario = em.merge(inventario);
             if (productoidOld != null && !productoidOld.equals(productoidNew)) {
-                productoidOld.setGanancia(null);
+                productoidOld.getInventarioCollection().remove(inventario);
                 productoidOld = em.merge(productoidOld);
             }
             if (productoidNew != null && !productoidNew.equals(productoidOld)) {
-                productoidNew.setGanancia(ganancia);
+                productoidNew.getInventarioCollection().add(inventario);
                 productoidNew = em.merge(productoidNew);
             }
             utx.commit();
@@ -125,9 +96,9 @@ public class GananciaJpaController implements Serializable {
             }
             String msg = ex.getLocalizedMessage();
             if (msg == null || msg.length() == 0) {
-                Long id = ganancia.getGananciaid();
-                if (findGanancia(id) == null) {
-                    throw new NonexistentEntityException("The ganancia with id " + id + " no longer exists.");
+                Long id = inventario.getInventarioid();
+                if (findInventario(id) == null) {
+                    throw new NonexistentEntityException("The inventario with id " + id + " no longer exists.");
                 }
             }
             throw ex;
@@ -143,19 +114,19 @@ public class GananciaJpaController implements Serializable {
         try {
             utx.begin();
             em = getEntityManager();
-            Ganancia ganancia;
+            Inventario inventario;
             try {
-                ganancia = em.getReference(Ganancia.class, id);
-                ganancia.getGananciaid();
+                inventario = em.getReference(Inventario.class, id);
+                inventario.getInventarioid();
             } catch (EntityNotFoundException enfe) {
-                throw new NonexistentEntityException("The ganancia with id " + id + " no longer exists.", enfe);
+                throw new NonexistentEntityException("The inventario with id " + id + " no longer exists.", enfe);
             }
-            Producto productoid = ganancia.getProductoid();
+            Producto productoid = inventario.getProductoid();
             if (productoid != null) {
-                productoid.setGanancia(null);
+                productoid.getInventarioCollection().remove(inventario);
                 productoid = em.merge(productoid);
             }
-            em.remove(ganancia);
+            em.remove(inventario);
             utx.commit();
         } catch (Exception ex) {
             try {
@@ -171,19 +142,19 @@ public class GananciaJpaController implements Serializable {
         }
     }
 
-    public List<Ganancia> findGananciaEntities() {
-        return findGananciaEntities(true, -1, -1);
+    public List<Inventario> findInventarioEntities() {
+        return findInventarioEntities(true, -1, -1);
     }
 
-    public List<Ganancia> findGananciaEntities(int maxResults, int firstResult) {
-        return findGananciaEntities(false, maxResults, firstResult);
+    public List<Inventario> findInventarioEntities(int maxResults, int firstResult) {
+        return findInventarioEntities(false, maxResults, firstResult);
     }
 
-    private List<Ganancia> findGananciaEntities(boolean all, int maxResults, int firstResult) {
+    private List<Inventario> findInventarioEntities(boolean all, int maxResults, int firstResult) {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            cq.select(cq.from(Ganancia.class));
+            cq.select(cq.from(Inventario.class));
             Query q = em.createQuery(cq);
             if (!all) {
                 q.setMaxResults(maxResults);
@@ -195,20 +166,20 @@ public class GananciaJpaController implements Serializable {
         }
     }
 
-    public Ganancia findGanancia(Long id) {
+    public Inventario findInventario(Long id) {
         EntityManager em = getEntityManager();
         try {
-            return em.find(Ganancia.class, id);
+            return em.find(Inventario.class, id);
         } finally {
             em.close();
         }
     }
 
-    public int getGananciaCount() {
+    public int getInventarioCount() {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            Root<Ganancia> rt = cq.from(Ganancia.class);
+            Root<Inventario> rt = cq.from(Inventario.class);
             cq.select(em.getCriteriaBuilder().count(rt));
             Query q = em.createQuery(cq);
             return ((Long) q.getSingleResult()).intValue();

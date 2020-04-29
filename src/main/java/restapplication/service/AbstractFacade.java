@@ -7,6 +7,10 @@ package restapplication.service;
 
 import java.util.List;
 import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import javax.transaction.UserTransaction;
+import javax.ws.rs.core.Response;
 
 /**
  *
@@ -15,6 +19,11 @@ import javax.persistence.EntityManager;
 public abstract class AbstractFacade<T> {
 
     private Class<T> entityClass;
+    
+    private UserTransaction utx;
+    
+    private final EntityManagerFactory entityManagerFactory = 
+            Persistence.createEntityManagerFactory("com.mycompany_Subproveedores_war_1.0-SNAPSHOTPU");
 
     public AbstractFacade(Class<T> entityClass) {
         this.entityClass = entityClass;
@@ -22,16 +31,31 @@ public abstract class AbstractFacade<T> {
 
     protected abstract EntityManager getEntityManager();
 
-    public void create(T entity) {
-        getEntityManager().persist(entity);
+    public Response create(T entity) {
+        try{
+            getEntityManager().persist(entity);
+            return Response.ok().build();
+        }catch(Exception ex){
+            return Response.serverError().build();
+        }
     }
 
-    public void edit(T entity) {
-        getEntityManager().merge(entity);
+    public Response edit(T entity) {
+        try{
+            getEntityManager().merge(entity);
+            return Response.ok().build();
+        }catch(Exception ex){
+            return Response.serverError().build();
+        }
     }
 
-    public void remove(T entity) {
-        getEntityManager().remove(getEntityManager().merge(entity));
+    public Response remove(T entity) {
+        try{
+            getEntityManager().remove(getEntityManager().merge(entity));
+            return Response.ok().build();
+        }catch(Exception ex){
+            return Response.serverError().build();
+        }
     }
 
     public T find(Object id) {
@@ -59,6 +83,14 @@ public abstract class AbstractFacade<T> {
         cq.select(getEntityManager().getCriteriaBuilder().count(rt));
         javax.persistence.Query q = getEntityManager().createQuery(cq);
         return ((Long) q.getSingleResult()).intValue();
+    }
+    
+    protected UserTransaction getUserTransaction(){
+        return this.utx;
+    }
+    
+    protected EntityManagerFactory getEntityManagerFactory(){
+        return this.entityManagerFactory;
     }
     
 }
